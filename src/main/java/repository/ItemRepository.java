@@ -83,17 +83,16 @@ public interface ItemRepository {
     @Select("select * from Item where gameId is null AND userId is null AND itemRarity = #{rarity} Limit 0,1")
     Item getFreeItemByRarity(@Param(value = "rarity") String rarity);
 
-    @Update("UPDATE Item SET gameId = #{gameId}, userId = #{userId} WHERE itemId = #{itemId}")
-    void updateGameAndUserInItem(@Param(value = "gameId") Integer gameId,
-                                 @Param(value = "userId") Integer userId,
-                                 @Param(value = "itemId") Integer itemId);
+    @Update("UPDATE Item SET " +
+            " botId =#{bot.id},gameId = #{game.id}, userId = #{user.id}, "+
+            " itemName = #{name},itemRarity = #{rarity}, itemType = #{type}"+
+            " WHERE itemId = #{id}")
+    void updateItem(Item item);
 
-    @Insert("Insert  INTO Item(itemId,itemName,itemRarity,itemType,botId)" +
-            "values(#{id},#{name},#{rarity},#{type},#{botId})"
+    @Insert("Insert INTO Item(itemName,itemRarity,itemType,botId)" +
+            "values(#{name},#{rarity},#{type},#{botId})"
     )
-    void insertItem(@Param(value = "id") Integer id, @Param(value = "name") String name,
-                    @Param(value = "rarity") String rarity, @Param(value = "type") String type,
-                    @Param(value = "botId") Integer botId);
+    void insertItem(Item item);
 
 
 }

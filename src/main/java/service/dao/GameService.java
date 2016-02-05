@@ -29,8 +29,4 @@ public class GameService{
         gameRepository.insertGame(game);
     }
 
-    public  Integer getLastGameByUserId(Integer id){
-        return gameRepository.getLastGameByUserId(id);
-    }
-
 }

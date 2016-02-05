@@ -46,12 +46,10 @@ public class BalanceBean {
         }
 
         Balance balance = balanceService.getBalanceByUserId(userId);
-        Double balanceValue = balance.getValue();
-        Integer balanceId = balance.getId();
-        balanceValue += value;
-        balanceService.updateBalance(balanceId, balanceValue);
+        balance.setValue(balance.getValue()+value);
+        balanceService.updateBalance(balance);
         LOG.info("Balance update Success");
-        sendMessage("Success", "Current balance: " + balanceValue);
+        sendMessage("Success", "Current balance: " + balance.getValue());
     }
 
     public Double getValue() {

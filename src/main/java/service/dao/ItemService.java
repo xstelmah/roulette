@@ -1,7 +1,6 @@
 package service.dao;
 
 import model.Item;
-import model.ItemRarity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import repository.ItemRepository;
@@ -34,11 +33,11 @@ public class ItemService {
         return itemRepository.getFreeItemByRarity(rarity);
     }
 
-    public void updateGameAndUserInItem(Integer gameId, Integer userId, Integer itemId) {
-        itemRepository.updateGameAndUserInItem(gameId, userId, itemId);
+    public void updateItem(Item item) {
+        itemRepository.updateItem(item);
     }
 
-    public void insertItem(Integer id, String name, String rarity, String type, Integer botId) {
-        itemRepository.insertItem(id, name, rarity, type, botId);
+    public void insertItem(Item item) {
+        itemRepository.insertItem(item);
     }
 }

@@ -45,9 +45,14 @@
                                     <div class="btn_container">
                                         <h:commandButton value="play"
                                                          styleClass="btn btn-lg btn-block btn-primary start"
-                                                         action="#{gameBean.playGame(userBean.user)}">
-                                            <f:ajax render="growl" />
+                                                         onclick="PF('dlg2').show();"
+                                                         action="#{gameBean.playGame(userBean.user)}"
+                                                        >
+                                            <f:ajax render="roullete-group growl :menuForm:menuUserInfo" />
                                         </h:commandButton>
+                                        <!--<p:commandButton value="New play" action="#{gameBean.playGame(userBean.user)}" onclick="">-->
+                                            <!--<p:ajax update="roullete-group growl :menuForm:menuUserInfo" />-->
+                                        <!--</p:commandButton>-->
                                     </div>
                                 </div>
                             </div>
@@ -77,7 +82,7 @@
                 <p:commandButton value="Modal" type="button" onclick="PF('dlg2').show();">
                     <f:ajax render="roullete-group"/>
                 </p:commandButton>
-                <p:dialog widgetVar="dlg2" modal="true" height="120" dynamic="true" resizable="false">
+                <p:dialog widgetVar="dlg2" modal="true" height="120" rendered="#{gameBean.renderRoullete}" dynamic="true" resizable="false">
                     <h:panelGroup id="roullete-group">
                         <div class="roullete-layer">
                             <div class="roullete-arrow"></div>
@@ -87,15 +92,11 @@
                                                     value="resources/images/${image.name}.jpg"/>
                                 </c:forEach>
                             </div>
-
                         </div>
                         <h:outputScript name="roullete/js/roullete.js"/>
-                        <c:if test="#{gameBean.renderRoullete}">
                             <h:outputScript>
                                 onRoll();
                             </h:outputScript>
-                        </c:if>
-
                     </h:panelGroup>
                 </p:dialog>
 

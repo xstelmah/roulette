@@ -29,7 +29,7 @@ public interface BalanceRepository {
                     many = @Many(select = "repository.TransactionRepository.getTranscationsByBalanceId",fetchType = FetchType.LAZY))
     })
     @Select("select * from Balance where userId = #{id}")
-    Balance getBalanceByUserId(User user);
+    Balance getBalanceByUserId(Integer id);
 
 
     @Update("UPDATE Balance SET balanceValue = #{value}, userId = #{user.id} WHERE balanceId =#{id}")

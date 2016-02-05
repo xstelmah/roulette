@@ -23,8 +23,8 @@ public class BalanceService{
         return balanceRepository.getBalanceByUserId(id);
     }
 
-    public void updateBalance(Integer id, Double value) {
-        balanceRepository.updateBalance(id, value);
+    public void updateBalance(Balance balance) {
+        balanceRepository.updateBalance(balance);
     }
 
 }

@@ -5,7 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import service.dao.BalanceService;
 import service.dao.GameService;
 import service.dao.ItemService;
 
@@ -20,6 +20,9 @@ public class GameLogicService {
 
     @Autowired
     private ItemService itemService;
+
+    @Autowired
+    private BalanceService balanceService;
 
     @Autowired
     private GameService gameService;
@@ -53,7 +56,7 @@ public class GameLogicService {
         }
         Game game = new Game();
         game.setStartTime(new Date(System.currentTimeMillis()));
-        Balance balance = user.getBalance();
+        Balance balance = balanceService.getBalanceByUserId(user.getId());
         if (balance == null) {
             LOG.error("Balance not loaded, lazy load not working");
             return "Balance not loaded, lazy load not working";
@@ -70,7 +73,6 @@ public class GameLogicService {
             startChance += chance.getChanceValue();
             if (rand <= startChance) {
                 winItemRarity = chance.getItemRarity();
-                LOG.info("Win item rarity :" + chance.getItemRarity().toString());
                 break;
             }
         }
@@ -84,18 +86,18 @@ public class GameLogicService {
             return "Not found clear item";
         }
         balance.setValue(balance.getValue() - bet.getBetValue());
+
+        balanceService.updateBalance(balance);
+
         game.setUser(user);
         game.setBet(bet.getBetValue());
         game.setNumber(6);
         game.setResult(winItem.getName());
 
         gameService.insertGame(game);
-        // @bydlo
-        Integer gameId = gameService.getLastGameByUserId(user.getId());
-        //@bydlo
-        itemService.updateGameAndUserInItem(gameId, user.getId(), winItem.getId());
-
-
+        winItem.setGame(game);
+        winItem.setUser(user);
+        itemService.updateItem(winItem);
         return null;
     }
 

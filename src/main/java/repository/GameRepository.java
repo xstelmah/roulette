@@ -41,9 +41,4 @@ public interface GameRepository {
     @Options(useGeneratedKeys=true, keyProperty="id", keyColumn="gameId")
     void insertGame(Game game);
 
-    @Select("SELECT gameId FROM Game WHERE userId = #{id} \n" +
-            "ORDER BY gameId desc \n" +
-            "Limit 0,1")
-    Integer getLastGameByUserId(@Param(value = "id")Integer id);
-
 }
