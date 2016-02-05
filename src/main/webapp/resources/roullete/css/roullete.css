@@ -1,0 +1,27 @@
+.roullete-arrow {
+    width: 3px;
+    height: 104px;
+    position: absolute;
+    background: darkred;
+    z-index: 1;
+    left: 300px;
+}
+.roullete {
+    border: 1px black;
+    width: 1000000px;
+    position: relative;
+}
+.roullete-layer {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    width: 600px;
+    overflow: hidden;
+}
+.roullete-image {
+    border: 1px black;
+    width: 150px;
+    height: 100px;
+    margin: 2px;
+    float: left;
+}

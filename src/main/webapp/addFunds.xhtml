@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+>
+
+
+<h:body>
+    <ui:composition template="WEB-INF/views/template/templateLayout.xhtml">
+        <ui:define name="content">
+            <h:form id="addFunds">
+                <p:growl id="growl" showDetail="true" life="3000"/>
+                <div class="col-md-6 col-md-offset-3">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Balance operations</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <h:outputText value="Add amount: "/>
+                                        <h:inputText value="#{balanceBean.value}" styleClass="form-control">
+                                            <f:ajax render="balanceGroup"/>
+                                        </h:inputText>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <h:commandButton value="Confirm"
+                                                         styleClass="btn btn-lg btn-success btn-block text-center"
+                                                         action="#{balanceBean.updateBalance(userBean.userId)}">
+                                            <f:ajax render="menuForm growl"/>
+                                        </h:commandButton>
+                                    </div>
+                                </div>
+                                <h:panelGroup class="col-md-6">
+                                    <h:panelGroup class="form-group">
+                                        <h:commandButton value="Back" action="#{balanceBean.goBack()}"
+                                                         styleClass="btn btn-lg btn-info btn-block text-center">
+                                            <f:ajax />
+                                        </h:commandButton>
+                                    </h:panelGroup>
+                                </h:panelGroup>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</h:body>
+
+</html>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+>
+<body>
+<ui:composition>
+    <div class="navbar navbar-default">
+        <h:form id="menuForm" styleClass="navbar-form">
+            <div class="btn-group">
+                <h:commandButton value="Profile" action="UserProfile"
+                                 styleClass="btn btn-primary">
+                    <!--  <f:ajax />-->
+                </h:commandButton>
+            </div>
+            <div class="btn-group">
+                <h:commandButton value="Roullete" action="playGame"
+                                 styleClass="btn btn-primary">
+                    <!--  <f:ajax />-->
+                </h:commandButton>
+            </div>
+            <div class="btn-group">
+                <h:commandButton value="Add funds" action="addFunds"
+                                 styleClass="btn btn-primary">
+                    <!--  <f:ajax />-->
+                </h:commandButton>
+            </div>
+            <div class="btn-group">
+                <h:commandButton value="itemPage" action="itemPage"
+                                 styleClass="btn btn-primary">
+                    <!--  <f:ajax />-->
+                </h:commandButton>
+            </div>
+            <div class="btn-group">
+                <h:commandButton value="botPage" action="botPage"
+                                 styleClass="btn btn-primary">
+                    <!--  <f:ajax />-->
+                </h:commandButton>
+            </div>
+            <div class="btn-group">
+                <h:commandButton value="main" action="main"
+                                 styleClass="btn btn-primary">
+                      <!--<f:ajax />-->
+
+                </h:commandButton>
+            </div>
+            <div class="btn-group">
+                <h:commandButton value="roulletePage" action="roulletePage"
+                                 styleClass="btn btn-primary">
+                    <!--<f:ajax />-->
+                </h:commandButton>
+            </div>
+
+            <div class="btn-group">
+                <h:commandButton value="TEST PAGE" action="testPage"
+                                 styleClass="btn btn-primary">
+                    <!--<f:ajax />-->
+                </h:commandButton>
+            </div>
+
+
+            <div class="btn-group navbar-right">
+                <h:commandButton value="Logout" action="login"
+                                 styleClass="btn btn-success">
+                    <!--  <f:ajax />-->
+                </h:commandButton>
+            </div>
+
+            <h:panelGroup id="menuUserInfo">
+                <div class="navbar-text navbar-right">
+                    Signed in as @ ${userBean.user.login} Balance: ${balanceService.getBalanceByUserId(userBean.user.id).value}
+                </div>
+            </h:panelGroup>
+
+        </h:form>
+    </div>
+</ui:composition>
+</body>
+</html>
