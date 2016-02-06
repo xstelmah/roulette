@@ -8,11 +8,11 @@
 
     <Loggers>
 
-        <Logger name="com.project" level="DEBUG" additivity="false">
+        <Logger name="com.project" level="INFO" additivity="false">
             <Appender-ref ref="CONSOLE_APPENDER"/>
         </Logger>
 
-        <Root level="DEBUG">
+        <Root level="INFO">
             <Appender-ref ref="CONSOLE_APPENDER"/>
         </Root>
     </Loggers>

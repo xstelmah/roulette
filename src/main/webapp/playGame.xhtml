@@ -18,6 +18,7 @@
         <ui:define name="content">
             <h:form id="playForm">
                 <p:growl id="growl" showDetail="true" showSummary="false" life="3000"/>
+
                 <div class="row">
                     <div class="col-sm-2">
                         <div class="form-group">
@@ -45,11 +46,11 @@
                                     <div class="btn_container">
                                         <h:commandButton value="play"
                                                          styleClass="btn btn-lg btn-block btn-primary start"
-                                                         onclick="PF('dlg2').show();"
                                                          action="#{gameBean.playGame(userBean.user)}"
-                                                        >
-                                            <f:ajax render="roullete-group growl :menuForm:menuUserInfo" />
+                                        >
+                                            <f:ajax render="dialogGroup growl :menuForm:menuUserInfo"/>
                                         </h:commandButton>
+                                        <!--onclick="PF('dlg2').show();"-->
                                     </div>
                                 </div>
                             </div>
@@ -76,26 +77,36 @@
                 </div>
 
 
-                <p:commandButton value="Modal" type="button" onclick="PF('dlg2').show();">
-                    <f:ajax render="roullete-group"/>
-                </p:commandButton>
-                <p:dialog widgetVar="dlg2" modal="true" height="120" rendered="#{gameBean.renderRoullete}" dynamic="true" resizable="false">
-                    <h:panelGroup id="roullete-group">
-                        <div class="roullete-layer">
-                            <div class="roullete-arrow"></div>
-                            <div id="roulette" class="roullete">
-                                <c:forEach items="#{gameBean.takeImg()}" var="image">
-                                    <h:graphicImage styleClass="roullete-image"
-                                                    value="resources/images/${image.name}.jpg"/>
-                                </c:forEach>
+                <!--<p:commandButton value="Modal" type="button" onclick="PF('dlg2').show();">-->
+                <!--<f:ajax render="roullete-group"/>-->
+                <!--</p:commandButton>-->
+                <h:panelGroup id="dialogGroup" rendered="#{gameBean.renderRoulette}">
+                    <h:commandButton onclick="PF('dlg2').show()">
+                        <f:ajax/>
+                    </h:commandButton>
+                    <h:outputScript>
+                        //PF('dlg2').show();
+                        $('qwe').show();
+                    </h:outputScript>
+                    <p:dialog id="qwe" widgetVar="dlg2" modal="true" height="120"
+                              dynamic="true" resizable="false">
+                        <h:panelGroup id="roullete-group">
+                            <div class="roullete-layer">
+                                <div class="roullete-arrow"></div>
+                                <div id="roulette" class="roullete">
+                                    <c:forEach items="#{gameBean.takeImg()}" var="image">
+                                        <h:graphicImage styleClass="roullete-image"
+                                                        value="resources/images/${image.name}.jpg"/>
+                                    </c:forEach>
+                                </div>
                             </div>
-                        </div>
-                        <h:outputScript name="roullete/js/roullete.js"/>
+                            <h:outputScript name="roullete/js/roullete.js"/>
                             <h:outputScript>
                                 onRoll();
                             </h:outputScript>
-                    </h:panelGroup>
-                </p:dialog>
+                        </h:panelGroup>
+                    </p:dialog>
+                </h:panelGroup>
 
             </h:form>
 

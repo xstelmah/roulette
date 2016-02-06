@@ -10,7 +10,7 @@ import repository.GameRepository;
 import java.util.List;
 
 @Service(value = "gameService")
-public class GameService{
+public class GameService {
 
     private static final Logger LOG = LoggerFactory.getLogger(BalanceService.class);
 
@@ -27,6 +27,10 @@ public class GameService{
 
     public void insertGame(Game game) {
         gameRepository.insertGame(game);
+    }
+
+    public void updateGame(Game game) {
+        gameRepository.updateGame(game);
     }
 
 }

@@ -30,15 +30,19 @@ public interface GameRepository {
             @Result(property = "user", column = "userId", javaType = User.class,
                     one = @One(select = "repository.UserRepository.getUserById", fetchType = FetchType.LAZY)),
             @Result(property = "items", column = "gameId", javaType = List.class,
-             many = @Many(select = "repository.ItemRepository.getItemsByGameId", fetchType = FetchType.LAZY))
+                    many = @Many(select = "repository.ItemRepository.getItemsByGameId", fetchType = FetchType.LAZY))
     })
     @Select("select * from Game where UserId = #{id}")
     List<Game> getGamesByUserId(@Param(value = "id") Integer id);
 
-    @Insert("INSERT into Game(gameBet,gameNumber,gameResult,gameStartTime,userId)"+
+    @Insert("INSERT into Game(gameBet,gameNumber,gameResult,gameStartTime,userId)" +
             " VALUES(#{bet},#{number},#{result},#{startTime},#{user.id})")
 //    @SelectKey(statement="call identity()", keyProperty="id", keyColumn = "gameId", before=false, resultType=Integer.class)
-    @Options(useGeneratedKeys=true, keyProperty="id", keyColumn="gameId")
+    @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "gameId")
     void insertGame(Game game);
+
+    @Update("UPDATE Game SET userId = #{user.id}, gameNumber = #{number}, gameStartTime = #{startTime}, " +
+            " gameResult = #{result}, gameBet = #{bet} where gameId = #{id}")
+    void updateGame(Game game);
 
 }

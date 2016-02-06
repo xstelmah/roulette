@@ -7,10 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import service.dao.BalanceService;
-import service.dao.GameService;
-import service.dao.ItemService;
-import service.dao.UserService;
 import service.logic.GameLogicService;
 
 import javax.faces.application.FacesMessage;
@@ -36,7 +32,7 @@ public class GameBean {
     private GameLogicService gameLogicService;
 
 
-    private Boolean renderRoullete;
+    private Boolean renderRoulette;
 
     private List<ItemRarity> baseWinItems;
 
@@ -48,7 +44,7 @@ public class GameBean {
     public GameBean() {
         LOG.info("GameBean created");
         bets = new ArrayList<>();
-        renderRoullete = false;
+        renderRoulette = false;
         bets.add(new ExternalBet(2.0, ItemRarity.COMMON));
         bets.add(new ExternalBet(5.0, ItemRarity.UNCOMMON));
         bets.add(new ExternalBet(10.0, ItemRarity.RARE));
@@ -83,7 +79,7 @@ public class GameBean {
     }
 
     public void playGame(User user) {
-        renderRoullete = false;
+        renderRoulette = false;
         if (user == null) {
             LOG.error("Play game, user is null");
             return;
@@ -93,16 +89,12 @@ public class GameBean {
             return;
         }
         String result = gameLogicService.play(user, selectedExternalBet);
-        if (result == null)
-        {
-            renderRoullete = true;
-            sendMessage(FacesMessage.SEVERITY_INFO,"SUCCESS", "");
+        if (result == null) {
+            renderRoulette = true;
+            sendMessage(FacesMessage.SEVERITY_INFO, "SUCCESS", "");
+        } else {
+            sendMessage(FacesMessage.SEVERITY_ERROR, "ERROR", "");
         }
-        else
-        {
-            sendMessage(FacesMessage.SEVERITY_ERROR,"ERROR", "");
-        }
-
     }
 
     public void onSelectBet(ValueChangeEvent event) {
@@ -129,8 +121,8 @@ public class GameBean {
 
     }
 
-    public Boolean getRenderRoullete() {
-        return renderRoullete;
+    public Boolean getRenderRoulette() {
+        return renderRoulette;
     }
 
     public List<ItemRarity> getBaseWinItems() {

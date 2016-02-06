@@ -86,15 +86,16 @@ public class GameLogicService {
             return "Not found clear item";
         }
         balance.setValue(balance.getValue() - bet.getBetValue());
-
         balanceService.updateBalance(balance);
 
         game.setUser(user);
         game.setBet(bet.getBetValue());
-        game.setNumber(6);
         game.setResult(winItem.getName());
-
+        game.setNumber(-1);
         gameService.insertGame(game);
+        game.setNumber(game.getId());
+        gameService.updateGame(game);
+
         winItem.setGame(game);
         winItem.setUser(user);
         itemService.updateItem(winItem);
