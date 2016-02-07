@@ -3,6 +3,7 @@ package beans;
 import beans.converter.ExternalBetConverter;
 import model.ExternalBet;
 import model.*;
+import org.primefaces.component.dialog.Dialog;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,10 +32,11 @@ public class GameBean {
     @Autowired
     private GameLogicService gameLogicService;
 
-
-    private Boolean renderRoulette;
+    private Dialog dialog;
 
     private List<ItemRarity> baseWinItems;
+
+    private List<Item> renderItems;
 
     private List<ExternalBet> bets;
 
@@ -44,14 +46,12 @@ public class GameBean {
     public GameBean() {
         LOG.info("GameBean created");
         bets = new ArrayList<>();
-        renderRoulette = false;
         bets.add(new ExternalBet(2.0, ItemRarity.COMMON));
         bets.add(new ExternalBet(5.0, ItemRarity.UNCOMMON));
         bets.add(new ExternalBet(10.0, ItemRarity.RARE));
         bets.add(new ExternalBet(20.0, ItemRarity.MYTHICAL));
         baseWinItems = generateRarityList(ItemRarity.COMMON);
     }
-
 
     private List<ItemRarity> generateRarityList(ItemRarity rarityStart) {
         List<ItemRarity> rarityList = new ArrayList<>();
@@ -63,23 +63,7 @@ public class GameBean {
         return rarityList;
     }
 
-    public List<ItemRarity> takeImg() {
-        Integer minIndex = (selectedExternalBet == null) ? 0 : selectedExternalBet.getItemRarity().getValue();
-        List<ItemRarity> itemList = new ArrayList<>();
-        for (int i = 0; i < ITEM_LOAD_COUNT; i++) {
-            Random random = new Random();
-            int rInt = random.nextInt(7 - minIndex) + minIndex;
-            for (ItemRarity item : ItemRarity.values()) {
-                if (item.getValue() == rInt) {
-                    itemList.add(item);
-                }
-            }
-        }
-        return itemList;
-    }
-
     public void playGame(User user) {
-        renderRoulette = false;
         if (user == null) {
             LOG.error("Play game, user is null");
             return;
@@ -88,12 +72,14 @@ public class GameBean {
             LOG.error("Play game, bet is null");
             return;
         }
-        String result = gameLogicService.play(user, selectedExternalBet);
-        if (result == null) {
-            renderRoulette = true;
-            sendMessage(FacesMessage.SEVERITY_INFO, "SUCCESS", "");
+        List<Item> itemsResult = gameLogicService.play(user, selectedExternalBet);
+        if (itemsResult != null) {
+            dialog.setVisible(true);
+            renderItems = itemsResult;
+//            sendMessage(FacesMessage.SEVERITY_INFO, "SUCCESS", null);
         } else {
-            sendMessage(FacesMessage.SEVERITY_ERROR, "ERROR", "");
+            dialog.setVisible(false);
+            sendMessage(FacesMessage.SEVERITY_ERROR, "ERROR", "Not enough gold");
         }
     }
 
@@ -121,10 +107,6 @@ public class GameBean {
 
     }
 
-    public Boolean getRenderRoulette() {
-        return renderRoulette;
-    }
-
     public List<ItemRarity> getBaseWinItems() {
         return baseWinItems;
     }
@@ -136,6 +118,18 @@ public class GameBean {
     public void sendMessage(FacesMessage.Severity severity, String header, String body) {
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage(severity, header, body));
+    }
+
+    public Dialog getDialog() {
+        return dialog;
+    }
+
+    public void setDialog(Dialog dialog) {
+        this.dialog = dialog;
+    }
+
+    public List<Item> getRenderItems() {
+        return renderItems;
     }
 
 }

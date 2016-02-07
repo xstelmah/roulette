@@ -18,6 +18,11 @@ public class GameLogicService {
 
     private static final Logger LOG = LoggerFactory.getLogger(GameLogicService.class);
 
+    // win item number
+    private static final Integer ITEM_LOAD_COUNT = 33;
+
+    private static final Integer ITEM_WIN_NUMBER = 29;
+
     @Autowired
     private ItemService itemService;
 
@@ -27,7 +32,6 @@ public class GameLogicService {
     @Autowired
     private GameService gameService;
 
-    // getFreeItemByRarity
     public Item getFreeItemByRarity(ItemRarity rarity) {
         return itemService.getFreeItemByRarity(rarity.toString().toLowerCase());
     }
@@ -44,29 +48,8 @@ public class GameLogicService {
         return chances;
     }
 
-    public String play(User user, ExternalBet bet) {
-        if (user == null) {
-            LOG.error("Game started, user is null");
-            return "User is null";
-        }
-        LOG.info("Game started, user id: " + user.getId());
-        if (bet == null) {
-            LOG.error("bet is null");
-            return "Bet is null";
-        }
-        Game game = new Game();
-        game.setStartTime(new Date(System.currentTimeMillis()));
-        Balance balance = balanceService.getBalanceByUserId(user.getId());
-        if (balance == null) {
-            LOG.error("Balance not loaded, lazy load not working");
-            return "Balance not loaded, lazy load not working";
-        }
-        if (balance.getValue() <= bet.getBetValue()) {
-            LOG.warn("Not enought gold on bet balance: '" + balance.getValue() + "' bet: '" + bet.getBetValue() + "'");
-            return "Not enought gold on bet";
-        }
+    public Item getItemByChances(List<ExternalChance> chances) {
         Double startChance = 0.0;
-        List<ExternalChance> chances = getChancesByRarity(bet.getItemRarity());
         Double rand = Math.random();
         ItemRarity winItemRarity = null;
         for (ExternalChance chance : chances) {
@@ -78,13 +61,47 @@ public class GameLogicService {
         }
         if (winItemRarity == null) {
             LOG.error("Something wrong with Chances");
-            return "Something wrong with Chances";
+            return null;
         }
         Item winItem = getFreeItemByRarity(winItemRarity);
         if (winItem == null) {
             LOG.error("Not found clear item rarity: " + winItemRarity.toString());
-            return "Not found clear item";
+            return null;
         }
+        return winItem;
+    }
+
+    public List<Item> play(User user, ExternalBet bet) {
+        if (user == null) {
+            LOG.error("Game started, user is null");
+            return null;
+        }
+        LOG.info("Game started, user id: " + user.getId());
+        if (bet == null) {
+            LOG.error("bet is null");
+            return null;
+        }
+        Game game = new Game();
+        game.setStartTime(new Date(System.currentTimeMillis()));
+        Balance balance = balanceService.getBalanceByUserId(user.getId());
+        if (balance == null) {
+            LOG.error("Balance not loaded, lazy load not working");
+            return null;
+        }
+        if (balance.getValue() <= bet.getBetValue()) {
+            LOG.warn("Not enought gold on bet balance: '" + balance.getValue() + "' bet: '" + bet.getBetValue() + "'");
+            return null;
+        }
+
+        List<ExternalChance> chances = getChancesByRarity(bet.getItemRarity());
+        Item winItem = getItemByChances(chances);
+
+        if (winItem == null) {
+            LOG.error("NOT FOUND WIN ITEM WITH RARITY " + bet.getItemRarity());
+            return null;
+        }
+        List<Item> items = new ArrayList<>();
+
         balance.setValue(balance.getValue() - bet.getBetValue());
         balanceService.updateBalance(balance);
 
@@ -99,7 +116,12 @@ public class GameLogicService {
         winItem.setGame(game);
         winItem.setUser(user);
         itemService.updateItem(winItem);
-        return null;
+        for (int index = 0; index <= ITEM_LOAD_COUNT; index++) {
+            if (ITEM_WIN_NUMBER == index) items.add(winItem);
+            else items.add(getItemByChances(chances));
+        }
+        LOG.info("User: " + user.getId() + " win item rarity: " + winItem.getRarity());
+        return items;
     }
 
 
