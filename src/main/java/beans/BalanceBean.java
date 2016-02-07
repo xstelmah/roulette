@@ -8,17 +8,23 @@ import org.springframework.stereotype.Component;
 import service.dao.BalanceService;
 
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import java.io.Serializable;
 
-@Component(value = "balanceBean")
+@ManagedBean(name = "balanceBean")
 @SessionScoped
-public class BalanceBean {
+public class BalanceBean implements Serializable {
 
     private static final Logger LOG = LoggerFactory.getLogger(UserBean.class);
 
-    @Autowired
+    @ManagedProperty(value = "#{balanceService}")
     private BalanceService balanceService;
+
+    @ManagedProperty(value = "#{userBean}")
+    private UserBean userBean;
 
     private Double value;
 
@@ -27,13 +33,17 @@ public class BalanceBean {
         this.value = 0.0;
     }
 
-    public void updateBalance(Integer userId) {
+    public void updateBalance() {
         LOG.info("updateBalance");
-        if (userId == null) {
-            sendMessage("Error", "Not selected user");
+        if (userBean == null) {
+            LOG.info("user bean is null");
+            return;
+        }
+        if (userBean.getUser() == null) {
             LOG.info("user is null");
             return;
         }
+
         if (value <= 0) {
             LOG.info("value <= 0");
             sendMessage("Error", "Not correct value");
@@ -45,12 +55,18 @@ public class BalanceBean {
             return;
         }
 
-        Balance balance = balanceService.getBalanceByUserId(userId);
-        balance.setValue(balance.getValue()+value);
+        Balance balance = balanceService.getBalanceByUserId(userBean.getUser().getId());
+        balance.setValue(balance.getValue() + value);
         balanceService.updateBalance(balance);
         LOG.info("Balance update Success");
-        sendMessage("Success", "Current balance: " + balance.getValue());
+        sendMessage("Success", "Replenish balance on " + value);
     }
+
+    public void sendMessage(String header, String body) {
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage(header, body));
+    }
+
 
     public Double getValue() {
         return value;
@@ -60,9 +76,19 @@ public class BalanceBean {
         this.value = value;
     }
 
-    public void sendMessage(String header, String body) {
-        FacesContext context = FacesContext.getCurrentInstance();
-        context.addMessage(null, new FacesMessage(header, body));
+    public BalanceService getBalanceService() {
+        return balanceService;
     }
 
+    public void setBalanceService(BalanceService balanceService) {
+        this.balanceService = balanceService;
+    }
+
+    public UserBean getUserBean() {
+        return userBean;
+    }
+
+    public void setUserBean(UserBean userBean) {
+        this.userBean = userBean;
+    }
 }

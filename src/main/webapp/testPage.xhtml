@@ -17,16 +17,7 @@
     <ui:composition template="/WEB-INF/views/template/templateLayout.xhtml">
         <ui:define name="content">
             <h:form id="testForm">
-                <h:selectOneMenu id="selectedBetMenu"
-                                 valueChangeListener="#{gameBean.onSelectBet}">
-                    <f:selectItem itemLabel="--- select ---" itemValue="#{null}"/>
-                    <f:selectItems value="${gameBean.bets}" var="bet" itemLabel="${bet.betValue}"
-                                   itemValue="${bet}"/>
-                    <f:ajax/>
-                </h:selectOneMenu>
-                <h:commandButton type="submit" >
-                    <f:ajax render="testForm"/>
-                </h:commandButton>
+
             </h:form>
         </ui:define>
     </ui:composition>

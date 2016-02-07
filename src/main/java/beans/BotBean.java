@@ -8,28 +8,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import service.dao.BotService;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import java.io.Serializable;
 import java.util.List;
 
-@Component(value = "botBean")
+@ManagedBean(name = "botBean")
 @SessionScoped
-public class BotBean {
+public class BotBean implements Serializable {
 
     private static final Logger LOG = LoggerFactory.getLogger(BotBean.class);
 
-    @Autowired
+    @ManagedProperty(value = "#{botService}")
     private BotService botService;
 
     private Integer botId;
 
-    public Integer getBotId() {
-        return botId;
-    }
 
-    public void setBotId(Integer botId) {
-        LOG.info("setBotId = " + botId);
-        this.botId = botId;
-    }
 
     public List<Item> obtainBotItems() {
         if (botId == null) {
@@ -65,5 +61,22 @@ public class BotBean {
             return null;
         }
         return bot.getName();
+    }
+
+
+    public Integer getBotId() {
+        return botId;
+    }
+
+    public void setBotId(Integer botId) {
+        this.botId = botId;
+    }
+
+    public BotService getBotService() {
+        return botService;
+    }
+
+    public void setBotService(BotService botService) {
+        this.botService = botService;
     }
 }

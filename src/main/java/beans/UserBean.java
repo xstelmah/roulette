@@ -8,15 +8,18 @@ import org.springframework.stereotype.Component;
 import service.dao.UserService;
 
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import java.io.Serializable;
 
-@Component(value = "userBean")
+@ManagedBean(name = "userBean")
 @SessionScoped
-public class UserBean {
+public class UserBean implements Serializable {
 
-    @Autowired
-    UserService userService;
+    @ManagedProperty(value = "#{userService}")
+    private UserService userService;
 
     private static final Logger LOG = LoggerFactory.getLogger(UserBean.class);
 
@@ -42,6 +45,12 @@ public class UserBean {
         return outcome;
     }
 
+    public void sendMessage(String header, String body) {
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, header, body));
+    }
+
+
     public User getUser() {
         return user;
     }
@@ -50,9 +59,11 @@ public class UserBean {
         this.user = user;
     }
 
-    public void sendMessage(String header, String body) {
-        FacesContext context = FacesContext.getCurrentInstance();
-        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, header, body));
+    public UserService getUserService() {
+        return userService;
     }
 
+    public void setUserService(UserService userService) {
+        this.userService = userService;
+    }
 }

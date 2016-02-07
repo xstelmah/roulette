@@ -6,10 +6,11 @@ import org.slf4j.LoggerFactory;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import java.io.Serializable;
 
-@ManagedBean
+@ManagedBean(name = "transactionBean")
 @SessionScoped
-public class TransactionBean {
+public class TransactionBean implements Serializable {
     private static final Logger LOG = LoggerFactory.getLogger(TransactionBean.class);
 
     private Transaction transaction;

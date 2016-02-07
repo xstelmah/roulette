@@ -26,9 +26,9 @@
                                             Personal Info</h3>
                                     </div>
                                     <div class="panel-body" style="display: block;">
-                                        <h:outputText value="User login = ${userBean.user.id}"/><br/>
+                                        <h:outputText value="User login = ${userBean.user.login}"/><br/>
                                         <h:outputText id="balanceText"
-                                                      value="User balance value =${userRepository.getUserById(userBean.user.id).balance.value}"/><br/>
+                                                      value="User balance value =${balanceService.getBalanceByUserId(userBean.user.id).value}"/><br/>
                                     </div>
                                 </div>
                                 <div class="panel panel-info">
@@ -43,7 +43,7 @@
                                                  var="currentGame">
                                         <h:column>
                                             <f:facet name="header">Game Number</f:facet>
-                                            #{currentGame.id}
+                                            #{currentGame.number}
                                         </h:column>
                                         <h:column>
                                             <f:facet name="header">Bet</f:facet>

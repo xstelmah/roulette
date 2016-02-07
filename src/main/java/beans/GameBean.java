@@ -7,29 +7,29 @@ import org.primefaces.component.dialog.Dialog;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import service.logic.GameLogicService;
 
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.*;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-@Component(value = "gameBean")
-@SessionScoped
-public class GameBean {
+@ManagedBean(name = "gameBean")
+@ViewScoped
+public class GameBean implements Serializable {
 
     private static final Logger LOG = LoggerFactory.getLogger(GameBean.class);
 
-    public static final Integer ITEM_LOAD_COUNT = 33;
-
-    @Autowired
+    @ManagedProperty(value = "#{externalBetConverter}")
     private ExternalBetConverter externalBetConverter;
 
-    @Autowired
+    @ManagedProperty(value = "#{gameLogicService}")
     private GameLogicService gameLogicService;
 
     private Dialog dialog;
@@ -52,6 +52,7 @@ public class GameBean {
         bets.add(new ExternalBet(20.0, ItemRarity.MYTHICAL));
         baseWinItems = generateRarityList(ItemRarity.COMMON);
     }
+
 
     private List<ItemRarity> generateRarityList(ItemRarity rarityStart) {
         List<ItemRarity> rarityList = new ArrayList<>();
@@ -107,18 +108,12 @@ public class GameBean {
 
     }
 
-    public List<ItemRarity> getBaseWinItems() {
-        return baseWinItems;
-    }
-
-    public List<ExternalBet> getBets() {
-        return bets;
-    }
-
     public void sendMessage(FacesMessage.Severity severity, String header, String body) {
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage(severity, header, body));
     }
+
+
 
     public Dialog getDialog() {
         return dialog;
@@ -132,4 +127,27 @@ public class GameBean {
         return renderItems;
     }
 
+    public List<ItemRarity> getBaseWinItems() {
+        return baseWinItems;
+    }
+
+    public List<ExternalBet> getBets() {
+        return bets;
+    }
+
+    public ExternalBetConverter getExternalBetConverter() {
+        return externalBetConverter;
+    }
+
+    public GameLogicService getGameLogicService() {
+        return gameLogicService;
+    }
+
+    public void setExternalBetConverter(ExternalBetConverter externalBetConverter) {
+        this.externalBetConverter = externalBetConverter;
+    }
+
+    public void setGameLogicService(GameLogicService gameLogicService) {
+        this.gameLogicService = gameLogicService;
+    }
 }
