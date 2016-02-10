@@ -12,9 +12,9 @@ public interface GameRepository {
     @Results(value = {
             @Result(id = true, property = "id", column = "gameId"),
             @Result(property = "number", column = "gameNumber"),
-            @Result(property = "result", column = "gameResult"),
             @Result(property = "startTime", column = "gameStartTime"),
             @Result(property = "bet", column = "gameBet"),
+            @Result(property = "description", column = "gameDescription"),
             @Result(property = "user", column = "userId", javaType = User.class,
                     one = @One(select = "repository.UserRepository.getUserById", fetchType = FetchType.LAZY))
     })
@@ -24,9 +24,9 @@ public interface GameRepository {
     @Results(value = {
             @Result(id = true, property = "id", column = "gameId"),
             @Result(property = "number", column = "gameNumber"),
-            @Result(property = "result", column = "gameResult"),
             @Result(property = "startTime", column = "gameStartTime"),
             @Result(property = "bet", column = "gameBet"),
+            @Result(property = "description", column = "gameDescription"),
             @Result(property = "user", column = "userId", javaType = User.class,
                     one = @One(select = "repository.UserRepository.getUserById", fetchType = FetchType.LAZY)),
             @Result(property = "items", column = "gameId", javaType = List.class,
@@ -35,14 +35,14 @@ public interface GameRepository {
     @Select("select * from Game where UserId = #{id}")
     List<Game> getGamesByUserId(@Param(value = "id") Integer id);
 
-    @Insert("INSERT into Game(gameBet,gameNumber,gameResult,gameStartTime,userId)" +
-            " VALUES(#{bet},#{number},#{result},#{startTime},#{user.id})")
+    @Insert("INSERT into Game(gameBet,gameNumber,gameDescription,gameStartTime,userId)" +
+            " VALUES(#{bet},#{number},#{description},#{startTime},#{user.id})")
 //    @SelectKey(statement="call identity()", keyProperty="id", keyColumn = "gameId", before=false, resultType=Integer.class)
     @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "gameId")
     void insertGame(Game game);
 
     @Update("UPDATE Game SET userId = #{user.id}, gameNumber = #{number}, gameStartTime = #{startTime}, " +
-            " gameResult = #{result}, gameBet = #{bet} where gameId = #{id}")
+            " gameDescription = #{description}, gameBet = #{bet} where gameId = #{id}")
     void updateGame(Game game);
 
 }

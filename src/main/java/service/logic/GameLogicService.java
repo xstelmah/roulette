@@ -33,29 +33,29 @@ public class GameLogicService {
     private GameService gameService;
 
     public Item getFreeItemByRarity(ItemRarity rarity) {
-        return itemService.getFreeItemByRarity(rarity.toString().toLowerCase());
+        return itemService.getFreeItemByRarity(rarity);
     }
 
-    public List<ExternalChance> getChancesByRarity(ItemRarity rarity) {
-        List<ExternalChance> chances = new ArrayList<>();
-        chances.add(new ExternalChance(0.4, ItemRarity.COMMON));
-        chances.add(new ExternalChance(0.1, ItemRarity.UNCOMMON));
-        chances.add(new ExternalChance(0.1, ItemRarity.RARE));
-        chances.add(new ExternalChance(0.1, ItemRarity.MYTHICAL));
-        chances.add(new ExternalChance(0.1, ItemRarity.IMMORTAL));
-        chances.add(new ExternalChance(0.1, ItemRarity.LEGENDARY));
-        chances.add(new ExternalChance(0.1, ItemRarity.IMMORTAL));
+    public List<Chance> getChancesByRarity(ItemRarity rarity) {
+        List<Chance> chances = new ArrayList<>();
+        chances.add(new Chance(0.4f, ItemRarity.COMMON));
+        chances.add(new Chance(0.1f, ItemRarity.UNCOMMON));
+        chances.add(new Chance(0.1f, ItemRarity.RARE));
+        chances.add(new Chance(0.1f, ItemRarity.MYTHICAL));
+        chances.add(new Chance(0.1f, ItemRarity.IMMORTAL));
+        chances.add(new Chance(0.1f, ItemRarity.LEGENDARY));
+        chances.add(new Chance(0.1f, ItemRarity.IMMORTAL));
         return chances;
     }
 
-    public Item getItemByChances(List<ExternalChance> chances) {
+    public Item getItemByChances(List<Chance> chances) {
         Double startChance = 0.0;
         Double rand = Math.random();
         ItemRarity winItemRarity = null;
-        for (ExternalChance chance : chances) {
-            startChance += chance.getChanceValue();
+        for (Chance chance : chances) {
+            startChance += chance.getValue();
             if (rand <= startChance) {
-                winItemRarity = chance.getItemRarity();
+                winItemRarity = chance.getRarity();
                 break;
             }
         }
@@ -71,7 +71,7 @@ public class GameLogicService {
         return winItem;
     }
 
-    public List<Item> play(User user, ExternalBet bet) {
+    public List<Item> play(User user, Bet bet) {
         if (user == null) {
             LOG.error("Game started, user is null");
             return null;
@@ -88,26 +88,26 @@ public class GameLogicService {
             LOG.error("Balance not loaded, lazy load not working");
             return null;
         }
-        if (balance.getValue() <= bet.getBetValue()) {
-            LOG.warn("Not enought gold on bet balance: '" + balance.getValue() + "' bet: '" + bet.getBetValue() + "'");
+        if (balance.getValue() < bet.getValue()) {
+            LOG.warn("Not enought gold on bet balance: '" + balance.getValue() + "' bet: '" + bet.getValue() + "'");
             return null;
         }
 
-        List<ExternalChance> chances = getChancesByRarity(bet.getItemRarity());
+        List<Chance> chances = getChancesByRarity(bet.getRarity());
         Item winItem = getItemByChances(chances);
 
         if (winItem == null) {
-            LOG.error("NOT FOUND WIN ITEM WITH RARITY " + bet.getItemRarity());
+            LOG.error("NOT FOUND WIN ITEM WITH RARITY " + bet.getRarity());
             return null;
         }
         List<Item> items = new ArrayList<>();
 
-        balance.setValue(balance.getValue() - bet.getBetValue());
+        balance.setValue(balance.getValue() - bet.getValue());
         balanceService.updateBalance(balance);
 
         game.setUser(user);
-        game.setBet(bet.getBetValue());
-        game.setResult(winItem.getName());
+        game.setBet(bet.getValue());
+        game.setDescription(winItem.getName());
         game.setNumber(-1);
         gameService.insertGame(game);
         game.setNumber(game.getId());

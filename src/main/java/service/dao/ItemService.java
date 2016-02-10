@@ -1,6 +1,7 @@
 package service.dao;
 
 import model.Item;
+import model.ItemRarity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import repository.ItemRepository;
@@ -29,7 +30,7 @@ public class ItemService {
         return itemRepository.getItemsByBotId(id);
     }
 
-    public Item getFreeItemByRarity(String rarity) {
+    public Item getFreeItemByRarity(ItemRarity rarity) {
         return itemRepository.getFreeItemByRarity(rarity);
     }
 

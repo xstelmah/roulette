@@ -12,7 +12,7 @@ public class Item {
 
     private String name;
 
-    private String rarity;
+    private ItemRarity rarity;
 
     private String type;
 
@@ -56,11 +56,11 @@ public class Item {
         this.name = name;
     }
 
-    public String getRarity() {
+    public ItemRarity getRarity() {
         return rarity;
     }
 
-    public void setRarity(String rarity) {
+    public void setRarity(ItemRarity rarity) {
         this.rarity = rarity;
     }
 

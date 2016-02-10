@@ -20,22 +20,12 @@ public class ItemBean implements Serializable {
     @ManagedProperty(value = "#{itemService}")
     private ItemService itemService;
 
-    private String itemRarity = "";
 
     private Integer itemId;
 
     public ItemBean() {
     }
 
-
-    public Item obtainClearItemByRarity() {
-        Item item = itemService.getFreeItemByRarity(itemRarity);
-        if (item == null) {
-            LOG.info("founded zero items");
-            return new Item();
-        }
-        return item;
-    }
 
 
     public Integer getItemId() {
@@ -44,14 +34,6 @@ public class ItemBean implements Serializable {
 
     public void setItemId(Integer itemId) {
         this.itemId = itemId;
-    }
-
-    public String getItemRarity() {
-        return itemRarity;
-    }
-
-    public void setItemRarity(String itemRarity) {
-        this.itemRarity = itemRarity;
     }
 
     public ItemService getItemService() {

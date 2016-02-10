@@ -1,6 +1,6 @@
 package beans.converter;
 
-import model.ExternalBet;
+import model.Bet;
 import model.ItemRarity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,24 +24,24 @@ public class ExternalBetConverter implements Converter {
             return null;
         }
         String[] values = value.split(" ");
-        ExternalBet externalBet = new ExternalBet(666.0,ItemRarity.ARCANA);
+        Bet externalBet = new Bet(666.0f,ItemRarity.ARCANA);
         if (values.length != 2) {
             LOG.error("BAD CONVERTED INFO");
             return null;
         }
         try {
-            Double bet = Double.parseDouble(values[0]);
+            Float bet = Float.parseFloat(values[0]);
             ItemRarity itemRarity = ItemRarity.valueOf(values[1]);
             if (itemRarity == null) {
                 LOG.error("Can't convert to ItemRarity");
                 return null;
             }
-            externalBet = new ExternalBet(bet, itemRarity);
+            externalBet = new Bet(bet, itemRarity);
         } catch (Exception e) {
             e.printStackTrace();
         }
         LOG.info("End of convert to obj, info: "+externalBet.toString());
-        return (ExternalBet) externalBet;
+        return (Bet) externalBet;
     }
 
     @Override
@@ -53,10 +53,10 @@ public class ExternalBetConverter implements Converter {
             return null;
         }
 
-        if (obj instanceof ExternalBet) {
-            return ((ExternalBet) obj).getBetValue() + " " + ((ExternalBet) obj).getItemRarity().toString();
+        if (obj instanceof Bet) {
+            return ((Bet) obj).getValue() + " " + ((Bet) obj).getRarity().toString();
         } else {
-            LOG.error("Can't convert, object not ExternalBet");
+            LOG.error("Can't convert, object not Bet");
             return null;
         }
     }

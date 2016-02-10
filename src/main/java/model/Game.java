@@ -16,9 +16,9 @@ public class Game {
 
     private Date startTime;
 
-    private String result;
+    private String description;
 
-    private Double bet;
+    private Float bet;
 
     private User user;
 
@@ -52,12 +52,12 @@ public class Game {
         this.startTime = startTime;
     }
 
-    public String getResult() {
-        return result;
+    public String getDescription() {
+        return description;
     }
 
-    public void setResult(String result) {
-        this.result = result;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public User getUser() {
@@ -68,11 +68,11 @@ public class Game {
         this.user = user;
     }
 
-    public Double getBet() {
+    public Float getBet() {
         return bet;
     }
 
-    public void setBet(Double bet) {
+    public void setBet(Float bet) {
         this.bet = bet;
     }
 

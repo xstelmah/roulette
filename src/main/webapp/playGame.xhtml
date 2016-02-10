@@ -32,7 +32,7 @@
                                                          valueChangeListener="#{gameBean.onSelectBet}">
                                             <f:selectItem itemLabel="--- select ---" itemValue="#{null}"/>
                                             <f:selectItems value="${gameBean.bets}" var="bet"
-                                                           itemLabel="${bet.betValue}"
+                                                           itemLabel="${bet.value}"
                                                            itemValue="${bet}"/>
                                             <f:ajax render="baseWinItems"/>
                                         </h:selectOneMenu>

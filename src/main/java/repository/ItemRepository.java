@@ -11,7 +11,7 @@ public interface ItemRepository {
     @Results(value = {
             @Result(id = true, property = "id", column = "itemId"),
             @Result(property = "name", column = "itemName"),
-            @Result(property = "rarity", column = "itemRarity"),
+            @Result(property = "rarity", column = "itemRarity",javaType = ItemRarity.class),
             @Result(property = "type", column = "itemType"),
             @Result(property = "user", column = "userId", javaType = User.class,
                     one = @One(select = "repository.UserRepository.getUserById", fetchType = FetchType.LAZY)),
@@ -26,7 +26,7 @@ public interface ItemRepository {
     @Results(value = {
             @Result(id = true, property = "id", column = "itemId"),
             @Result(property = "name", column = "itemName"),
-            @Result(property = "rarity", column = "itemRarity"),
+            @Result(property = "rarity", column = "itemRarity",javaType = ItemRarity.class),
             @Result(property = "type", column = "itemType"),
             @Result(property = "user", column = "userId", javaType = User.class,
                     one = @One(select = "repository.UserRepository.getUserById", fetchType = FetchType.LAZY)),
@@ -41,7 +41,7 @@ public interface ItemRepository {
     @Results(value = {
             @Result(id = true, property = "id", column = "itemId"),
             @Result(property = "name", column = "itemName"),
-            @Result(property = "rarity", column = "itemRarity"),
+            @Result(property = "rarity", column = "itemRarity",javaType = ItemRarity.class),
             @Result(property = "type", column = "itemType"),
             @Result(property = "user", column = "userId", javaType = User.class,
                     one = @One(select = "repository.UserRepository.getUserById", fetchType = FetchType.LAZY)),
@@ -56,7 +56,7 @@ public interface ItemRepository {
     @Results(value = {
             @Result(id = true, property = "id", column = "itemId"),
             @Result(property = "name", column = "itemName"),
-            @Result(property = "rarity", column = "itemRarity"),
+            @Result(property = "rarity", column = "itemRarity",javaType = ItemRarity.class),
             @Result(property = "type", column = "itemType"),
             @Result(property = "user", column = "userId", javaType = User.class,
                     one = @One(select = "repository.UserRepository.getUserById", fetchType = FetchType.LAZY)),
@@ -71,7 +71,7 @@ public interface ItemRepository {
     @Results(value = {
             @Result(id = true, property = "id", column = "itemId"),
             @Result(property = "name", column = "itemName"),
-            @Result(property = "rarity", column = "itemRarity"),
+            @Result(property = "rarity", column = "itemRarity",javaType = ItemRarity.class),
             @Result(property = "type", column = "itemType"),
             @Result(property = "user", column = "userId", javaType = User.class,
                     one = @One(select = "repository.UserRepository.getUserById", fetchType = FetchType.LAZY)),
@@ -81,7 +81,7 @@ public interface ItemRepository {
                     one = @One(select = "repository.GameRepository.getGameById", fetchType = FetchType.LAZY))
     })
     @Select("select * from Item where gameId is null AND userId is null AND itemRarity = #{rarity} Limit 0,1")
-    Item getFreeItemByRarity(@Param(value = "rarity") String rarity);
+    Item getFreeItemByRarity(@Param(value = "rarity") ItemRarity rarity);
 
     @Update("UPDATE Item SET " +
             " botId =#{bot.id},gameId = #{game.id}, userId = #{user.id}, "+

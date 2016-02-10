@@ -51,7 +51,7 @@
                                         </h:column>
                                         <h:column>
                                             <f:facet name="header">Win Rarity</f:facet>
-                                            #{currentGame.result}
+                                            #{currentGame.description}
                                         </h:column>
                                         <!--<h:column>
                                             <f:facet name="header">Item name</f:facet>
@@ -71,9 +71,11 @@
                                         <h:panelGroup id="imgGroup" >
                                         <c:forEach items="${itemService.getItemsByUserId(userBean.user.id)}"
                                                    var="item">
-
+                                            <div>
+                                                ${item.rarity}
                                                 <h:graphicImage width="99" height="66" style="margin: 2px;"
                                                        value="resources/images/${item.name}.jpg"/>
+                                            </div>
 
                                         </c:forEach>
                                         </h:panelGroup>

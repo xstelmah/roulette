@@ -1,14 +1,11 @@
 package beans;
 
 import beans.converter.ExternalBetConverter;
-import model.ExternalBet;
+import model.Bet;
 import model.*;
 import org.primefaces.component.dialog.Dialog;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
 import service.logic.GameLogicService;
 
 import javax.faces.application.FacesMessage;
@@ -18,7 +15,6 @@ import javax.faces.event.ValueChangeEvent;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 @ManagedBean(name = "gameBean")
 @ViewScoped
@@ -38,18 +34,18 @@ public class GameBean implements Serializable {
 
     private List<Item> renderItems;
 
-    private List<ExternalBet> bets;
+    private List<Bet> bets;
 
-    private ExternalBet selectedExternalBet;
+    private Bet selectedBet;
 
 
     public GameBean() {
         LOG.info("GameBean created");
         bets = new ArrayList<>();
-        bets.add(new ExternalBet(2.0, ItemRarity.COMMON));
-        bets.add(new ExternalBet(5.0, ItemRarity.UNCOMMON));
-        bets.add(new ExternalBet(10.0, ItemRarity.RARE));
-        bets.add(new ExternalBet(20.0, ItemRarity.MYTHICAL));
+        bets.add(new Bet(2.0f, ItemRarity.COMMON));
+        bets.add(new Bet(5.0f, ItemRarity.UNCOMMON));
+        bets.add(new Bet(10.0f, ItemRarity.RARE));
+        bets.add(new Bet(20.0f, ItemRarity.MYTHICAL));
         baseWinItems = generateRarityList(ItemRarity.COMMON);
     }
 
@@ -69,11 +65,11 @@ public class GameBean implements Serializable {
             LOG.error("Play game, user is null");
             return;
         }
-        if (selectedExternalBet == null) {
+        if (selectedBet == null) {
             LOG.error("Play game, bet is null");
             return;
         }
-        List<Item> itemsResult = gameLogicService.play(user, selectedExternalBet);
+        List<Item> itemsResult = gameLogicService.play(user, selectedBet);
         if (itemsResult != null) {
             dialog.setVisible(true);
             renderItems = itemsResult;
@@ -88,23 +84,23 @@ public class GameBean implements Serializable {
         LOG.info("Start method onSelectBet");
         if (event == null) {
             LOG.error("ValueChangeEvent is null in method onSelectBet");
-            selectedExternalBet = null;
+            selectedBet = null;
             baseWinItems = generateRarityList(ItemRarity.COMMON);
             return;
         }
         if (event.getNewValue() == null) {
             LOG.warn("New value is null in method onSelectBet");
-            selectedExternalBet = null;
+            selectedBet = null;
             baseWinItems = generateRarityList(ItemRarity.COMMON);
             return;
         }
-        selectedExternalBet = (ExternalBet) externalBetConverter.getAsObject(null, null, event.getNewValue().toString());
-        if (selectedExternalBet == null) {
+        selectedBet = (Bet) externalBetConverter.getAsObject(null, null, event.getNewValue().toString());
+        if (selectedBet == null) {
             LOG.error("Can't convert value to externalBet");
             baseWinItems = generateRarityList(ItemRarity.COMMON);
             return;
         }
-        baseWinItems = generateRarityList(selectedExternalBet.getItemRarity());
+        baseWinItems = generateRarityList(selectedBet.getRarity());
 
     }
 
@@ -131,7 +127,7 @@ public class GameBean implements Serializable {
         return baseWinItems;
     }
 
-    public List<ExternalBet> getBets() {
+    public List<Bet> getBets() {
         return bets;
     }
 

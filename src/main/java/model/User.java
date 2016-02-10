@@ -14,6 +14,8 @@ public class User {
 
     private Balance balance;
 
+    private String alternativeLogin;
+
     private List<Game> games;
 
     private List<Message> messages;
@@ -86,5 +88,13 @@ public class User {
 
     public void setItems(List<Item> items) {
         this.items = items;
+    }
+
+    public String getAlternativeLogin() {
+        return alternativeLogin;
+    }
+
+    public void setAlternativeLogin(String alternativeLogin) {
+        this.alternativeLogin = alternativeLogin;
     }
 }
