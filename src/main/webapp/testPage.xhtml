@@ -13,11 +13,17 @@
 
 </h:head>
 <h:body>
-
     <ui:composition template="/WEB-INF/views/template/templateLayout.xhtml">
         <ui:define name="content">
             <h:form id="testForm">
-
+                <h:selectOneMenu id="selectedBetMenu" value="#{gameBean.bet}"
+                                >
+                    <f:selectItem itemLabel="--- select ---" itemValue="#{null}"/>
+                    <f:selectItems value="${gameBean.bets}" var="bet"
+                                   itemLabel="${bet.value}"
+                                   itemValue="${bet.id}"/>
+                    <f:ajax render="baseWinItems"/>
+                </h:selectOneMenu>
             </h:form>
         </ui:define>
     </ui:composition>

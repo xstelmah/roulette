@@ -31,7 +31,7 @@ public class UserBean implements Serializable {
     }
 
     public String checkUser() {
-        String outcome = "login";
+        String outcome = null;
         LOG.info("CheckUser");
         user = userService.getUserByLoginPassword(user.getLogin(), user.getPassword());
         if (user == null) {

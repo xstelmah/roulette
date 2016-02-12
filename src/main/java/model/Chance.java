@@ -2,9 +2,13 @@ package model;
 
 public class Chance {
 
+    private Integer id;
+
     private Float value;
 
     private ItemRarity rarity;
+
+    private Bet bet;
 
     public Chance() {
 
@@ -13,6 +17,14 @@ public class Chance {
     public Chance(Float value, ItemRarity rarity) {
         this.value = value;
         this.rarity = rarity;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Float getValue() {
@@ -29,6 +41,14 @@ public class Chance {
 
     public void setRarity(ItemRarity rarity) {
         this.rarity = rarity;
+    }
+
+    public Bet getBet() {
+        return bet;
+    }
+
+    public void setBet(Bet bet) {
+        this.bet = bet;
     }
 
     @Override

@@ -25,4 +25,5 @@ public enum ItemRarity {
     public String getName() {
         return name;
     }
+
 }

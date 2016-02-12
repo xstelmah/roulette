@@ -57,6 +57,15 @@
         <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
     </bean>
 
+    <bean id="betRepository" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="repository.BetRepository"/>
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+    </bean>
+    <bean id="chanceRepository" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="repository.ChanceRepository"/>
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+    </bean>
+
     <bean id="itemRepository" class="org.mybatis.spring.mapper.MapperFactoryBean">
         <property name="mapperInterface" value="repository.ItemRepository"/>
         <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
