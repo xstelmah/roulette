@@ -30,10 +30,10 @@
                                     <div class="col-sm-10">
                                         <h:selectOneMenu id="selectedBetMenu"
                                                          valueChangeListener="#{gameBean.onSelectBet}">
-                                            <f:selectItem itemLabel="--- select ---" itemValue="#{null}"/>
+                                            <!--<f:selectItem itemLabel="-&#45;&#45; select -&#45;&#45;" itemValue="#{null}"/>-->
                                             <f:selectItems value="${gameBean.bets}" var="bet"
                                                            itemLabel="${bet.value}"
-                                                           itemValue="${bet}"/>
+                                                           itemValue="${bet.id}"/>
                                             <f:ajax render="baseWinItems"/>
                                         </h:selectOneMenu>
                                     </div>

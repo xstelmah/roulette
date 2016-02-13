@@ -5,9 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import service.dao.BalanceService;
-import service.dao.GameService;
-import service.dao.ItemService;
+import service.dao.*;
 
 import java.sql.Date;
 import java.util.ArrayList;
@@ -32,20 +30,18 @@ public class GameLogicService {
     @Autowired
     private GameService gameService;
 
+    @Autowired
+    private BetService betService;
+
+    @Autowired
+    private ChanceService chanceService;
+
     public Item getFreeItemByRarity(ItemRarity rarity) {
         return itemService.getFreeItemByRarity(rarity);
     }
 
-    public List<Chance> getChancesByRarity(ItemRarity rarity) {
-        List<Chance> chances = new ArrayList<>();
-        chances.add(new Chance(0.4f, ItemRarity.COMMON));
-        chances.add(new Chance(0.1f, ItemRarity.UNCOMMON));
-        chances.add(new Chance(0.1f, ItemRarity.RARE));
-        chances.add(new Chance(0.1f, ItemRarity.MYTHICAL));
-        chances.add(new Chance(0.1f, ItemRarity.IMMORTAL));
-        chances.add(new Chance(0.1f, ItemRarity.LEGENDARY));
-        chances.add(new Chance(0.1f, ItemRarity.IMMORTAL));
-        return chances;
+    public List<Chance> getChancesByBet(Bet bet) {
+        return chanceService.getChancesByBetId(bet.getId());
     }
 
     public Item getItemByChances(List<Chance> chances) {
@@ -93,7 +89,7 @@ public class GameLogicService {
             return null;
         }
 
-        List<Chance> chances = getChancesByRarity(bet.getRarity());
+        List<Chance> chances = getChancesByBet(bet);
         Item winItem = getItemByChances(chances);
 
         if (winItem == null) {
@@ -122,6 +118,10 @@ public class GameLogicService {
         }
         LOG.info("User: " + user.getId() + " win item rarity: " + winItem.getRarity());
         return items;
+    }
+
+    public List<Bet> getBets(GameType gameType) {
+        return betService.getBetsByGameType(gameType);
     }
 
 

@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import service.logic.GameLogicService;
 
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.*;
 import javax.faces.context.FacesContext;
@@ -21,9 +22,6 @@ import java.util.List;
 public class GameBean implements Serializable {
 
     private static final Logger LOG = LoggerFactory.getLogger(GameBean.class);
-
-    @ManagedProperty(value = "#{externalBetConverter}")
-    private ExternalBetConverter externalBetConverter;
 
     @ManagedProperty(value = "#{gameLogicService}")
     private GameLogicService gameLogicService;
@@ -41,22 +39,28 @@ public class GameBean implements Serializable {
 
     public GameBean() {
         LOG.info("GameBean created");
-        bets = new ArrayList<>();
-        bets.add(new Bet(2.0f, ItemRarity.COMMON));
-        bets.add(new Bet(5.0f, ItemRarity.UNCOMMON));
-        bets.add(new Bet(10.0f, ItemRarity.RARE));
-        bets.add(new Bet(20.0f, ItemRarity.MYTHICAL));
-        baseWinItems = generateRarityList(ItemRarity.COMMON);
+    }
+
+    @PostConstruct
+    void init() {
+        LOG.info("Post constructor");
+        bets = gameLogicService.getBets(GameType.NORMAL);
+        if (bets != null)
+            selectedBet = bets.get(0);
+        else {
+            LOG.error("NOT FOUND BETS");
+            return;
+        }
+        baseWinItems = generateRarityList();
     }
 
 
-    private List<ItemRarity> generateRarityList(ItemRarity rarityStart) {
+    private List<ItemRarity> generateRarityList() {
         List<ItemRarity> rarityList = new ArrayList<>();
-        for (ItemRarity item : ItemRarity.values()) {
-            if (item.getValue() >= rarityStart.getValue()) {
-                rarityList.add(item);
+        if (selectedBet != null)
+            for (Chance chance : selectedBet.getChances()) {
+                rarityList.add(chance.getRarity());
             }
-        }
         return rarityList;
     }
 
@@ -82,25 +86,28 @@ public class GameBean implements Serializable {
 
     public void onSelectBet(ValueChangeEvent event) {
         LOG.info("Start method onSelectBet");
+        selectedBet = null;
         if (event == null) {
             LOG.error("ValueChangeEvent is null in method onSelectBet");
-            selectedBet = null;
-            baseWinItems = generateRarityList(ItemRarity.COMMON);
+            baseWinItems = generateRarityList();
             return;
         }
         if (event.getNewValue() == null) {
             LOG.warn("New value is null in method onSelectBet");
-            selectedBet = null;
-            baseWinItems = generateRarityList(ItemRarity.COMMON);
+            baseWinItems = generateRarityList();
             return;
         }
-        selectedBet = (Bet) externalBetConverter.getAsObject(null, null, event.getNewValue().toString());
+        for (Bet bet : bets) {
+            if (bet.getId() != null && bet.getId() == Integer.parseInt((String) event.getNewValue())) {
+                selectedBet = bet;
+            }
+        }
         if (selectedBet == null) {
             LOG.error("Can't convert value to externalBet");
-            baseWinItems = generateRarityList(ItemRarity.COMMON);
+            baseWinItems = generateRarityList();
             return;
         }
-        baseWinItems = generateRarityList(selectedBet.getRarity());
+        baseWinItems = generateRarityList();
 
     }
 
@@ -108,7 +115,6 @@ public class GameBean implements Serializable {
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage(severity, header, body));
     }
-
 
 
     public Dialog getDialog() {
@@ -129,18 +135,6 @@ public class GameBean implements Serializable {
 
     public List<Bet> getBets() {
         return bets;
-    }
-
-    public ExternalBetConverter getExternalBetConverter() {
-        return externalBetConverter;
-    }
-
-    public GameLogicService getGameLogicService() {
-        return gameLogicService;
-    }
-
-    public void setExternalBetConverter(ExternalBetConverter externalBetConverter) {
-        this.externalBetConverter = externalBetConverter;
     }
 
     public void setGameLogicService(GameLogicService gameLogicService) {
