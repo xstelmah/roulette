@@ -21,10 +21,18 @@
         <slf4j-api.version>1.7.7</slf4j-api.version>
         <log4j.version>2.1</log4j.version>
         <primefaces.version>5.0</primefaces.version>
+        <openid4java.version>1.0.0</openid4java.version>
     </properties>
 
 
     <dependencies>
+        <!--openid-->
+        <dependency>
+            <groupId>org.openid4java</groupId>
+            <artifactId>openid4java</artifactId>
+            <version>${openid4java.version}</version>
+        </dependency>
+
         <!--tests-->
         <dependency>
             <groupId>junit</groupId>

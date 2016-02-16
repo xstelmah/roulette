@@ -17,68 +17,64 @@
         <ui:define name="content">
             <h:panelGroup id="firstPart" style="position: relative; float: left;">
                 <h:form id="infoForm">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="panel panel-primary">
-                                    <div class="panel-heading">
-                                        <h3 class="panel-title">
-                                            Personal Info</h3>
-                                    </div>
-                                    <div class="panel-body" style="display: block;">
-                                        <h:outputText value="User login = ${userBean.user.login}"/><br/>
-                                        <h:outputText id="balanceText"
-                                                      value="User balance value =${balanceService.getBalanceByUserId(userBean.user.id).value}"/><br/>
-                                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">
+                                        Personal Info</h3>
                                 </div>
-                                <div class="panel panel-info">
-                                    <div class="panel-heading">
-                                        <h3 class="panel-title">
-                                            <h:outputText value="Game history"/></h3>
-                                    </div>
-
-
-                                    <h:dataTable styleClass="table table-bordered table-striped" id="dataGames"
-                                                 value="${gameService.getGamesByUserId(userBean.user.id)}"
-                                                 var="currentGame">
-                                        <h:column>
-                                            <f:facet name="header">Game Number</f:facet>
-                                            #{currentGame.number}
-                                        </h:column>
-                                        <h:column>
-                                            <f:facet name="header">Bet</f:facet>
-                                            #{currentGame.bet}
-                                        </h:column>
-                                        <h:column>
-                                            <f:facet name="header">Win Rarity</f:facet>
-                                            #{currentGame.description}
-                                        </h:column>
-                                        <!--<h:column>
-                                            <f:facet name="header">Item name</f:facet>
-                                            #{gameBean.obtainItemByGame(currentGame.id).name}
-                                        </h:column>-->
-
-                                    </h:dataTable>
+                                <div class="panel-body" style="display: block;">
+                                    <h:outputText value="User login = ${userBean.user.login}"/><br/>
+                                    <h:outputText id="balanceText"
+                                                  value="User balance value =${balanceService.getBalanceByUserId(userBean.user.id).value}"/><br/>
                                 </div>
                             </div>
-                            <div class="col-sm-6">
-                                <div class="panel panel-success">
-                                    <div class="panel-heading">
-                                        <h3 class="panel-title">
-                                            Inventory</h3>
-                                    </div>
-                                    <div class="panel-body">
-                                        <h:panelGroup id="imgGroup">
-                                            <c:forEach items="${itemService.getItemsByUserId(userBean.user.id)}"
-                                                       var="item">
-                                                <div>
-                                                    <h:graphicImage width="99" height="66" style="margin: 2px;"
-                                                                    value="resources/images/${item.name}.jpg"/>
-                                                </div>
+                            <div class="panel panel-info">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">
+                                        <h:outputText value="Game history"/></h3>
+                                </div>
 
-                                            </c:forEach>
-                                        </h:panelGroup>
-                                    </div>
+
+                                <h:dataTable styleClass="table table-bordered table-striped" id="dataGames"
+                                             value="${gameService.getGamesByUserId(userBean.user.id)}"
+                                             var="currentGame">
+                                    <h:column>
+                                        <f:facet name="header">Game Number</f:facet>
+                                        #{currentGame.number}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">Bet</f:facet>
+                                        #{currentGame.bet}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">Win Rarity</f:facet>
+                                        #{currentGame.description}
+                                    </h:column>
+                                    <!--<h:column>
+                                        <f:facet name="header">Item name</f:facet>
+                                        #{gameBean.obtainItemByGame(currentGame.id).name}
+                                    </h:column>-->
+
+                                </h:dataTable>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="panel panel-success">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">
+                                        Inventory</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <h:panelGroup id="imgGroup">
+                                        <c:forEach items="${itemService.getItemsByUserId(userBean.user.id)}"
+                                                   var="item">
+                                            <h:graphicImage width="99" height="66" style="margin: 2px;"
+                                                            value="resources/images/${item.name}.jpg"/>
+
+                                        </c:forEach>
+                                    </h:panelGroup>
                                 </div>
                             </div>
                         </div>
