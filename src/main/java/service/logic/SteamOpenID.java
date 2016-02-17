@@ -1,5 +1,6 @@
 package service.logic;
 
+import beans.UserBean;
 import org.openid4java.association.AssociationException;
 import org.openid4java.consumer.ConsumerException;
 import org.openid4java.consumer.ConsumerManager;
@@ -10,6 +11,8 @@ import org.openid4java.discovery.Identifier;
 import org.openid4java.message.AuthRequest;
 import org.openid4java.message.MessageException;
 import org.openid4java.message.ParameterList;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
@@ -18,7 +21,10 @@ import java.util.regex.Pattern;
 
 @Service(value = "steamOpenId")
 public class SteamOpenID {
+
     private static final String STEAM_OPENID = "http://steamcommunity.com/openid";
+
+    private static final Logger LOG = LoggerFactory.getLogger(SteamOpenID.class);
     private final ConsumerManager manager;
     private final Pattern STEAM_REGEX = Pattern.compile("(\\d+)");
     private DiscoveryInformation discovered;
@@ -73,6 +79,7 @@ public class SteamOpenID {
      * @return Returns the Steam Community ID as a string.
      */
     public String verify(String receivingUrl, Map responseMap) {
+        LOG.info("Verify steam user");
         if (this.discovered == null) {
             return null;
         }
@@ -84,9 +91,13 @@ public class SteamOpenID {
                 String id = verifiedId.getIdentifier();
                 Matcher matcher = STEAM_REGEX.matcher(id);
                 if (matcher.find()) {
-                    System.out.println();
+                    LOG.info("Steam id is :" + matcher.group(1));
                     return matcher.group(1);
+                } else {
+                    LOG.info("Fake user?");
                 }
+            } else {
+                LOG.info("Not verified id!");
             }
         } catch (MessageException | DiscoveryException | AssociationException e) {
             e.printStackTrace();

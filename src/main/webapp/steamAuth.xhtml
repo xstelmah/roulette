@@ -15,9 +15,7 @@
 <h:body>
     <ui:composition template="/WEB-INF/views/template/templateLayout.xhtml">
         <ui:define name="content">
-            <h:form id="testForm">
-                <a href="#{steamAuthBean.goToSteam()}"> steam </a>
-            </h:form>
+                #{steamAuthBean.checkUser()}
         </ui:define>
     </ui:composition>
 
