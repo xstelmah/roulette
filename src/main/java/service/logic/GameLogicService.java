@@ -73,10 +73,11 @@ public class GameLogicService {
             return null;
         }
         LOG.info("Game started, user id: " + user.getId());
-        if (bet == null) {
+        if (bet == null || bet.getId() == null) {
             LOG.error("bet is null");
             return null;
         }
+        bet = betService.getBetById(bet.getId());
         Game game = new Game();
         game.setStartTime(new Date(System.currentTimeMillis()));
         Balance balance = balanceService.getBalanceByUserId(user.getId());

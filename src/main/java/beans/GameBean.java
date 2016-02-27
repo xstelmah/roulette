@@ -54,7 +54,6 @@ public class GameBean implements Serializable {
         baseWinItems = generateRarityList();
     }
 
-
     private List<ItemRarity> generateRarityList() {
         List<ItemRarity> rarityList = new ArrayList<>();
         if (selectedBet != null)
@@ -115,7 +114,6 @@ public class GameBean implements Serializable {
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage(severity, header, body));
     }
-
 
     public Dialog getDialog() {
         return dialog;
