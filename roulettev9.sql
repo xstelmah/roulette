@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Фев 13 2016 г., 21:12
+-- Время создания: Мар 31 2016 г., 22:28
 -- Версия сервера: 5.6.28-0ubuntu0.15.10.1
 -- Версия PHP: 5.6.11-1ubuntu3.1
 
@@ -25,6 +25,8 @@ SET time_zone = "+00:00";
 --
 -- Структура таблицы `Balance`
 --
+-- Создание: Фев 10 2016 г., 13:24
+--
 
 CREATE TABLE IF NOT EXISTS `Balance` (
   `balanceId` int(11) NOT NULL,
@@ -43,12 +45,14 @@ CREATE TABLE IF NOT EXISTS `Balance` (
 --
 
 INSERT INTO `Balance` (`balanceId`, `userId`, `balanceValue`) VALUES
-(1, 1, 20);
+(1, 1, 44);
 
 -- --------------------------------------------------------
 
 --
 -- Структура таблицы `Bet`
+--
+-- Создание: Фев 11 2016 г., 14:17
 --
 
 CREATE TABLE IF NOT EXISTS `Bet` (
@@ -77,6 +81,8 @@ INSERT INTO `Bet` (`betId`, `betValue`, `betRarity`, `betGameType`) VALUES
 --
 -- Структура таблицы `Bot`
 --
+-- Создание: Фев 10 2016 г., 13:24
+--
 
 CREATE TABLE IF NOT EXISTS `Bot` (
   `botId` int(11) NOT NULL,
@@ -99,6 +105,8 @@ INSERT INTO `Bot` (`botId`, `botName`) VALUES
 
 --
 -- Структура таблицы `Chance`
+--
+-- Создание: Фев 10 2016 г., 13:24
 --
 
 CREATE TABLE IF NOT EXISTS `Chance` (
@@ -147,6 +155,8 @@ INSERT INTO `Chance` (`chanceId`, `betId`, `chanceValue`, `chanceRarity`) VALUES
 --
 -- Структура таблицы `Chat`
 --
+-- Создание: Фев 10 2016 г., 13:24
+--
 
 CREATE TABLE IF NOT EXISTS `Chat` (
   `chatId` int(11) NOT NULL
@@ -161,6 +171,8 @@ CREATE TABLE IF NOT EXISTS `Chat` (
 --
 -- Структура таблицы `Game`
 --
+-- Создание: Фев 10 2016 г., 13:24
+--
 
 CREATE TABLE IF NOT EXISTS `Game` (
   `gameId` int(11) NOT NULL,
@@ -169,7 +181,7 @@ CREATE TABLE IF NOT EXISTS `Game` (
   `gameStartTime` datetime DEFAULT NULL,
   `gameDescription` varchar(128) DEFAULT NULL,
   `gameBet` float NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
 
 --
 -- СВЯЗИ ТАБЛИЦЫ `Game`:
@@ -195,12 +207,27 @@ INSERT INTO `Game` (`gameId`, `userId`, `gameNumber`, `gameStartTime`, `gameDesc
 (11, 1, 11, '2016-02-13 00:00:00', 'Common', 2),
 (12, 1, 12, '2016-02-13 00:00:00', 'Uncommon', 2),
 (13, 1, 13, '2016-02-13 00:00:00', 'Uncommon', 2),
-(14, 1, 14, '2016-02-13 00:00:00', 'Mythical', 25);
+(14, 1, 14, '2016-02-13 00:00:00', 'Mythical', 25),
+(15, 1, 15, '2016-02-13 00:00:00', 'Rare', 12),
+(16, 1, 16, '2016-02-13 00:00:00', 'Immortal', 25),
+(17, 1, 17, '2016-02-13 00:00:00', 'Rare', 2),
+(18, 1, 18, '2016-02-13 00:00:00', 'Common', 2),
+(19, 1, 19, '2016-02-16 00:00:00', 'Rare', 5),
+(20, 1, 20, '2016-02-16 00:00:00', 'Mythical', 2),
+(21, 1, 21, '2016-02-16 00:00:00', 'Rare', 2),
+(22, 1, 22, '2016-02-16 00:00:00', 'Immortal', 2),
+(23, 1, 23, '2016-02-26 00:00:00', 'Mythical', 2),
+(24, 1, 24, '2016-03-19 00:00:00', 'Mythical', 2),
+(25, 1, 25, '2016-03-27 00:00:00', 'Mythical', 5),
+(26, 1, 26, '2016-03-27 00:00:00', 'Uncommon', 5),
+(27, 1, 27, '2016-03-27 00:00:00', 'Uncommon', 5);
 
 -- --------------------------------------------------------
 
 --
 -- Структура таблицы `Item`
+--
+-- Создание: Фев 10 2016 г., 13:24
 --
 
 CREATE TABLE IF NOT EXISTS `Item` (
@@ -236,28 +263,28 @@ INSERT INTO `Item` (`itemId`, `userId`, `botId`, `gameId`, `itemName`, `itemType
 (6, NULL, NULL, NULL, 'Arcana', 'item', 'ARCANA'),
 (7, 1, NULL, 2, 'Common', 'item', 'COMMON'),
 (8, 1, NULL, 13, 'Uncommon', 'item', 'UNCOMMON'),
-(9, NULL, NULL, NULL, 'Rare', 'item', 'RARE'),
+(9, 1, NULL, 15, 'Rare', 'item', 'RARE'),
 (10, 1, NULL, 5, 'Mythical', 'item', 'MYTHICAL'),
 (11, 1, NULL, 4, 'Immortal', 'item', 'IMMORTAL'),
 (12, NULL, NULL, NULL, 'Legendary', 'item', 'LEGENDARY'),
 (13, NULL, NULL, NULL, 'Arcana', 'item', 'ARCANA'),
 (14, 1, NULL, 11, 'Common', 'item', 'COMMON'),
-(15, NULL, NULL, NULL, 'Uncommon', 'item', 'UNCOMMON'),
-(16, NULL, NULL, NULL, 'Rare', 'item', 'RARE'),
+(15, 1, NULL, 26, 'Uncommon', 'item', 'UNCOMMON'),
+(16, 1, NULL, 17, 'Rare', 'item', 'RARE'),
 (17, 1, NULL, 6, 'Mythical', 'item', 'MYTHICAL'),
-(18, NULL, NULL, NULL, 'Immortal', 'item', 'IMMORTAL'),
+(18, 1, NULL, 16, 'Immortal', 'item', 'IMMORTAL'),
 (19, NULL, NULL, NULL, 'Legendary', 'item', 'LEGENDARY'),
 (20, NULL, NULL, NULL, 'Arcana', 'item', 'ARCANA'),
-(21, NULL, NULL, NULL, 'Common', 'item', 'COMMON'),
-(22, NULL, NULL, NULL, 'Uncommon', 'item', 'UNCOMMON'),
-(23, NULL, NULL, NULL, 'Rare', 'item', 'RARE'),
+(21, 1, NULL, 18, 'Common', 'item', 'COMMON'),
+(22, 1, NULL, 27, 'Uncommon', 'item', 'UNCOMMON'),
+(23, 1, NULL, 19, 'Rare', 'item', 'RARE'),
 (24, 1, NULL, 7, 'Mythical', 'item', 'MYTHICAL'),
-(25, NULL, NULL, NULL, 'Immortal', 'item', 'IMMORTAL'),
+(25, 1, NULL, 22, 'Immortal', 'item', 'IMMORTAL'),
 (26, NULL, NULL, NULL, 'Legendary', 'item', 'LEGENDARY'),
 (27, NULL, NULL, NULL, 'Arcana', 'item', 'ARCANA'),
 (28, NULL, NULL, NULL, 'Common', 'item', 'COMMON'),
 (29, NULL, NULL, NULL, 'Uncommon', 'item', 'UNCOMMON'),
-(30, NULL, NULL, NULL, 'Rare', 'item', 'RARE'),
+(30, 1, NULL, 21, 'Rare', 'item', 'RARE'),
 (31, 1, NULL, 10, 'Mythical', 'item', 'MYTHICAL'),
 (32, NULL, NULL, NULL, 'Immortal', 'item', 'IMMORTAL'),
 (33, NULL, NULL, NULL, 'Legendary', 'item', 'LEGENDARY'),
@@ -272,28 +299,28 @@ INSERT INTO `Item` (`itemId`, `userId`, `botId`, `gameId`, `itemName`, `itemType
 (42, NULL, NULL, NULL, 'Common', 'item', 'COMMON'),
 (43, NULL, NULL, NULL, 'Uncommon', 'item', 'UNCOMMON'),
 (44, NULL, NULL, NULL, 'Rare', 'item', 'RARE'),
-(45, NULL, NULL, NULL, 'Mythical', 'item', 'MYTHICAL'),
+(45, 1, NULL, 20, 'Mythical', 'item', 'MYTHICAL'),
 (46, NULL, NULL, NULL, 'Immortal', 'item', 'IMMORTAL'),
 (47, NULL, NULL, NULL, 'Legendary', 'item', 'LEGENDARY'),
 (48, NULL, NULL, NULL, 'Arcana', 'item', 'ARCANA'),
 (49, NULL, NULL, NULL, 'Common', 'item', 'COMMON'),
 (50, NULL, NULL, NULL, 'Uncommon', 'item', 'UNCOMMON'),
 (51, NULL, NULL, NULL, 'Rare', 'item', 'RARE'),
-(52, NULL, NULL, NULL, 'Mythical', 'item', 'MYTHICAL'),
+(52, 1, NULL, 23, 'Mythical', 'item', 'MYTHICAL'),
 (53, NULL, NULL, NULL, 'Immortal', 'item', 'IMMORTAL'),
 (54, NULL, NULL, NULL, 'Legendary', 'item', 'LEGENDARY'),
 (55, NULL, NULL, NULL, 'Arcana', 'item', 'ARCANA'),
 (56, NULL, NULL, NULL, 'Common', 'item', 'COMMON'),
 (57, NULL, NULL, NULL, 'Uncommon', 'item', 'UNCOMMON'),
 (58, NULL, NULL, NULL, 'Rare', 'item', 'RARE'),
-(59, NULL, NULL, NULL, 'Mythical', 'item', 'MYTHICAL'),
+(59, 1, NULL, 24, 'Mythical', 'item', 'MYTHICAL'),
 (60, NULL, NULL, NULL, 'Immortal', 'item', 'IMMORTAL'),
 (61, NULL, NULL, NULL, 'Legendary', 'item', 'LEGENDARY'),
 (62, NULL, NULL, NULL, 'Arcana', 'item', 'ARCANA'),
 (63, NULL, NULL, NULL, 'Common', 'item', 'COMMON'),
 (64, NULL, NULL, NULL, 'Uncommon', 'item', 'UNCOMMON'),
 (65, NULL, NULL, NULL, 'Rare', 'item', 'RARE'),
-(66, NULL, NULL, NULL, 'Mythical', 'item', 'MYTHICAL'),
+(66, 1, NULL, 25, 'Mythical', 'item', 'MYTHICAL'),
 (67, NULL, NULL, NULL, 'Immortal', 'item', 'IMMORTAL'),
 (68, NULL, NULL, NULL, 'Legendary', 'item', 'LEGENDARY'),
 (69, NULL, NULL, NULL, 'Arcana', 'item', 'ARCANA'),
@@ -432,7 +459,9 @@ INSERT INTO `Item` (`itemId`, `userId`, `botId`, `gameId`, `itemName`, `itemType
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `Message`
+-- Структура таблицы `ChatMessage`
+--
+-- Создание: Фев 10 2016 г., 13:24
 --
 
 CREATE TABLE IF NOT EXISTS `Message` (
@@ -444,7 +473,7 @@ CREATE TABLE IF NOT EXISTS `Message` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- СВЯЗИ ТАБЛИЦЫ `Message`:
+-- СВЯЗИ ТАБЛИЦЫ `ChatMessage`:
 --   `chatId`
 --       `Chat` -> `chatId`
 --   `userId`
@@ -454,7 +483,9 @@ CREATE TABLE IF NOT EXISTS `Message` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `Transaction`
+-- Структура таблицы `BalanceTransaction`
+--
+-- Создание: Фев 10 2016 г., 13:24
 --
 
 CREATE TABLE IF NOT EXISTS `Transaction` (
@@ -467,7 +498,7 @@ CREATE TABLE IF NOT EXISTS `Transaction` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- СВЯЗИ ТАБЛИЦЫ `Transaction`:
+-- СВЯЗИ ТАБЛИЦЫ `BalanceTransaction`:
 --   `balanceId`
 --       `Balance` -> `balanceId`
 --
@@ -476,6 +507,8 @@ CREATE TABLE IF NOT EXISTS `Transaction` (
 
 --
 -- Структура таблицы `User`
+--
+-- Создание: Фев 10 2016 г., 13:24
 --
 
 CREATE TABLE IF NOT EXISTS `User` (
@@ -555,7 +588,7 @@ ALTER TABLE `Item`
   ADD KEY `FK_UserItem` (`userId`);
 
 --
--- Индексы таблицы `Message`
+-- Индексы таблицы `ChatMessage`
 --
 ALTER TABLE `Message`
   ADD PRIMARY KEY (`messageId`),
@@ -563,7 +596,7 @@ ALTER TABLE `Message`
   ADD KEY `FK_UserChat` (`userId`);
 
 --
--- Индексы таблицы `Transaction`
+-- Индексы таблицы `BalanceTransaction`
 --
 ALTER TABLE `Transaction`
   ADD PRIMARY KEY (`transactionId`),
@@ -609,19 +642,19 @@ ALTER TABLE `Chat`
 -- AUTO_INCREMENT для таблицы `Game`
 --
 ALTER TABLE `Game`
-  MODIFY `gameId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
+  MODIFY `gameId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=28;
 --
 -- AUTO_INCREMENT для таблицы `Item`
 --
 ALTER TABLE `Item`
   MODIFY `itemId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=201;
 --
--- AUTO_INCREMENT для таблицы `Message`
+-- AUTO_INCREMENT для таблицы `ChatMessage`
 --
 ALTER TABLE `Message`
   MODIFY `messageId` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT для таблицы `Transaction`
+-- AUTO_INCREMENT для таблицы `BalanceTransaction`
 --
 ALTER TABLE `Transaction`
   MODIFY `transactionId` int(11) NOT NULL AUTO_INCREMENT;
@@ -661,14 +694,14 @@ ALTER TABLE `Item`
   ADD CONSTRAINT `FK_UserItem` FOREIGN KEY (`userId`) REFERENCES `User` (`userId`);
 
 --
--- Ограничения внешнего ключа таблицы `Message`
+-- Ограничения внешнего ключа таблицы `ChatMessage`
 --
 ALTER TABLE `Message`
   ADD CONSTRAINT `FK_ChatMessage` FOREIGN KEY (`chatId`) REFERENCES `Chat` (`chatId`),
   ADD CONSTRAINT `FK_UserChat` FOREIGN KEY (`userId`) REFERENCES `User` (`userId`);
 
 --
--- Ограничения внешнего ключа таблицы `Transaction`
+-- Ограничения внешнего ключа таблицы `BalanceTransaction`
 --
 ALTER TABLE `Transaction`
   ADD CONSTRAINT `FK_BalanceTransaction` FOREIGN KEY (`balanceId`) REFERENCES `Balance` (`balanceId`);

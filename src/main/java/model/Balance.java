@@ -10,7 +10,7 @@ public class Balance {
 
     private Double value;
 
-    private List<Transaction> transactions;
+    private List<BalanceTransaction> balanceTransactions;
 
     public Balance() {
 
@@ -40,11 +40,11 @@ public class Balance {
         this.value = value;
     }
 
-    public List<Transaction> getTransactions() {
-        return transactions;
+    public List<BalanceTransaction> getBalanceTransactions() {
+        return balanceTransactions;
     }
 
-    public void setTransactions(List<Transaction> transactions) {
-        this.transactions = transactions;
+    public void setBalanceTransactions(List<BalanceTransaction> balanceTransactions) {
+        this.balanceTransactions = balanceTransactions;
     }
 }

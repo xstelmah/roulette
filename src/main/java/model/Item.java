@@ -10,6 +10,8 @@ public class Item {
 
     private User user;
 
+    private Admin admin;
+
     private String name;
 
     private ItemRarity rarity;
@@ -70,5 +72,13 @@ public class Item {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public Admin getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(Admin admin) {
+        this.admin = admin;
     }
 }

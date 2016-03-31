@@ -24,8 +24,8 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <h:outputText value="Add amount: "/>
-                                        <h:inputText value="#{balanceBean.value}" styleClass="form-control">
+                                        <h:outputText message="Add amount: "/>
+                                        <h:inputText message="#{balanceBean.message}" styleClass="form-control">
                                             <f:ajax render="balanceGroup"/>
                                         </h:inputText>
                                     </div>
@@ -34,7 +34,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <h:commandButton value="Confirm"
+                                        <h:commandButton message="Confirm"
                                                          styleClass="btn btn-lg btn-success btn-block text-center"
                                                          action="#{balanceBean.updateBalance()}">
                                             <f:ajax render="menuForm growl"/>
@@ -43,7 +43,7 @@
                                 </div>
                                 <h:panelGroup class="col-md-6">
                                     <h:panelGroup class="form-group">
-                                        <h:commandButton value="Back" action="playGame"
+                                        <h:commandButton message="Back" action="playGame"
                                                          styleClass="btn btn-lg btn-info btn-block text-center">
                                             <f:ajax />
                                         </h:commandButton>

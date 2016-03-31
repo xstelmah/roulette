@@ -11,45 +11,27 @@ public interface UserRepository {
 
     @Results(value = {
             @Result(property = "id", column = "userId", id = true),
-            @Result(property = "login", column = "userLogin"),
-            @Result(property = "password", column = "userPassword"),
-            @Result(property = "mail", column = "userMail"),
-            @Result(property = "alternativeLogin",column = "userAlternativeLogin"),
-            @Result(property = "balance", column = "balanceId", javaType = Balance.class,
+            @Result(property = "steamLogin", column = "userSteamLogin"),
+            @Result(property = "steamId", column = "userSteamId"),
+            @Result(property = "chatLogin", column = "userChatLogin")
+            /*@Result(property = "balance", column = "balanceId", javaType = Balance.class,
                     one = @One(select = "repository.BalanceRepository.getBalanceById", fetchType = FetchType.LAZY)),
             @Result(property = "games", javaType = List.class, column = "userId",
-                    many = @Many(select = "repository.GameRepository.getGamesByUserId", fetchType = FetchType.LAZY))
+                    many = @Many(select = "repository.GameRepository.getGamesByUserId", fetchType = FetchType.LAZY))*/
     })
-    @Select("select * from User where UserId = #{id}")
+    @Select("select * from User where userId = #{id}")
     User getUserById(@Param(value = "id") Integer id);
 
     @Results(value = {
             @Result(property = "id", column = "userId", id = true),
-            @Result(property = "login", column = "userLogin"),
-            @Result(property = "password", column = "userPassword"),
-            @Result(property = "mail", column = "userMail"),
-            @Result(property = "alternativeLogin",column = "userAlternativeLogin"),
-            @Result(property = "balance", column = "balanceId", javaType = Balance.class,
+            @Result(property = "steamLogin", column = "userSteamLogin"),
+            @Result(property = "steamId", column = "userSteamId"),
+            @Result(property = "chatLogin", column = "userChatLogin")
+            /*@Result(property = "balance", column = "balanceId", javaType = Balance.class,
                     one = @One(select = "repository.BalanceRepository.getBalanceById", fetchType = FetchType.LAZY)),
             @Result(property = "games", javaType = List.class, column = "userId",
-                    many = @Many(select = "repository.GameRepository.getGamesByUserId", fetchType = FetchType.LAZY))
+                    many = @Many(select = "repository.GameRepository.getGamesByUserId", fetchType = FetchType.LAZY))*/
     })
-    @Select("select * from User")
-    List<User> getUsers();
-
-    @Results(value = {
-            @Result(property = "id", column = "userId", id = true),
-            @Result(property = "login", column = "userLogin"),
-            @Result(property = "password", column = "userPassword"),
-            @Result(property = "mail", column = "userMail"),
-            @Result(property = "alternativeLogin",column = "userAlternativeLogin"),
-            @Result(property = "balance", column = "balanceId", javaType = Balance.class,
-                    one = @One(select = "repository.BalanceRepository.getBalanceById", fetchType = FetchType.LAZY)),
-            @Result(property = "games", javaType = List.class, column = "userId",
-                    many = @Many(select = "repository.GameRepository.getGamesByUserId", fetchType = FetchType.LAZY))
-    })
-    @Select("select * from User where UserLogin = #{login} and UserPassword = #{password}")
-    User getUserByLoginPassword(@Param(value = "login") String login,
-                                @Param(value = "password") String password);
-
+    @Select("select * from User where userSteamId = #{id}")
+    User getUserBySteamId(@Param(value = "id")String  id);
 }

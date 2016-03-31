@@ -25,14 +25,14 @@
                             <div class="row">
                                 <div class="col-sm-12">
                                     <div class="col-sm-2">
-                                        <h:outputLabel value="Bet: " for="selectedBetMenu"/>
+                                        <h:outputLabel message="Bet: " for="selectedBetMenu"/>
                                     </div>
                                     <div class="col-sm-10">
                                         <h:selectOneMenu id="selectedBetMenu"
                                                          valueChangeListener="#{gameBean.onSelectBet}">
                                             <!--<f:selectItem itemLabel="-&#45;&#45; select -&#45;&#45;" itemValue="#{null}"/>-->
-                                            <f:selectItems value="${gameBean.bets}" var="bet"
-                                                           itemLabel="${bet.value}"
+                                            <f:selectItems message="${gameBean.bets}" var="bet"
+                                                           itemLabel="${bet.message}"
                                                            itemValue="${bet.id}"/>
                                             <f:ajax render="baseWinItems"/>
                                         </h:selectOneMenu>
@@ -44,7 +44,7 @@
                             <div class="row">
                                 <div class="col-sm-offset-1 col-md-11">
                                     <div class="btn_container">
-                                        <h:commandButton value="play"
+                                        <h:commandButton message="play"
                                                          styleClass="btn btn-lg btn-block btn-primary start"
                                                          action="#{gameBean.playGame(userBean.user)}"
                                         >
@@ -66,7 +66,7 @@
                                 <h:panelGroup id="baseWinItems">
                                     <c:forEach items="#{gameBean.baseWinItems}" var="image">
                                         <h:graphicImage width="99" height="66" style="margin: 2px; "
-                                                        value="resources/images/${image.name}.jpg"/>
+                                                        message="resources/images/${image.name}.jpg"/>
                                     </c:forEach>
                                 </h:panelGroup>
                             </div>
@@ -83,7 +83,7 @@
                                 <div id="roulette" class="roullete">
                                     <c:forEach items="#{gameBean.renderItems}" var="image">
                                         <h:graphicImage styleClass="roullete-image"
-                                                        value="resources/images/${image.name}.jpg"/>
+                                                        message="resources/images/${image.name}.jpg"/>
                                     </c:forEach>
                                 </div>
                             </div>

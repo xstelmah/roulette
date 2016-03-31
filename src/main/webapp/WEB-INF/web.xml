@@ -8,10 +8,7 @@
          version="2.5">
     <display-name>Archetype Created Web Application</display-name>
 
-    <context-param>
-        <param-name>contextConfigLocation</param-name>
-        <param-value>classpath*:applicationContext.xml</param-value>
-    </context-param>
+
 
     <!-- Add Support for Spring -->
     <listener>
@@ -25,7 +22,7 @@
         <load-on-startup>1</load-on-startup>
         <init-param>
             <param-name>contextConfigLocation</param-name>
-            <param-value>classpath*:applicationContext.xml</param-value>
+            <param-message>classpath*:applicationContext.xml</param-message>
         </init-param>
     </servlet>
 
@@ -33,7 +30,10 @@
         <servlet-name>dispatcherServlet</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>-->
-
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath*:applicationContext.xml</param-value>
+    </context-param>
 
 
     <listener>
@@ -47,7 +47,7 @@
 
     <!-- Welcome page -->
     <welcome-file-list>
-        <welcome-file>faces/login.xhtml</welcome-file>
+        <welcome-file>faces/guestPlayGame.xhtml</welcome-file>
     </welcome-file-list>
     <!-- JSF mapping -->
     <servlet>

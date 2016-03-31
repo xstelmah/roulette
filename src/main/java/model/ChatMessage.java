@@ -2,15 +2,13 @@ package model;
 
 import java.sql.Date;
 
-public class Message {
+public class ChatMessage {
 
     private Integer id;
 
-    private Chat chat;
-
     private Date date;
 
-    private String value;
+    private String message;
 
     private User user;
 
@@ -22,14 +20,6 @@ public class Message {
         this.id = id;
     }
 
-    public Chat getChat() {
-        return chat;
-    }
-
-    public void setChat(Chat chat) {
-        this.chat = chat;
-    }
-
     public Date getDate() {
         return date;
     }
@@ -38,12 +28,12 @@ public class Message {
         this.date = date;
     }
 
-    public String getValue() {
-        return value;
+    public String getMessage() {
+        return message;
     }
 
-    public void setValue(String value) {
-        this.value = value;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public User getUser() {

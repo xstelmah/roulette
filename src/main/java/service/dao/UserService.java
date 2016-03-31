@@ -21,15 +21,6 @@ public class UserService {
         return userRepository.getUserById(id);
     }
 
-    public List<User> getUsers() {
-        List<User> users = userRepository.getUsers();
-        return users;
-    }
-
-    public User getUserByLoginPassword(String login, String password) {
-        if (login == null || password == null) return null;
-        User user = userRepository.getUserByLoginPassword(login, password);
-        return user;
-    }
+    public User getUserBySteamId(String id) { return userRepository.getUserBySteamId(id);}
 
 }

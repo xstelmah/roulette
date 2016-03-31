@@ -25,20 +25,20 @@
                                         Personal Info</h3>
                                 </div>
                                 <div class="panel-body" style="display: block;">
-                                    <h:outputText value="User login = ${userBean.user.login}"/><br/>
+                                    <h:outputText message="User steamLogin = ${userBean.user.steamLogin}"/><br/>
                                     <h:outputText id="balanceText"
-                                                  value="User balance value =${balanceService.getBalanceByUserId(userBean.user.id).value}"/><br/>
+                                                  message="User balance message =${balanceService.getBalanceByUserId(userBean.user.id).message}"/><br/>
                                 </div>
                             </div>
                             <div class="panel panel-info">
                                 <div class="panel-heading">
                                     <h3 class="panel-title">
-                                        <h:outputText value="Game history"/></h3>
+                                        <h:outputText message="Game history"/></h3>
                                 </div>
 
 
                                 <h:dataTable styleClass="table table-bordered table-striped" id="dataGames"
-                                             value="${gameService.getGamesByUserId(userBean.user.id)}"
+                                             message="${gameService.getGamesByUserId(userBean.user.id)}"
                                              var="currentGame">
                                     <h:column>
                                         <f:facet name="header">Game Number</f:facet>
@@ -71,7 +71,7 @@
                                         <c:forEach items="${itemService.getItemsByUserId(userBean.user.id)}"
                                                    var="item">
                                             <h:graphicImage width="99" height="66" style="margin: 2px;"
-                                                            value="resources/images/${item.name}.jpg"/>
+                                                            message="resources/images/${item.name}.jpg"/>
 
                                         </c:forEach>
                                     </h:panelGroup>

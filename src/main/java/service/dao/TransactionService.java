@@ -1,6 +1,6 @@
 package service.dao;
 
-import model.Transaction;
+import model.BalanceTransaction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,11 +17,11 @@ public class TransactionService {
     @Autowired
     private TransactionRepository transactionRepository;
 
-    public Transaction getTransactionById(Integer id) {
+    public BalanceTransaction getTransactionById(Integer id) {
         return transactionRepository.getTransactionById(id);
     }
 
-    public List<Transaction> getTranscationsByBalanceId(Integer id) {
+    public List<BalanceTransaction> getTranscationsByBalanceId(Integer id) {
       return transactionRepository.getTranscationsByBalanceId(id);
     }
 

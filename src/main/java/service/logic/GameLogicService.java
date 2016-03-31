@@ -79,7 +79,7 @@ public class GameLogicService {
         }
         bet = betService.getBetById(bet.getId());
         Game game = new Game();
-        game.setStartTime(new Date(System.currentTimeMillis()));
+        game.setTime(new Date(System.currentTimeMillis()));
         Balance balance = balanceService.getBalanceByUserId(user.getId());
         if (balance == null) {
             LOG.error("Balance not loaded, lazy load not working");

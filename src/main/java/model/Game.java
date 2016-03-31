@@ -1,12 +1,7 @@
 package model;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import java.sql.Date;
-import java.util.List;
 
-@ManagedBean
-@RequestScoped
 public class Game {
 
 
@@ -14,7 +9,7 @@ public class Game {
 
     private Integer number;
 
-    private Date startTime;
+    private Date time;
 
     private String description;
 
@@ -22,7 +17,7 @@ public class Game {
 
     private User user;
 
-    private List<Item> items;
+    private Item item;
 
     public Game() {
 
@@ -44,12 +39,12 @@ public class Game {
         this.number = number;
     }
 
-    public Date getStartTime() {
-        return startTime;
+    public Date getTime() {
+        return time;
     }
 
-    public void setStartTime(Date startTime) {
-        this.startTime = startTime;
+    public void setTime(Date time) {
+        this.time = time;
     }
 
     public String getDescription() {
@@ -76,11 +71,11 @@ public class Game {
         this.bet = bet;
     }
 
-    public List<Item> getItems() {
-        return items;
+    public Item getItem() {
+        return item;
     }
 
-    public void setItems(List<Item> items) {
-        this.items = items;
+    public void setItem(Item item) {
+        this.item = item;
     }
 }

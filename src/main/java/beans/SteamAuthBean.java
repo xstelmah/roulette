@@ -19,11 +19,11 @@ public class SteamAuthBean {
 
     private static final Logger LOG = LoggerFactory.getLogger(SteamAuthBean.class);
 
-    private static final String callbackPage = "http://localhost:8080/faces/steamAuth.xhtml";
+    /*private static final String callbackPage = "http://localhost:8080/faces/steamAuth.xhtml";
 
-    private static final String okAuthRedirect = "playGame.xhtml";
+    private static final String okAuthRedirect = "userLogin.xhtml";
 
-    private static final String failAuthRedirect ="login.xhtml";
+    private static final String failAuthRedirect ="guestPlayGame.xhtml";
 
     private String steamId;
 
@@ -64,5 +64,5 @@ public class SteamAuthBean {
 
     public void setSteamOpenID(SteamOpenID steamOpenID) {
         this.steamOpenID = steamOpenID;
-    }
+    }*/
 }

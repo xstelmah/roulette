@@ -6,40 +6,36 @@ public class User {
 
     protected Integer id;
 
-    private String login;
+    private String steamLogin;
 
-    private String password;
-
-    private String mail;
+    private String steamId;
 
     private Balance balance;
 
-    private String alternativeLogin;
+    private String chatLogin;
 
     private List<Game> games;
 
-    private List<Message> messages;
+    private List<ChatMessage> chatMessages;
 
     private List<Item> items;
+
+    private List<Ticket> tickets;
+
+    private List<TicketMessage> ticketMessages;
+
+
 
     public User() {
 
     }
 
-    public String getLogin() {
-        return login;
+    public String getSteamLogin() {
+        return steamLogin;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public void setSteamLogin(String steamLogin) {
+        this.steamLogin = steamLogin;
     }
 
     public Integer getId() {
@@ -48,14 +44,6 @@ public class User {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getMail() {
-        return mail;
-    }
-
-    public void setMail(String mail) {
-        this.mail = mail;
     }
 
     public Balance getBalance() {
@@ -74,12 +62,12 @@ public class User {
         this.games = games;
     }
 
-    public List<Message> getMessages() {
-        return messages;
+    public List<ChatMessage> getChatMessages() {
+        return chatMessages;
     }
 
-    public void setMessages(List<Message> messages) {
-        this.messages = messages;
+    public void setChatMessages(List<ChatMessage> chatMessages) {
+        this.chatMessages = chatMessages;
     }
 
     public List<Item> getItems() {
@@ -90,11 +78,35 @@ public class User {
         this.items = items;
     }
 
-    public String getAlternativeLogin() {
-        return alternativeLogin;
+    public String getChatLogin() {
+        return chatLogin;
     }
 
-    public void setAlternativeLogin(String alternativeLogin) {
-        this.alternativeLogin = alternativeLogin;
+    public void setChatLogin(String chatLogin) {
+        this.chatLogin = chatLogin;
+    }
+
+    public List<Ticket> getTickets() {
+        return tickets;
+    }
+
+    public void setTickets(List<Ticket> tickets) {
+        this.tickets = tickets;
+    }
+
+    public String getSteamId() {
+        return steamId;
+    }
+
+    public void setSteamId(String steamId) {
+        this.steamId = steamId;
+    }
+
+    public List<TicketMessage> getTicketMessages() {
+        return ticketMessages;
+    }
+
+    public void setTicketMessages(List<TicketMessage> ticketMessages) {
+        this.ticketMessages = ticketMessages;
     }
 }

@@ -1,6 +1,6 @@
 package beans;
 
-import model.Transaction;
+import model.BalanceTransaction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,18 +13,18 @@ import java.io.Serializable;
 public class TransactionBean implements Serializable {
     private static final Logger LOG = LoggerFactory.getLogger(TransactionBean.class);
 
-    private Transaction transaction;
+    private BalanceTransaction balanceTransaction;
 
     public TransactionBean() {
         LOG.info("TransactionBean created");
-        this.transaction = new Transaction();
+        this.balanceTransaction = new BalanceTransaction();
     }
 
-    public Transaction getTransaction() {
-        return transaction;
+    public BalanceTransaction getBalanceTransaction() {
+        return balanceTransaction;
     }
 
-    public void setTransaction(Transaction transaction) {
-        this.transaction = transaction;
+    public void setBalanceTransaction(BalanceTransaction balanceTransaction) {
+        this.balanceTransaction = balanceTransaction;
     }
 }

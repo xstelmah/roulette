@@ -32,15 +32,15 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <h:outputText value="Login: "/>
-                                        <h:inputText id="login" value="#{userBean.user.login}" required="true"
+                                        <h:outputText message="Login: "/>
+                                        <h:inputText id="steamLogin" message="#{userBean.user.steamLogin}" required="true"
                                                      styleClass="form-control"
                                                      requiredMessage="Login is required"
                                         >
                                             <f:validateLength minimum="1" maximum="32"/>
                                             <f:ajax/>
                                         </h:inputText>
-                                        <h:message id="msgLogin" showDetail="true" showSummary="false" for="login"
+                                        <h:message id="msgLogin" showDetail="true" showSummary="false" for="steamLogin"
                                                    errorStyle="color: red;"/>
                                     </div>
                                 </div>
@@ -48,8 +48,8 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <h:outputText value="Enter password: "/>
-                                        <h:inputSecret id="password" value="#{userBean.user.password}" required="true"
+                                        <h:outputText message="Enter password: "/>
+                                        <h:inputSecret id="password" message="#{userBean.user.password}" required="true"
                                                        styleClass="form-control"
                                                        requiredMessage="Password is required"
                                         >
@@ -64,7 +64,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <h:commandButton id="loginButton" value="Sign In" type="submit"
+                                        <h:commandButton id="loginButton" message="Sign In" type="submit"
                                                          action="#{userBean.checkUser()}"
                                                          styleClass="btn btn-lg btn-success btn-block">
                                             <!--<f:ajax render="growl"/>-->

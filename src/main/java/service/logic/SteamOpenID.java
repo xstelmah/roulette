@@ -28,13 +28,8 @@ public class SteamOpenID {
     private final Pattern STEAM_REGEX = Pattern.compile("(\\d+)");
     private DiscoveryInformation discovered;
 
-    /**
-     * Creates the {@link ConsumerManager} and sets up
-     * the {@link DiscoveryInformation}
-     */
     public SteamOpenID() {
-        System.setProperty("org.apache.commons.logging.Log",
-                "org.apache.commons.logging.impl.NoOpLog");
+
         manager = new ConsumerManager();
         manager.setMaxAssocAttempts(0);
         try {

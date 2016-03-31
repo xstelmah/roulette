@@ -1,6 +1,8 @@
 package model;
 
-public class Transaction {
+import java.sql.Date;
+
+public class BalanceTransaction {
 
     private Integer id;
 
@@ -12,7 +14,11 @@ public class Transaction {
 
     private Double value;
 
-    public Transaction() {
+    private Date date;
+
+    private String additionalInfo;
+
+    public BalanceTransaction() {
 
     }
 
@@ -54,5 +60,21 @@ public class Transaction {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getAdditionalInfo() {
+        return additionalInfo;
+    }
+
+    public void setAdditionalInfo(String additionalInfo) {
+        this.additionalInfo = additionalInfo;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 }

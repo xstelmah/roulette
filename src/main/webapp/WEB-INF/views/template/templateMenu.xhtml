@@ -12,26 +12,26 @@
     <div class="navbar navbar-default">
         <h:form id="menuForm" styleClass="navbar-form">
             <div class="btn-group">
-                <h:button value="Profile" outcome="UserProfile"
+                <h:button message="Profile" outcome="UserProfile"
                                  styleClass="btn btn-primary">
                     <!--  <f:ajax />-->
                 </h:button>
             </div>
             <div class="btn-group">
-                <h:commandButton value="Roullete" action="playGame"
+                <h:commandButton message="Roullete" action="playGame"
                                  styleClass="btn btn-primary">
                     <!--  <f:ajax />-->
                 </h:commandButton>
             </div>
             <div class="btn-group">
-                <h:commandButton value="Add funds" action="addFunds"
+                <h:commandButton message="Add funds" action="addFunds"
                                  styleClass="btn btn-primary">
                     <!--  <f:ajax />-->
                 </h:commandButton>
             </div>
 
             <div class="btn-group">
-                <h:commandButton value="TEST PAGE" action="testPage"
+                <h:commandButton message="TEST PAGE" action="testPage"
                                  styleClass="btn btn-primary">
                     <!--<f:ajax />-->
                 </h:commandButton>
@@ -39,7 +39,7 @@
 
 
             <div class="btn-group navbar-right">
-                <h:commandButton value="Logout" action="login"
+                <h:commandButton message="Logout" action="steamLogin"
                                  styleClass="btn btn-success">
                     <!--  <f:ajax />-->
                 </h:commandButton>
@@ -47,7 +47,7 @@
 
             <h:panelGroup id="menuUserInfo">
                 <div class="navbar-text navbar-right">
-                    Signed in as @ ${userBean.user.login} Balance: ${balanceService.getBalanceByUserId(userBean.user.id).value}
+                    Signed in as @ ${userBean.user.steamLogin} Balance: ${balanceService.getBalanceByUserId(userBean.user.id).message}
                 </div>
             </h:panelGroup>
 
