@@ -1,6 +1,5 @@
 package service.logic;
 
-import beans.UserBean;
 import org.openid4java.association.AssociationException;
 import org.openid4java.consumer.ConsumerException;
 import org.openid4java.consumer.ConsumerManager;
