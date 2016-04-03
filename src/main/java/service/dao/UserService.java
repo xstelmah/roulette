@@ -21,6 +21,16 @@ public class UserService {
         return userRepository.getUserById(id);
     }
 
-    public User getUserBySteamId(String id) { return userRepository.getUserBySteamId(id);}
+    public User getUserBySteamId(String id) {
+        return userRepository.getUserBySteamId(id);
+    }
+
+    public void insertUser(User user) {
+        userRepository.insertUser(user);
+    }
+
+    public void updateUser(User user) {
+        userRepository.updateUser(user);
+    }
 
 }

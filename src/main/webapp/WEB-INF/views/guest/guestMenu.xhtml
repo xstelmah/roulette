@@ -1,0 +1,39 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <div class="menu">
+        <h:form id="guestMenuForm">
+            <div class="menu-body">
+                <h:commandLink styleClass="menu-element menu-element-left">
+                    <h:graphicImage value="/resources/images/profile.png"/>
+                    Профиль
+                </h:commandLink>
+                <a class="menu-element menu-element-left" href="#">
+                    <h:graphicImage value="/resources/images/profile.png"/>
+                    Играть
+                </a>
+                <a class="menu-element menu-element-left" href="#">
+                    <h:graphicImage value="/resources/images/profile.png"/>
+                    Техподдержка
+                </a>
+                <a class="menu-element menu-element-left" href="#">
+                    <h:graphicImage value="/resources/images/profile.png"/>
+                    Как играть
+                </a>
+                <a class="menu-element menu-element-left" href="#">
+                    <h:graphicImage value="/resources/images/profile.png"/>
+                    Пополнить баланс
+                </a>
+                <a class="menu-element menu-element-left" href="#">
+                    <h:graphicImage value="/resources/images/profile.png"/>
+                    Вывод вещей
+                </a>
+
+                <a class="menu-element menu-element-right" href="#{userBean.goToSteam()}">
+                    <h:graphicImage styleClass="login" value="/resources/images/login.png"/>
+                </a>
+            </div>
+        </h:form>
+    </div>
+</ui:composition>

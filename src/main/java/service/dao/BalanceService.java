@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import repository.BalanceRepository;
 
 @Service(value = "balanceService")
-public class BalanceService{
+public class BalanceService {
 
     private static final Logger LOG = LoggerFactory.getLogger(BalanceService.class);
 
@@ -25,6 +25,10 @@ public class BalanceService{
 
     public void updateBalance(Balance balance) {
         balanceRepository.updateBalance(balance);
+    }
+
+    public void insertBalance(Balance balance) {
+        balanceRepository.insertBalance(balance);
     }
 
 }

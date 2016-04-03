@@ -8,22 +8,22 @@
       xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui"
 >
 <h:head>
-
+    <h:outputStylesheet name="css/borders.css"/>
+    <h:outputStylesheet name="css/style.css"/>
 </h:head>
 
 <h:body>
-    <ui:composition template="/WEB-INF/views/template/templateLayout.xhtml">
-        <ui:define name="menu">
+    <div class="header">
+        <ui:include src="WEB-INF/views/guest/userMenu.xhtml"/>
+    </div>
+    <div class="body-content">
+        HELLO , IT'S USER PAGE, working...
+    </div><br/>
 
-        </ui:define>
-        <ui:define name="content">
-
-            <h:form id="loginForm">
-                HELLO #{userBean.user.steamLogin} <br/>
-                YOUR STEAM ID IS '#{userBean.user.steamId}'
-            </h:form>
-        </ui:define>
-    </ui:composition>
+    <h:form id="loginForm">
+        HELLO #{userBean.user.steamLogin} <br/>
+        YOUR STEAM ID IS '#{userBean.user.steamId}'
+    </h:form>
 </h:body>
 
 </html>

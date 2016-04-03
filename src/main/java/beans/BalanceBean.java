@@ -26,40 +26,50 @@ public class BalanceBean implements Serializable {
     @ManagedProperty(value = "#{userBean}")
     private UserBean userBean;
 
-    private Double value;
-
     public BalanceBean() {
         LOG.info("BalanceBean created");
-        this.value = 0.0;
+//        this.value = 0.0;
     }
+// ПОПОЛНЕНИЕ ВРОДЕ КАК
+//    public void updateBalance() {
+//        LOG.info("updateBalance");
+//        if (userBean == null) {
+//            LOG.error("user bean is null");
+//            return;
+//        }
+//        if (userBean.getUser() == null) {
+//            LOG.error("user is null");
+//            return;
+//        }
+//
+//        if (value <= 0) {
+//            LOG.info("value <= 0");
+//            sendMessage("Error", "Not correct value");
+//            return;
+//        }
+//        if (balanceService == null) {
+//            sendMessage("Error", "Service is unavailable");
+//            LOG.info("balance repository is null");
+//            return;
+//        }
+//
+//        Balance balance = balanceService.getBalanceByUserId(userBean.getUser().getId());
+//        balance.setValue(balance.getValue() + value);
+//        balanceService.updateBalance(balance);
+//        LOG.info("Balance update Success");
+//        sendMessage("Success", "Replenish balance on " + value);
+//    }
 
-    public void updateBalance() {
-        LOG.info("updateBalance");
+    public Balance actualBalance() {
         if (userBean == null) {
-            LOG.info("user bean is null");
-            return;
+            LOG.error("user bean is null");
+            return null;
         }
         if (userBean.getUser() == null) {
-            LOG.info("user is null");
-            return;
+            LOG.error("user is null");
+            return null;
         }
-
-        if (value <= 0) {
-            LOG.info("value <= 0");
-            sendMessage("Error", "Not correct value");
-            return;
-        }
-        if (balanceService == null) {
-            sendMessage("Error", "Service is unavailable");
-            LOG.info("balance repository is null");
-            return;
-        }
-
-        Balance balance = balanceService.getBalanceByUserId(userBean.getUser().getId());
-        balance.setValue(balance.getValue() + value);
-        balanceService.updateBalance(balance);
-        LOG.info("Balance update Success");
-        sendMessage("Success", "Replenish balance on " + value);
+        return balanceService.getBalanceByUserId(userBean.getUser().getId());
     }
 
     public void sendMessage(String header, String body) {
@@ -67,25 +77,8 @@ public class BalanceBean implements Serializable {
         context.addMessage(null, new FacesMessage(header, body));
     }
 
-
-    public Double getValue() {
-        return value;
-    }
-
-    public void setValue(Double value) {
-        this.value = value;
-    }
-
-    public BalanceService getBalanceService() {
-        return balanceService;
-    }
-
     public void setBalanceService(BalanceService balanceService) {
         this.balanceService = balanceService;
-    }
-
-    public UserBean getUserBean() {
-        return userBean;
     }
 
     public void setUserBean(UserBean userBean) {

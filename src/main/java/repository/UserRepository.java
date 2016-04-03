@@ -33,5 +33,13 @@ public interface UserRepository {
                     many = @Many(select = "repository.GameRepository.getGamesByUserId", fetchType = FetchType.LAZY))*/
     })
     @Select("select * from User where userSteamId = #{id}")
-    User getUserBySteamId(@Param(value = "id")String  id);
+    User getUserBySteamId(@Param(value = "id") String id);
+
+    @Insert("insert into User (userSteamLogin,userSteamId,userChatLogin) values (#{user.steamLogin},#{user.steamId},#{user.chatLogin})")
+    @Options(useGeneratedKeys = true, keyProperty = "user.id", keyColumn = "userId")
+    void insertUser(@Param(value = "user") User user);
+
+    @Update("update User set balanceId = #{user.balance.id}, userSteamLogin = #{user.steamLogin}, "
+            + "userChatLogin = #{user.chatLogin}, userSteamId = #{user.steamId} where userId = #{user.id}")
+    void updateUser(@Param(value = "user") User user);
 }
