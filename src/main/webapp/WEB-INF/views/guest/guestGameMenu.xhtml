@@ -24,42 +24,9 @@
             </div>
             <div class="game-menu-submit">
                 <h:commandButton value="Играть" action="#{gameBean.guestPlay()}">
-                    <f:ajax execute="@form" render="@form dialogGroup"/>
+                    <f:ajax execute="@form" render="@form :rouletteForm"/>
                 </h:commandButton>
             </div>
-            <h:panelGroup id="dialogGroup">
-                <h:outputStylesheet name="roullete/css/roullete.css"/>
-                <p:dialog binding="#{gameBean.dialog}" id="qwe" widgetVar="dlg2" modal="true" height="120"
-                          dynamic="true" resizable="false">
-                    <h:panelGroup>
-                        <div class="roullete-layer">
-                            <div class="roullete-arrow"></div>
-                            <div id="roulette" class="roullete">
-                                <c:forEach items="#{gameBean.renderItems}" var="image">
-                                    <div>
-                                    <h:graphicImage styleClass="roullete-image"
-                                                    value="/resources/images/${image.rarity}.jpg"/>
-                                        <h:outputText value="#{image.rarity}"/>
-                                    </div>
-                                </c:forEach>
-                            </div>
-                        </div>
-                        <!--<h:outputScript name="/roullete/js/roullete.js"/>-->
-                        <!--<h:outputScript>-->
-                            <!--onRoll();-->
-                        <!--</h:outputScript>-->
-                    </h:panelGroup>
-                </p:dialog>
-            </h:panelGroup>
-            <h:panelGroup>
-                        <c:forEach items="#{gameBean.renderItems}" var="image">
-                            <div>
-                                <h:graphicImage styleClass="roullete-image"
-                                                value="/resources/images/${image.rarity}.jpg"/>
-                                <h:outputText value="#{image.rarity}"/>
-                            </div>
-                        </c:forEach>
-            </h:panelGroup>
         </h:form>
     </div>
 </ui:composition>

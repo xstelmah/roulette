@@ -19,18 +19,20 @@ import java.util.LinkedList;
 import java.util.List;
 
 @ManagedBean(name = "gameBean")
-@ViewScoped
+@SessionScoped
 public class GameBean implements Serializable {
 
     private static final Logger LOG = LoggerFactory.getLogger(GameBean.class);
 
     @ManagedProperty(value = "#{gameLogicService}")
-    private GameLogicService gameLogicService
-            ;
+    private GameLogicService gameLogicService;
+
     @ManagedProperty(value = "#{betService}")
     private BetService betService;
 
-    private Dialog dialog;
+    private Boolean renderedRoulette = false;
+
+//    private Dialog dialog;
 
     private List<ItemRarity> baseWinItems;
 
@@ -78,10 +80,10 @@ public class GameBean implements Serializable {
         }
         List<Item> itemsResult = gameLogicService.playOnMoney(user, selectedBet);
         if (itemsResult != null) {
-            dialog.setVisible(true);
+//            dialog.setVisible(true);
             renderItems = itemsResult;
         } else {
-            dialog.setVisible(false);
+//            dialog.setVisible(false);
             sendMessage(FacesMessage.SEVERITY_ERROR, "ERROR", "Not enough gold");
         }
     }
@@ -117,14 +119,14 @@ public class GameBean implements Serializable {
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage(severity, header, body));
     }
-
-    public Dialog getDialog() {
-        return dialog;
-    }
-
-    public void setDialog(Dialog dialog) {
-        this.dialog = dialog;
-    }
+//
+//    public Dialog getDialog() {
+//        return dialog;
+//    }
+//
+//    public void setDialog(Dialog dialog) {
+//        this.dialog = dialog;
+//    }
 
     public List<Item> getRenderItems() {
         return renderItems;
@@ -183,10 +185,10 @@ public class GameBean implements Serializable {
         bet = betService.getBetById(bet.getId());
         List<Item> itemsResult = gameLogicService.playFree(bet);
         if (itemsResult != null) {
-            dialog.setVisible(true);
+            renderedRoulette = true;
             renderItems = itemsResult;
         } else {
-            dialog.setVisible(false);
+            renderedRoulette = false;
             sendMessage(FacesMessage.SEVERITY_ERROR, "ERROR", "Try again");
         }
     }
@@ -197,5 +199,13 @@ public class GameBean implements Serializable {
 
     public void setBetService(BetService betService) {
         this.betService = betService;
+    }
+
+    public Boolean getRenderedRoulette() {
+        return renderedRoulette;
+    }
+
+    public void setRenderedRoulette(Boolean renderedRoulette) {
+        this.renderedRoulette = renderedRoulette;
     }
 }

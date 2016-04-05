@@ -18,8 +18,13 @@
         <ui:include src="WEB-INF/views/guest/guestMenu.xhtml"/>
     </div>
     <div class="body-content">
-        <ui:include src="WEB-INF/views/guest/guestGameMenu.xhtml"/>
-        <ui:include src="WEB-INF/views/template/lastGames.xhtml"/>
+        <div class="game-block">
+            <ui:include src="WEB-INF/views/guest/guestGameMenu.xhtml"/>
+            <ui:include src="WEB-INF/views/template/lastGames.xhtml"/>
+        </div>
+        <div class="game-block">
+            <ui:include src="WEB-INF/views/template/roulette.xhtml"/>
+        </div>
     </div>
 </h:body>
 

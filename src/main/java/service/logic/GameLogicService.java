@@ -17,7 +17,7 @@ public class GameLogicService {
     private static final Logger LOG = LoggerFactory.getLogger(GameLogicService.class);
 
     // total count item
-    private static final Integer ITEM_LOAD_COUNT = 33;
+    private static final Integer ITEM_LOAD_COUNT = 40;
     // win item number
     private static final Integer ITEM_WIN_NUMBER = 29;
 

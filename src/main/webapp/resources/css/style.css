@@ -205,3 +205,9 @@ body {
     background: linear-gradient(to bottom, #111 0, #333 100%);
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.30);
 }
+
+.game-block {
+    width: 100%;
+    clear: both;
+}
+

@@ -1,0 +1,41 @@
+.roulette-header {
+    padding: 0.5em;
+    border-radius: 5px;
+    background: #222;
+    background: linear-gradient(to bottom, #111 0, #333 100%);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.30);
+}
+.roulette-arrow {
+    width: 3px;
+    height: 104px;
+    position: absolute;
+    background: darkred;
+    z-index: 1;
+    left: 600px;
+}
+.roulette {
+    border: 1px black;
+    width: 1000000px;
+    position: relative;
+}
+.roulette-layer {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    min-width: 600px;
+    min-width: 100%;
+    background: linear-gradient(to bottom, #666 0, #888 100%);
+    overflow: hidden;
+}
+.roulette-image {
+    border: 1px black;
+    width: 150px;
+    height: 100px;
+    margin: 2px;
+    float: left;
+}
+#roulette-remove {
+    display: none;
+    margin-left: 5px;
+    margin-right: 5px;
+}
