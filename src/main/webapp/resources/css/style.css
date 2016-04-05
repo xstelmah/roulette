@@ -1,12 +1,21 @@
+* {
+    color: #d1fa00;
+    font-family: arial, sans-serif;
+    font-size: 100%;
+}
 body {
     margin: 0;
     padding: 1px;
-    font-family: arial, sans-serif;
-    font-size: 100%;
+
     background-color: #e9e9e9;
     line-height: 1;
 }
-
+.no-margin {
+    margin: 0;
+}
+.no-padding {
+    padding: 0;
+}
 .header {
     text-align: center;
     min-height: 64px;
@@ -15,70 +24,184 @@ body {
     background: linear-gradient(to bottom, #111 0, #333 100%);
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.30);
 }
-
 .menu {
 }
-
 .menu-body {
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
-
 .menu-body a img {
     margin: auto;
     display: block;
 }
-
 .menu-body a {
     text-decoration: none;
     text-align: center;
     cursor: pointer;
-    font-family: Arial, sans-serif;
     font-size: 1em;
-    color: #d1fa00;
     padding: 2px;
     margin: 0.2em 0.5em 0.1em 0.5em;
 }
-
 .menu-body a.menu-element-left:hover {
     background: #444646;
     border-radius: 2px;
 }
-.login,.logout{
+.login, .logout {
     width: 125px;
     height: 55px;
 }
-
 .body-content {
     clear: both;
 }
-
 .menu-element {
 
 }
-
 .user-info-div {
     /*height: 100%;*/
     /*min-height: 64px;*/
 }
 .user-info-div div {
-    color: #d1fa00;
     padding-top: 0.7em;
 }
-
 .menu-element-right {
     float: right;
 }
-
 .menu-element-left {
     float: left;
 }
+.last-games {
+    position: relative;
+    float: right;
+    min-width: 500px;
+    min-height: 300px;
+    background: none;
+    border-radius: 5px;
+    margin: 0.5em;
 
-.no-margin {
-    margin: 0;
 }
-
-.no-padding {
+.last-games-header {
+    padding: 0.5em;
+    border-radius: 5px;
+    background: #222;
+    background: linear-gradient(to bottom, #111 0, #333 100%);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.30);
+}
+.game {
+    border-radius: 6px;
+    min-width: 400px;
+    min-height: 64px;
+}
+.game div {
+    display: inline-block;
+}
+.game:nth-child(2), .game:nth-child(4), .game:nth-child(6) {
+    background: linear-gradient(to bottom, #666 0, #888 100%);
+}
+.game:nth-child(1), .game:nth-child(3), .game:nth-child(5) {
+    background: linear-gradient(to bottom, #222 0, #444 100%);
+}
+.game-user-avatar {
+    /*position: relative;*/
+    /*float: left;*/
+}
+.game-user-avatar img {
     padding: 0;
+    margin: 2px 1px 1px 1px;
+    width: 64px;
+    height: 64px;
+}
+.game-info {
+    min-width: 240px;
+    min-height: 64px;
+    border-radius: 5px;
+}
+.game-info-login {
+}
+.game-info-item {
+}
+.game-info-item, .game-info-login {
+    float: left;
+    clear: both;
+    padding: 0.5em 0 0 0.1em;
+}
+.game-img {
+
+}
+.game-img img {
+    /*float: right ;*/
+    padding: 0;
+    margin: 2px 3px 1px 65px;
+    width: 84px;
+    height: 64px;
+}
+.game-menu {
+    position: relative;
+    float: left;
+    min-width: 700px;
+    min-height: 200px;
+    /*min-width: 63%;*/
+    border-radius: 5px;
+    margin: 0.5em;
+    background: linear-gradient(to bottom, #666 0, #888 100%);
+}
+.game-menu-guest-warning {
+    margin: 15px 0 5px 15px;
+    padding: 0;
+}
+.game-menu-guest-warning h3 {
+    margin: 0;
+    padding: 0;
+}
+.game-menu-item {
+    float: left;
+    border-radius: 5px;
+    max-width: 750px;
+}
+.game-menu-guest-warning {
+}
+.game-menu-items {
+
+}
+.game-menu-item input[type=checkbox]:not(old),
+.game-menu-item input[type=radio   ]:not(old) {
+    width: 0;
+    height: 0;
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+}
+.game-menu-item input[type=checkbox]:not(old) + label,
+.game-menu-item input[type=radio   ]:not(old) + label {
+    display: inline-block;
+    padding: 128px 100px 0px 64px;
+    margin: 7px;
+    border-radius: 5px;
+}
+.game-menu-item input[type=checkbox]:not(old):checked + label {
+    opacity: 0.5;
+}
+.game-menu-item input[type=radio]:not(old):checked + label {
+    opacity: 0.5;
+}
+.game-menu-submit {
+    clear: both;
+}
+.game-menu-submit > input {
+    width: 164px;
+    border-radius: 5px;
+    height: 30px;
+    border: 0;
+    background: linear-gradient(to bottom, #111 0, #333 100%);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.30);
+    margin: 0 7px 7px 0;
+    float: right;
+
+}
+.game-menu-header {
+    padding: 0.5em;
+    border-radius: 5px;
+    background: #222;
+    background: linear-gradient(to bottom, #111 0, #333 100%);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.30);
 }

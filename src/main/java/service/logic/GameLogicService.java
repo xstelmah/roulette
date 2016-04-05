@@ -67,7 +67,7 @@ public class GameLogicService {
         return winItem;
     }
 
-    public List<Item> play(User user, Bet bet) {
+    public List<Item> playOnMoney(User user, Bet bet) {
         if (user == null) {
             LOG.error("Game started, user is null");
             return null;
@@ -118,6 +118,30 @@ public class GameLogicService {
             else items.add(getItemByChances(chances));
         }
         LOG.info("User: " + user.getId() + " win item rarity: " + winItem.getRarity());
+        return items;
+    }
+
+    public List<Item> playFree(Bet bet) {
+        if (bet == null || bet.getId() == null) {
+            LOG.error("bet is null");
+            return null;
+        }
+        bet = betService.getBetById(bet.getId());
+        Game game = new Game();
+        List<Chance> chances = getChancesByBet(bet);
+        Item winItem = getItemByChances(chances);
+
+        if (winItem == null) {
+            LOG.error("NOT FOUND WIN ITEM WITH RARITY " + bet.getRarity());
+            return null;
+        }
+        List<Item> items = new ArrayList<>();
+
+        for (int index = 0; index <= ITEM_LOAD_COUNT; index++) {
+            if (ITEM_WIN_NUMBER == index) items.add(winItem);
+            else items.add(getItemByChances(chances));
+        }
+        LOG.info("Guest user win item with rarity: " + winItem.getRarity());
         return items;
     }
 

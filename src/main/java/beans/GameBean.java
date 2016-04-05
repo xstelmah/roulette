@@ -1,11 +1,11 @@
 package beans;
 
-import beans.converter.ExternalBetConverter;
 import model.Bet;
 import model.*;
 import org.primefaces.component.dialog.Dialog;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import service.dao.BetService;
 import service.logic.GameLogicService;
 
 import javax.annotation.PostConstruct;
@@ -15,6 +15,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 @ManagedBean(name = "gameBean")
@@ -24,7 +25,10 @@ public class GameBean implements Serializable {
     private static final Logger LOG = LoggerFactory.getLogger(GameBean.class);
 
     @ManagedProperty(value = "#{gameLogicService}")
-    private GameLogicService gameLogicService;
+    private GameLogicService gameLogicService
+            ;
+    @ManagedProperty(value = "#{betService}")
+    private BetService betService;
 
     private Dialog dialog;
 
@@ -72,11 +76,10 @@ public class GameBean implements Serializable {
             LOG.error("Play game, bet is null");
             return;
         }
-        List<Item> itemsResult = gameLogicService.play(user, selectedBet);
+        List<Item> itemsResult = gameLogicService.playOnMoney(user, selectedBet);
         if (itemsResult != null) {
             dialog.setVisible(true);
             renderItems = itemsResult;
-//            sendMessage(FacesMessage.SEVERITY_INFO, "SUCCESS", null);
         } else {
             dialog.setVisible(false);
             sendMessage(FacesMessage.SEVERITY_ERROR, "ERROR", "Not enough gold");
@@ -135,7 +138,64 @@ public class GameBean implements Serializable {
         return bets;
     }
 
+
+    // new method after total changing
+    public List<String> guestImages() {
+        List<String> imagesPath = new LinkedList<>();
+        List<Bet> bets = gameLogicService.getBets(GameType.TEST);
+        for (Bet bet : bets) {
+            imagesPath.add("\"/resources/images/" + bet.getRarity().getName() + ".jpg\"");
+        }
+        return imagesPath;
+    }
+
+    public void guestPlay() {
+        String menuItem = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("menuItem");
+        if (menuItem == null) {
+            sendMessage(FacesMessage.SEVERITY_ERROR, "Ошибка", "Не выбрана ставка");
+            LOG.error("NOT SELECTED BET");
+            return;
+        }
+
+        Bet bet = new Bet();
+        switch (menuItem) {
+            case "0": {
+                bet.setId(6);
+                break;
+            }
+            case "1": {
+                bet.setId(7);
+                break;
+            }
+            case "2": {
+                bet.setId(8);
+                break;
+            }
+            case "3": {
+                bet.setId(9);
+                break;
+            }
+            default: {
+                sendMessage(FacesMessage.SEVERITY_ERROR, "Ошибка", "Не выбрана ставка");
+                return;
+            }
+        }
+        bet = betService.getBetById(bet.getId());
+        List<Item> itemsResult = gameLogicService.playFree(bet);
+        if (itemsResult != null) {
+            dialog.setVisible(true);
+            renderItems = itemsResult;
+        } else {
+            dialog.setVisible(false);
+            sendMessage(FacesMessage.SEVERITY_ERROR, "ERROR", "Try again");
+        }
+    }
+
     public void setGameLogicService(GameLogicService gameLogicService) {
         this.gameLogicService = gameLogicService;
+    }
+
+    public void setBetService(BetService betService) {
+        this.betService = betService;
     }
 }

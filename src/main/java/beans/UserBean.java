@@ -14,7 +14,9 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Map;
 
 @ManagedBean(name = "userBean")
@@ -88,6 +90,9 @@ public class UserBean implements Serializable {
         }
     }
 
+    public void someMethod(ActionEvent event) {
+        FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+    }
 
     public UserBean() {
         LOG.info("UserBean created");
@@ -120,4 +125,5 @@ public class UserBean implements Serializable {
     public void setBalanceService(BalanceService balanceService) {
         this.balanceService = balanceService;
     }
+
 }

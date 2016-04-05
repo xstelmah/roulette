@@ -1,0 +1,65 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+    <div class="game-menu">
+        <h:form id="gameMenuForm">
+            <p:growl id="growl" showDetail="true" showSummary="false" life="3000"/>
+            <div class="game-menu-header">
+                Выберите тип игры
+            </div>
+            <div class="game-menu-guest-warning">
+                <h3>В гостевом режиме вы не можете забрать выигрыш.</h3>
+            </div>
+            <div class="game-menu-items">
+                <c:forEach items="#{gameBean.guestImages()}" var="imagePath" varStatus="status">
+                    <div class="game-menu-item">
+                        <input id="menuItemRadio#{status.index}" type="radio" name="menuItem" value="#{status.index}"/>
+                        <label for="menuItemRadio#{status.index}"
+                               style="background: url(#{imagePath}) no-repeat; background-size: cover;"/>
+                    </div>
+                </c:forEach>
+            </div>
+            <div class="game-menu-submit">
+                <h:commandButton value="Играть" action="#{gameBean.guestPlay()}">
+                    <f:ajax execute="@form" render="@form dialogGroup"/>
+                </h:commandButton>
+            </div>
+            <h:panelGroup id="dialogGroup">
+                <h:outputStylesheet name="roullete/css/roullete.css"/>
+                <p:dialog binding="#{gameBean.dialog}" id="qwe" widgetVar="dlg2" modal="true" height="120"
+                          dynamic="true" resizable="false">
+                    <h:panelGroup>
+                        <div class="roullete-layer">
+                            <div class="roullete-arrow"></div>
+                            <div id="roulette" class="roullete">
+                                <c:forEach items="#{gameBean.renderItems}" var="image">
+                                    <div>
+                                    <h:graphicImage styleClass="roullete-image"
+                                                    value="/resources/images/${image.rarity}.jpg"/>
+                                        <h:outputText value="#{image.rarity}"/>
+                                    </div>
+                                </c:forEach>
+                            </div>
+                        </div>
+                        <!--<h:outputScript name="/roullete/js/roullete.js"/>-->
+                        <!--<h:outputScript>-->
+                            <!--onRoll();-->
+                        <!--</h:outputScript>-->
+                    </h:panelGroup>
+                </p:dialog>
+            </h:panelGroup>
+            <h:panelGroup>
+                        <c:forEach items="#{gameBean.renderItems}" var="image">
+                            <div>
+                                <h:graphicImage styleClass="roullete-image"
+                                                value="/resources/images/${image.rarity}.jpg"/>
+                                <h:outputText value="#{image.rarity}"/>
+                            </div>
+                        </c:forEach>
+            </h:panelGroup>
+        </h:form>
+    </div>
+</ui:composition>
