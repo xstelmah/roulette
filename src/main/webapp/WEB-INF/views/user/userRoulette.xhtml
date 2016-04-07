@@ -1,19 +1,19 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui">
     <h:outputStylesheet name="/css/roulette.css"/>
     <h:outputScript name="/js/roulette.js"/>
     <h:form id="rouletteForm">
-        <h:panelGroup rendered="#{gameBean.renderedRoulette}">
+        <h:panelGroup rendered="#{userGameBean.renderedRoulette}">
             <div id="roulette-remove">
                 <div class="roulette-header">Ваша игра</div>
                 <div class="roulette-layer">
                     <div class="roulette-arrow"></div>
                     <div id="roulette" class="roulette">
-                        <c:forEach items="#{gameBean.renderItems}" var="image">
+                        <c:forEach items="#{userGameBean.renderItems}" var="image">
                             <h:graphicImage styleClass="roulette-image"
                                             value="/resources/images/${image.rarity.name}.jpg"/>
                         </c:forEach>

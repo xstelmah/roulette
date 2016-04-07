@@ -12,34 +12,31 @@
                     <div class="game-menu-header">
                         Выберите тип игры
                     </div>
-                    <div class="game-menu-guest-warning">
-                        <h3>В гостевом режиме вы не можете забрать выигрыш.</h3>
-                    </div>
                     <div class="game-menu-items">
-                        <ui:repeat value="#{guestGameBean.guestMenuImages()}" var="imagePath" varStatus="status">
+                        <ui:repeat value="#{userGameBean.userMenuImages()}" var="imagePath" varStatus="status">
                             <div class="game-menu-item">
                                 <input type="radio" name="gameMenuSelectItem"
                                        value="#{status.index}" id="gameMenuSelectItem#{status.index}"
-                                       onclick="guestMenuChanged(#{status.index})"/>
+                                       onclick="userMenuChanged(#{status.index})"/>
                                 <label for="gameMenuSelectItem#{status.index}"
                                        style="background: url(#{imagePath}) no-repeat; background-size: cover;"/>
                             </div>
                         </ui:repeat>
-                        <h:inputText id="guestHiddenMenuInput" value="#{guestGameBean.selectedMenuItem}"
+                        <h:inputText id="userHiddenMenuInput" value="#{userGameBean.selectedMenuItem}"
                                      style="display: none">
                             <f:ajax render="gameMenuBetGroup gameMenuPotentialGains"/>
                         </h:inputText>
                     </div>
                     <h:panelGroup id="gameMenuBetGroup" styleClass="menu-element-left" layout="block">
                         <h:panelGroup layout="block" styleClass="game-menu-bet"
-                                      rendered="#{guestGameBean.selectedMenuItem ne null}">
+                                      rendered="#{userGameBean.selectedMenuItem ne null}">
                             Текущая ставка:
-                            <h:outputText value="#{guestGameBean.selectedBet.value}"/>
+                            <h:outputText value="#{userGameBean.selectedBet.value}"/>
                              ₽
                         </h:panelGroup>
                     </h:panelGroup>
                     <div class="game-menu-submit">
-                        <h:commandButton id="buttonPlay" value="Играть" action="#{guestGameBean.guestPlay()}">
+                        <h:commandButton id="buttonPlay" value="Играть" action="#{userGameBean.userPlay()}">
                             <f:ajax render="growl :rouletteForm"/>
                         </h:commandButton>
                     </div>
@@ -50,14 +47,14 @@
         <h:form id="gameMenuPotentialGains">
 
             <h:panelGroup layout="block"
-                          rendered="#{guestGameBean.selectedMenuItem ne null}">
+                          rendered="#{userGameBean.selectedMenuItem ne null}">
                 <div class="game-menu-potential">
                     <div class="game-menu-potential-gains">
                         <div class="game-menu-potential-gains-header">
                             Возможные исходы
                         </div>
                         <div class="game-menu-potential-gains-body">
-                            <ui:repeat value="#{guestGameBean.guestPotentialItemImages()}" var="image">
+                            <ui:repeat value="#{userGameBean.userPotentialItemImages()}" var="image">
                                 <h:graphicImage value="#{image}"/>
 
                             </ui:repeat>

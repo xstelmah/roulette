@@ -158,8 +158,6 @@ body {
     border-radius: 5px;
     max-width: 750px;
 }
-.game-menu-guest-warning {
-}
 .game-menu-items {
 
 }
@@ -177,6 +175,7 @@ body {
     padding: 128px 100px 0px 64px;
     margin: 7px;
     border-radius: 5px;
+    background: red;
 }
 .game-menu-item input[type=checkbox]:not(old):checked + label {
     opacity: 0.5;
@@ -184,8 +183,42 @@ body {
 .game-menu-item input[type=radio]:not(old):checked + label {
     opacity: 0.5;
 }
+.game-menu-bet {
+    margin: 5px 0 0 15px;
+    padding: 0;
+    font-size: 1.2em;
+}
+
+.game-menu-potential {
+    position: relative;
+    float: left;
+    min-width: 728px;
+    min-height: 100px;
+    /*min-width: 63%;*/
+    border-radius: 5px;
+    margin: 0.5em;
+    background: linear-gradient(to bottom, #666 0, #888 100%);
+}
+.game-menu-potential-gains-header {
+    padding: 0.5em;
+    border-radius: 5px;
+    background: #222;
+    background: linear-gradient(to bottom, #111 0, #333 100%);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.30);
+}
+.game-menu-potential-gains-body {
+
+}
+
+.game-menu-potential-gains-body img {
+    width: 90px;
+    height: 72px;
+    margin: 4px 0 2px 4px;
+    border-radius: 2px;
+}
+
 .game-menu-submit {
-    clear: both;
+    /*clear: both;*/
 }
 .game-menu-submit > input {
     width: 164px;
@@ -209,5 +242,11 @@ body {
 .game-block {
     width: 100%;
     clear: both;
+}
+.game-sub-block {
+    float: left;
+    margin: 0;
+    padding: 0;
+    max-width: 750px;
 }
 

@@ -29,9 +29,9 @@
                                     </div>
                                     <div class="col-sm-10">
                                         <h:selectOneMenu id="selectedBetMenu"
-                                                         valueChangeListener="#{gameBean.onSelectBet}">
+                                                         valueChangeListener="#{userGameBean.onSelectBet}">
                                             <!--<f:selectItem itemLabel="-&#45;&#45; select -&#45;&#45;" itemValue="#{null}"/>-->
-                                            <f:selectItems message="${gameBean.bets}" var="bet"
+                                            <f:selectItems message="${userGameBean.bets}" var="bet"
                                                            itemLabel="${bet.message}"
                                                            itemValue="${bet.id}"/>
                                             <f:ajax render="baseWinItems"/>
@@ -46,7 +46,7 @@
                                     <div class="btn_container">
                                         <h:commandButton message="play"
                                                          styleClass="btn btn-lg btn-block btn-primary start"
-                                                         action="#{gameBean.playGame(userBean.user)}"
+                                                         action="#{userGameBean.playGame(userBean.user)}"
                                         >
                                             <f:ajax render="dialogGroup growl :menuForm:menuUserInfo"/>
                                         </h:commandButton>
@@ -64,7 +64,7 @@
                             </div>
                             <div class="panel-body">
                                 <h:panelGroup id="baseWinItems">
-                                    <c:forEach items="#{gameBean.baseWinItems}" var="image">
+                                    <c:forEach items="#{userGameBean.baseWinItems}" var="image">
                                         <h:graphicImage width="99" height="66" style="margin: 2px; "
                                                         message="resources/images/${image.name}.jpg"/>
                                     </c:forEach>
@@ -75,13 +75,13 @@
                 </div>
 
                 <h:panelGroup id="dialogGroup">
-                    <p:dialog binding="#{gameBean.dialog}" id="qwe" widgetVar="dlg2" modal="true" height="120"
+                    <p:dialog binding="#{userGameBean.dialog}" id="qwe" widgetVar="dlg2" modal="true" height="120"
                               dynamic="true" resizable="false">
                         <h:panelGroup>
                             <div class="roullete-layer">
                                 <div class="roullete-arrow"></div>
                                 <div id="roulette" class="roullete">
-                                    <c:forEach items="#{gameBean.renderItems}" var="image">
+                                    <c:forEach items="#{userGameBean.renderItems}" var="image">
                                         <h:graphicImage styleClass="roullete-image"
                                                         message="resources/images/${image.name}.jpg"/>
                                     </c:forEach>

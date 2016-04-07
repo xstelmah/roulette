@@ -17,13 +17,16 @@
         <ui:include src="WEB-INF/views/user/userMenu.xhtml"/>
     </div>
     <div class="body-content">
-        HELLO , IT'S USER PAGE, working...
-    </div><br/>
+        <div class="game-block">
+            <ui:include src="WEB-INF/views/user/userGameMenu.xhtml"/>
+            <ui:include src="WEB-INF/views/template/lastGames.xhtml"/>
+        </div>
+        <div class="game-block">
+            <ui:include src="WEB-INF/views/user/userRoulette.xhtml"/>
+        </div>
+    </div>
 
-    <h:form id="loginForm">
-        HELLO #{userBean.user.steamLogin} <br/>
-        YOUR STEAM ID IS '#{userBean.user.steamId}'
-    </h:form>
+
 </h:body>
 
 </html>

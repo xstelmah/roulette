@@ -15,6 +15,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import javax.faces.event.ValueChangeEvent;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
@@ -33,9 +34,9 @@ public class UserBean implements Serializable {
 
     private User user;
 
-    private static final String callbackPage = "http://localhost:8080/faces/steamAuth.xhtml";
+    private static final String callbackPage = "http://localhost:8088/faces/steamAuth.xhtml";
 
-    private static final String okAuthRedirect = "userLogin.xhtml";
+    private static final String okAuthRedirect = "userPlayGame.xhtml";
 
     private static final String failAuthRedirect = "guestPlayGame.xhtml";
 
@@ -90,18 +91,9 @@ public class UserBean implements Serializable {
         }
     }
 
-    public void someMethod(ActionEvent event) {
-        FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
-    }
-
     public UserBean() {
         LOG.info("UserBean created");
         user = new User();
-    }
-
-    public void sendMessage(String header, String body) {
-        FacesContext context = FacesContext.getCurrentInstance();
-        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, header, body));
     }
 
 

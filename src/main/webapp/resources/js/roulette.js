@@ -1,9 +1,9 @@
 function onRoll() {
     var roulette = $('#roulette');
     var rouletteRemove = $('#roulette-remove');
-    rouletteRemove.show(2500, function () {
-        go();
-    });
+    var buttonPlay = $('#buttonPlay');
+    buttonPlay.prop('disabled', true);
+    go();
 
     function go() {
         //rouletteRemove.removeAttribute('display');
@@ -22,7 +22,8 @@ function onRoll() {
         roulette.animate({
             left: '-=' + fullWidth
         }, time, function () {
-            hide(2500);
+            //hide(2500);
+            buttonPlay.prop('disabled', false);
         })
     }
 
@@ -34,5 +35,6 @@ function onRoll() {
 
 
 }
+
 
 

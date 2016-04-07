@@ -21,7 +21,7 @@ public class SteamAuthBean {
 
     /*private static final String callbackPage = "http://localhost:8080/faces/steamAuth.xhtml";
 
-    private static final String okAuthRedirect = "userLogin.xhtml";
+    private static final String okAuthRedirect = "userPlayGame.xhtml";
 
     private static final String failAuthRedirect ="guestPlayGame.xhtml";
 

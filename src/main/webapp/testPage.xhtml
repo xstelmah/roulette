@@ -13,14 +13,15 @@
 
 </h:head>
 <h:body>
-    <ui:composition template="/WEB-INF/views/template/templateLayout.xhtml">
-        <ui:define name="content">
-            <h:form id="testForm">
-                <a href="#{steamAuthBean.goToSteam()}"> steam </a>
-            </h:form>
-        </ui:define>
-    </ui:composition>
-
+    <h:inputText id="superHidden" value="#{userBean.result}">
+        <f:ajax render="qweeee2"/>
+    </h:inputText>
+    <h:inputText value="#{userBean.user.steamLogin}">
+        <f:ajax/>
+    </h:inputText>
+    <h:panelGroup id="qweeee2">
+        <h:outputText value="#{userBean.result}"/>
+    </h:panelGroup>
 </h:body>
 
 </html>
