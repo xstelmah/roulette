@@ -22,8 +22,8 @@ public class ItemService {
         return itemRepository.getItemsByUserId(id);
     }
 
-    public List<Item> getItemsByGameId(Integer id) {
-        return itemRepository.getItemsByGameId(id);
+    public Item getItemByGameId(Integer id) {
+        return itemRepository.getItemByGameId(id);
     }
 
     public List<Item> getItemsByBotId(Integer id) {

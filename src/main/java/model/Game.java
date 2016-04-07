@@ -55,20 +55,20 @@ public class Game {
         this.description = description;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
     public Float getBet() {
         return bet;
     }
 
     public void setBet(Float bet) {
         this.bet = bet;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Item getItem() {

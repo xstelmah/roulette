@@ -21,8 +21,8 @@ public class TransactionService {
         return transactionRepository.getTransactionById(id);
     }
 
-    public List<BalanceTransaction> getTranscationsByBalanceId(Integer id) {
-      return transactionRepository.getTranscationsByBalanceId(id);
+    public List<BalanceTransaction> getTransactionsByBalanceId(Integer id) {
+      return transactionRepository.getTransactionsByBalanceId(id);
     }
 
 }

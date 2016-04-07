@@ -5,92 +5,30 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui">
 
-        <h:form id="lastGames">
-            <div class="last-games">
-                <div class="last-games-header">
-                    Последние игры
-                </div>
-                <div class="game">
-                    <div class="game-user-avatar">
-                        <h:graphicImage value="resources/images/profile.png" />
-                    </div>
-                    <div class="game-info">
-                        <div class="game-info-login">
-                            Пользователь: WQKEFMOI32543534
-                        </div>
-                        <div class="game-info-item">
-                            Выиграл: Rotten stache
-                        </div>
-                    </div>
-                    <div class="game-img">
-                        <h:graphicImage value="resources/images/Arcana.jpg" />
-                    </div>
-                </div>
-                <div class="game">
-                    <div class="game-user-avatar">
-                        <h:graphicImage value="resources/images/profile.png" />
-                    </div>
-                    <div class="game-info">
-                        <div class="game-info-login">
-                            Пользователь: WQKEFMOI32543534
-                        </div>
-                        <div class="game-info-item">
-                            Выиграл: Rotten stache
-                        </div>
-                    </div>
-                    <div class="game-img">
-                        <h:graphicImage value="resources/images/Arcana.jpg" />
-                    </div>
-                </div>
-                <div class="game">
-                    <div class="game-user-avatar">
-                        <h:graphicImage value="resources/images/profile.png" />
-                    </div>
-                    <div class="game-info">
-                        <div class="game-info-login">
-                            Пользователь: WQKEFMOI32543534
-                        </div>
-                        <div class="game-info-item">
-                            Выиграл: Rotten stache
-                        </div>
-                    </div>
-                    <div class="game-img">
-                        <h:graphicImage value="resources/images/Arcana.jpg" />
-                    </div>
-                </div>
-                <div class="game">
-                    <div class="game-user-avatar">
-                        <h:graphicImage value="resources/images/profile.png" />
-                    </div>
-                    <div class="game-info">
-                        <div class="game-info-login">
-                            Пользователь: WQKEFMOI32543534
-                        </div>
-                        <div class="game-info-item">
-                            Выиграл: Rotten stache
-                        </div>
-                    </div>
-                    <div class="game-img">
-                        <h:graphicImage value="resources/images/Arcana.jpg" />
-                    </div>
-                </div>
-                <div class="game">
-                    <div class="game-user-avatar">
-                        <h:graphicImage value="resources/images/profile.png" />
-                    </div>
-                    <div class="game-info">
-                        <div class="game-info-login">
-                            Пользователь: WQKEFMOI32543534
-                        </div>
-                        <div class="game-info-item">
-                            Выиграл: Rotten stache
-                        </div>
-                    </div>
-                    <div class="game-img">
-                        <h:graphicImage value="resources/images/Arcana.jpg" />
-                    </div>
-                </div>
-
+    <h:form id="lastGames">
+        <div class="last-games">
+            <div class="last-games-header">
+                Последние игры
             </div>
-        </h:form>
+            <ui:repeat value="#{gamesBean.lastGames()}" var="game">
+                <h:panelGroup layout="block" styleClass="game">
+                    <h:panelGroup layout="block" styleClass="game-user-avatar">
+                        <h:graphicImage value="resources/images/profile.png"/>
+                    </h:panelGroup>
+                    <h:panelGroup layout="block" styleClass="game-info">
+                        <h:panelGroup layout="block" styleClass="game-info-login">
+                            Пользователь: #{game.user.steamLogin}
+                        </h:panelGroup>
+                        <h:panelGroup layout="block" styleClass="game-info-item">
+                            Выиграл: #{game.item.name}
+                        </h:panelGroup>
+                    </h:panelGroup>
+                    <h:panelGroup layout="block" styleClass="game-img">
+                        <h:graphicImage value="resources/images/#{game.item.rarity.name}.jpg"/>
+                    </h:panelGroup>
+                </h:panelGroup>
+            </ui:repeat>
+
+        </div>
+    </h:form>
 </ui:composition>

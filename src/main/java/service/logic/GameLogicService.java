@@ -67,6 +67,7 @@ public class GameLogicService {
         return winItem;
     }
 
+    // @ transactional
     public List<Item> playOnMoney(User user, Bet bet) {
         if (user == null) {
             LOG.error("Game started, user is null");
@@ -103,9 +104,9 @@ public class GameLogicService {
         balanceService.updateBalance(balance);
 
         game.setUser(user);
+        game.setItem(winItem);
         game.setBet(bet.getValue());
         game.setDescription(winItem.getName());
-        game.setNumber(-1);
         gameService.insertGame(game);
         game.setNumber(game.getId());
         gameService.updateGame(game);

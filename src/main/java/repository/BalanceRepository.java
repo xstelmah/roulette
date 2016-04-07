@@ -12,10 +12,10 @@ public interface BalanceRepository {
     @Results(value = {
             @Result(property = "id", column = "balanceId", id = true),
             @Result(property = "value", column = "balanceValue"),
-//            @Result(property = "user", column = "userId",javaType = User.class,
-//                    one = @One(select = "repository.UserRepository.getUserById",fetchType = FetchType.LAZY)),
-//            @Result(property = "transactions", column = "balanceId", javaType = List.class,
-//                    many = @Many(select = "repository.TransactionRepository.getTranscationsByBalanceId",fetchType = FetchType.LAZY))
+            @Result(property = "user", column = "userId", javaType = User.class,
+                    one = @One(select = "repository.UserRepository.getUserById", fetchType = FetchType.LAZY)),
+            @Result(property = "balanceTransactions", column = "balanceId", javaType = List.class,
+                    many = @Many(select = "repository.TransactionRepository.getTransactionsByBalanceId", fetchType = FetchType.LAZY))
     })
     @Select("select * from Balance where BalanceId = #{id}")
     Balance getBalanceById(@Param(value = "id") Integer id);
@@ -23,10 +23,10 @@ public interface BalanceRepository {
     @Results(value = {
             @Result(property = "id", column = "balanceId", id = true),
             @Result(property = "value", column = "balanceValue"),
-//            @Result(property = "user", column = "userId",javaType = User.class,
-//                    one = @One(select = "repository.UserRepository.getUserById",fetchType = FetchType.LAZY)),
-//            @Result(property = "transactions", column = "balanceId", javaType = List.class,
-//                    many = @Many(select = "repository.TransactionRepository.getTranscationsByBalanceId",fetchType = FetchType.LAZY))
+            @Result(property = "user", column = "userId", javaType = User.class,
+                    one = @One(select = "repository.UserRepository.getUserById", fetchType = FetchType.LAZY)),
+            @Result(property = "balanceTransactions", column = "balanceId", javaType = List.class,
+                    many = @Many(select = "repository.TransactionRepository.getTransactionsByBalanceId", fetchType = FetchType.LAZY))
     })
     @Select("select * from Balance where userId = #{id}")
     Balance getBalanceByUserId(Integer id);

@@ -25,6 +25,10 @@ public class GameService {
         return gameRepository.getGamesByUserId(id);
     }
 
+    public List<Game> getLastGames(Integer count) {
+        return gameRepository.getLastGames(count);
+    }
+
     public void insertGame(Game game) {
         gameRepository.insertGame(game);
     }

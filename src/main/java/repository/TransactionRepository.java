@@ -14,6 +14,8 @@ public interface TransactionRepository {
             @Result(property = "newBalance", column = "transactionNewBalance"),
             @Result(property = "type", column = "transactionType"),
             @Result(property = "value", column = "transactionValue"),
+            @Result(property = "date",column = "balanceTransactionDate"),
+            @Result(property = "additionalInfo", column = "balanceTransactionAdditionalInfo"),
             @Result(property = "balance", column = "balanceId", javaType = Balance.class,
                     one = @One(select = "repository.BalanceRepository.getBalanceById", fetchType = FetchType.LAZY))
     })
@@ -25,9 +27,11 @@ public interface TransactionRepository {
             @Result(property = "newBalance", column = "transactionNewBalance"),
             @Result(property = "type", column = "transactionType"),
             @Result(property = "value", column = "transactionValue"),
+            @Result(property = "date",column = "balanceTransactionDate"),
+            @Result(property = "additionalInfo", column = "balanceTransactionAdditionalInfo"),
             @Result(property = "balance", column = "balanceId", javaType = Balance.class,
                     one = @One(select = "repository.BalanceRepository.getBalanceById", fetchType = FetchType.LAZY))
     })
     @Select("select * from BalanceTransaction where balanceId = #{id}")
-    List<BalanceTransaction> getTranscationsByBalanceId(@Param(value = "id")Integer id);
+    List<BalanceTransaction> getTransactionsByBalanceId(@Param(value = "id")Integer id);
 }

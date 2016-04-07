@@ -123,6 +123,7 @@ body {
 .game-info-item, .game-info-login {
     float: left;
     clear: both;
+    min-width: 345px;
     padding: 0.5em 0 0 0.1em;
 }
 .game-img {
@@ -131,7 +132,7 @@ body {
 .game-img img {
     /*float: right ;*/
     padding: 0;
-    margin: 2px 3px 1px 65px;
+    margin: 2px 3px 1px 0;
     width: 84px;
     height: 64px;
 }
