@@ -45,6 +45,12 @@ public class UserBean implements Serializable {
     @ManagedProperty(value = "#{steamOpenId}")
     private SteamOpenID steamOpenID;
 
+    public String userProfileLink() {
+        return "http://steamcommunity.com/profiles/" + user.getSteamId();
+    }
+
+    public String userTradeLink() { return "http://steamcommunity.com/id/me/tradeoffers/privacy"; }
+
     public String logout() {
         user = new User();
         return logoutPage;

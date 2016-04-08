@@ -10,6 +10,8 @@ public class User {
 
     private String steamId;
 
+    private String steamTradeUrl;
+
     private String chatLogin;
 
     private String avatar;
@@ -54,6 +56,14 @@ public class User {
 
     public void setSteamId(String steamId) {
         this.steamId = steamId;
+    }
+
+    public String getSteamTradeUrl() {
+        return steamTradeUrl;
+    }
+
+    public void setSteamTradeUrl(String steamTradeUrl) {
+        this.steamTradeUrl = steamTradeUrl;
     }
 
     public String getChatLogin() {

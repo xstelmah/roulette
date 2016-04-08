@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+>
+
+<h:head>
+    <h:outputStylesheet name="css/profile.css"/>
+    <h:outputStylesheet name="css/style.css"/>
+</h:head>
+<h:body>
+    <div class="header">
+        <ui:include src="WEB-INF/views/user/userMenu.xhtml"/>
+    </div>
+    <div class="body-content">
+        <h:form id="profileForm">
+            <h:panelGroup layout="block" styleClass="profile-configure">
+                <h:panelGroup layout="block" styleClass="profile-configure-header">
+
+                </h:panelGroup>
+                <h:panelGroup layout="block" styleClass="profile-configure-body">
+                    <h:panelGroup layout="block" styleClass="profile-configure-body-block">
+                        <h:panelGroup layout="block" styleClass="profile-configure-body-avatar">
+                            <h:graphicImage value="#{userBean.user.avatar}"/>
+                        </h:panelGroup>
+                        <h:panelGroup layout="block" styleClass="profile-configure-body-results">
+                            <a href="#{userBean.userProfileLink()}">  #{userBean.user.steamLogin}</a><br/>
+                            Количество игр: #{userBean.user.games.size()}
+                        </h:panelGroup>
+                    </h:panelGroup>
+                    <h:panelGroup layout="block" styleClass="profile-configure-body-block">
+                        <a href="#{userBean.userTradeLink() }">Ссылка на обмен</a>
+                    </h:panelGroup>
+                    <h:panelGroup layout="block" styleClass="profile-configure-body-block">
+                        <h:inputText value="#{userBean.user.steamTradeUrl}">
+                            <f:ajax/>
+                        </h:inputText>
+                    </h:panelGroup>
+
+                </h:panelGroup>
+            </h:panelGroup>
+        </h:form>
+    </div>
+</h:body>
+
+</html>

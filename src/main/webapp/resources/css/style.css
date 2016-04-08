@@ -16,6 +16,7 @@ body {
 .no-padding {
     padding: 0;
 }
+
 .header {
     text-align: center;
     min-height: 64px;
@@ -51,6 +52,7 @@ body {
     width: 125px;
     height: 55px;
 }
+
 .body-content {
     clear: both;
 }
@@ -146,6 +148,7 @@ body {
     margin: 0.5em;
     background: linear-gradient(to bottom, #666 0, #888 100%);
 }
+
 .game-menu-guest-warning {
     margin: 15px 0 5px 15px;
     padding: 0;

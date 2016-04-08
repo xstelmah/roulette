@@ -4,14 +4,14 @@
     <div class="menu">
         <h:form id="userMenuForm">
             <div class="menu-body">
-                <h:commandLink styleClass="menu-element menu-element-left">
+                <h:link styleClass="menu-element menu-element-left" outcome="userProfile">
                     <h:graphicImage value="/resources/images/profile.png"/>
                     Профиль
-                </h:commandLink>
-                <a class="menu-element menu-element-left" href="#">
+                </h:link>
+                <h:link styleClass="menu-element menu-element-left" outcome="userPlayGame">
                     <h:graphicImage value="/resources/images/profile.png"/>
                     Играть
-                </a>
+                </h:link>
                 <a class="menu-element menu-element-left" href="#">
                     <h:graphicImage value="/resources/images/profile.png"/>
                     Техподдержка

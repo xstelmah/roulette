@@ -1,0 +1,56 @@
+.profile-configure {
+    position: relative;
+    float: left;
+    min-width: 700px;
+    min-height: 200px;
+    /*min-width: 63%;*/
+    border-radius: 5px;
+    margin: 0.5em;
+    background: linear-gradient(to bottom, #666 0, #888 100%);
+}
+
+.profile-configure-header {
+
+}
+
+.profile-configure-body {
+    width: 700px;
+}
+
+.profile-configure-body-block {
+    margin: 5px;
+    width: 100%;
+    float: left;
+}
+.profile-configure-body-block > a {
+    font-size: 18px;
+}
+.profile-configure-body-block input {
+    background: #222;
+    background: linear-gradient(to bottom, #111 0, #333 100%);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.30);
+    width: 600px;
+    border: 0;
+    height: 1.5em;
+    padding: 0 5px 0 5px;
+}
+
+.profile-configure-body-avatar {
+    float: left;
+}
+
+.profile-configure-body-avatar img {
+    width: 184px;
+    height: 184px;
+    border-radius: 2px;
+}
+
+.profile-configure-body-results {
+    margin: 5px;
+    float: left;
+}
+
+.profile-configure-body-results a {
+    text-decoration: none;
+    font-size: 20px;
+}
