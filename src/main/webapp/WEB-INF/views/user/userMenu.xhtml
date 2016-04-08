@@ -28,9 +28,9 @@
                     <h:graphicImage value="/resources/images/profile.png"/>
                     Вывод вещей
                 </a>
-                <a class="menu-element menu-element-right" href="#{userBean.goToSteam()}">
+                <h:commandLink action="#{userBean.logout()}" styleClass="menu-element menu-element-right">
                     <h:graphicImage styleClass="logout" value="/resources/images/logout.png"/>
-                </a>
+                </h:commandLink>
                 <h:panelGroup id="userInfo" styleClass="user-info-div menu-element menu-element-right">
                     <div class="user-info-div">
                         #{userBean.user.steamLogin}

@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     31.03.2016 23:00:42                          */
+/* Created on:     08.04.2016 11:44:42                          */
 /*==============================================================*/
 
 
@@ -139,6 +139,7 @@ create table Item
    itemName             varchar(128),
    itemType             varchar(128),
    itemRarity           varchar(64) default 'COMMON',
+   itemImage            varchar(512),
    primary key (itemId)
 );
 
@@ -182,6 +183,7 @@ create table User
    userSteamLogin       varchar(256) not null,
    userChatLogin        varchar(32),
    userSteamId          varchar(32) not null,
+   userAvatar           varchar(512),
    primary key (userId)
 );
 

@@ -13,7 +13,7 @@
             <ui:repeat value="#{gamesBean.lastGames()}" var="game">
                 <h:panelGroup layout="block" styleClass="game">
                     <h:panelGroup layout="block" styleClass="game-user-avatar">
-                        <h:graphicImage value="resources/images/profile.png"/>
+                        <h:graphicImage value="#{game.user.avatar}"/>
                     </h:panelGroup>
                     <h:panelGroup layout="block" styleClass="game-info">
                         <h:panelGroup layout="block" styleClass="game-info-login">
@@ -23,8 +23,8 @@
                             Выиграл: #{game.item.name}
                         </h:panelGroup>
                     </h:panelGroup>
-                    <h:panelGroup layout="block" styleClass="game-img">
-                        <h:graphicImage value="resources/images/#{game.item.rarity.name}.jpg"/>
+                    <h:panelGroup layout="block" styleClass="game-img #{game.item.rarity}_IMG">
+                        <h:graphicImage value="#{game.item.image}"/>
                     </h:panelGroup>
                 </h:panelGroup>
             </ui:repeat>

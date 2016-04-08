@@ -18,6 +18,19 @@ public class Item {
 
     private String type;
 
+    private String image;
+
+    public Item() {
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public Bot getBot() {
         return bot;
     }
@@ -42,12 +55,12 @@ public class Item {
         this.user = user;
     }
 
-    public Integer getId() {
-        return id;
+    public Admin getAdmin() {
+        return admin;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setAdmin(Admin admin) {
+        this.admin = admin;
     }
 
     public String getName() {
@@ -74,11 +87,11 @@ public class Item {
         this.type = type;
     }
 
-    public Admin getAdmin() {
-        return admin;
+    public String getImage() {
+        return image;
     }
 
-    public void setAdmin(Admin admin) {
-        this.admin = admin;
+    public void setImage(String image) {
+        this.image = image;
     }
 }

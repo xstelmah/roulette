@@ -40,7 +40,7 @@
                     </h:panelGroup>
                     <div class="game-menu-submit">
                         <h:commandButton id="buttonPlay" value="Играть" action="#{guestGameBean.guestPlay()}">
-                            <f:ajax render="growl :rouletteForm"/>
+                            <f:ajax render="growl :rouletteForm :lastGames"/>
                         </h:commandButton>
                     </div>
                 </div>

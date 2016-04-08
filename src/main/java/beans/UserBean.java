@@ -40,9 +40,15 @@ public class UserBean implements Serializable {
 
     private static final String failAuthRedirect = "guestPlayGame.xhtml";
 
+    private static final String logoutPage = "guestPlayGame.xhtml";
+
     @ManagedProperty(value = "#{steamOpenId}")
     private SteamOpenID steamOpenID;
 
+    public String logout() {
+        user = new User();
+        return logoutPage;
+    }
 
     public String goToSteam() {
         LOG.info("TRY LOGIN FROM STEAM USER");
@@ -104,7 +110,6 @@ public class UserBean implements Serializable {
     public void setUser(User user) {
         this.user = user;
     }
-
 
     public void setUserService(UserService userService) {
         this.userService = userService;

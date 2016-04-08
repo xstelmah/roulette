@@ -10,9 +10,11 @@ public class User {
 
     private String steamId;
 
-    private Balance balance;
-
     private String chatLogin;
+
+    private String avatar;
+
+    private Balance balance;
 
     private List<Game> games;
 
@@ -30,6 +32,14 @@ public class User {
 
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public String getSteamLogin() {
         return steamLogin;
     }
@@ -38,12 +48,28 @@ public class User {
         this.steamLogin = steamLogin;
     }
 
-    public Integer getId() {
-        return id;
+    public String getSteamId() {
+        return steamId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setSteamId(String steamId) {
+        this.steamId = steamId;
+    }
+
+    public String getChatLogin() {
+        return chatLogin;
+    }
+
+    public void setChatLogin(String chatLogin) {
+        this.chatLogin = chatLogin;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
     public Balance getBalance() {
@@ -78,28 +104,12 @@ public class User {
         this.items = items;
     }
 
-    public String getChatLogin() {
-        return chatLogin;
-    }
-
-    public void setChatLogin(String chatLogin) {
-        this.chatLogin = chatLogin;
-    }
-
     public List<Ticket> getTickets() {
         return tickets;
     }
 
     public void setTickets(List<Ticket> tickets) {
         this.tickets = tickets;
-    }
-
-    public String getSteamId() {
-        return steamId;
-    }
-
-    public void setSteamId(String steamId) {
-        this.steamId = steamId;
     }
 
     public List<TicketMessage> getTicketMessages() {

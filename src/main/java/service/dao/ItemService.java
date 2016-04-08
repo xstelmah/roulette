@@ -2,6 +2,7 @@ package service.dao;
 
 import model.Item;
 import model.ItemRarity;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import repository.ItemRepository;
@@ -24,6 +25,10 @@ public class ItemService {
 
     public Item getItemByGameId(Integer id) {
         return itemRepository.getItemByGameId(id);
+    }
+
+    public List<Item> getFreeItems(Integer count) {
+        return itemRepository.getFreeItems(count);
     }
 
     public List<Item> getItemsByBotId(Integer id) {

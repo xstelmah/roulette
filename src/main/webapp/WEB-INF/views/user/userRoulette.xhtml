@@ -14,8 +14,8 @@
                     <div class="roulette-arrow"></div>
                     <div id="roulette" class="roulette">
                         <c:forEach items="#{userGameBean.renderItems}" var="image">
-                            <h:graphicImage styleClass="roulette-image"
-                                            value="/resources/images/${image.rarity.name}.jpg"/>
+                            <h:graphicImage styleClass="roulette-image #{image.rarity}_IMG"
+                                            value="#{image.image}"/>
                         </c:forEach>
                     </div>
                 </div>
