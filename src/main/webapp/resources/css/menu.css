@@ -1,0 +1,44 @@
+.menu {
+}
+.menu-body {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.menu-body a img {
+    margin: auto;
+    display: block;
+}
+.menu-body a {
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    font-size: 1em;
+    padding: 2px;
+    margin: 0.2em 0.5em 0.1em 0.5em;
+}
+.menu-body a.menu-element-left:hover {
+    background: #444646;
+    border-radius: 2px;
+}
+.login, .logout {
+    width: 125px;
+    height: 55px;
+    padding-right: 10px;
+}
+.menu-element {
+
+}
+.user-info-div {
+    /*height: 100%;*/
+    /*min-height: 64px;*/
+}
+.user-info-div div {
+    padding-top: 0.7em;
+}
+.menu-element-right {
+    float: right;
+}
+.menu-element-left {
+    float: left;
+}

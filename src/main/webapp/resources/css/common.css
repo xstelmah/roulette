@@ -26,8 +26,25 @@ body {
     float: right;
 }
 /******************/
+.header {
+    text-align: center;
+    min-height: 64px;
+    padding: 10px 0 10px 0;
+    background: #222;
+    background: linear-gradient(to bottom, #111 0, #333 100%);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.30);
+    float: left;
+    width: 100%;
+}
+
+.body-content {
+    clear: both;
+}
 
 .body-block {
+
+}
+.body-block-style-1 {
     width: 100%;
     clear: both;
 }

@@ -8,8 +8,8 @@
 }
 .game-history {
     float: right;
-    margin: 0.5em;
-    min-width: 550px;
+    /*margin: 0.5em;*/
+    min-width: 530px;
 }
 .game-history-item {
 

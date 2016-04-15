@@ -52,7 +52,7 @@ public class GuestGameBean {
         List<String> classNames = new LinkedList<>();
         List<Bet> bets = gameLogicService.getBets(GameType.TEST);
         for (Bet bet : bets) {
-            classNames.add("background-" +bet.getRarity().getName().toLowerCase());
+            classNames.add("background-" + bet.getRarity().getName().toLowerCase());
         }
         return classNames;
     }
@@ -67,6 +67,7 @@ public class GuestGameBean {
     }
 
     public void guestPlay() {
+        LOG.info("Try play in guest mod");
         if (selectedBet == null) {
             sendMessage(FacesMessage.SEVERITY_ERROR, "Ошибка", "Не выбрана ставка");
             LOG.error("NOT SELECTED BET");
@@ -104,6 +105,7 @@ public class GuestGameBean {
     }
 
     public Boolean getRenderedRoulette() {
+        LOG.info("rendered {}", renderedRoulette);
         return renderedRoulette;
     }
 

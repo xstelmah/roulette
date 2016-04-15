@@ -5,15 +5,17 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:t="http://myfaces.apache.org/tomahawk"
                 xmlns:p="http://primefaces.org/ui">
+
     <h:outputStylesheet name="css/background.css"/>
-    <div class="game-sub-block">
-        <div class="game-menu">
-            <h:form id="gameMenuForm" prependId="false">
+
+    <h:form id="gameMenuForm" prependId="false">
+        <div class="body-sub-block block-left">
+            <div class="body-sub-sub-block body-sub-sub-block-style-1">
                 <p:growl id="growl" showDetail="true" showSummary="false" life="3000"/>
-                <div>
-                    <div class="game-menu-header">
-                        Выберите тип игры
-                    </div>
+                <div class="content-header content-header-style-1">
+                    Выберите тип игры
+                </div>
+                <div class="content-body content-body-style-1 block-left">
                     <div class="game-menu-items">
                         <t:selectOneRadio id="game-menu" value="#{userGameBean.selectedMenuItem}" layout="spread">
                             <c:forEach items="#{userGameBean.userMenuImages()}" var="image" varStatus="status">
@@ -36,7 +38,7 @@
                                       rendered="#{userGameBean.selectedMenuItem ne null}">
                             Текущая ставка:
                             <h:outputText value="#{userGameBean.selectedBet.value}"/>
-                             ₽
+                            ₽
                         </h:panelGroup>
                     </h:panelGroup>
                     <div class="game-menu-submit">
@@ -45,25 +47,26 @@
                         </h:commandButton>
                     </div>
                 </div>
-            </h:form>
+            </div>
         </div>
-        <h:form id="gameMenuPotentialGains">
-            <h:panelGroup layout="block"
-                          rendered="#{userGameBean.selectedMenuItem ne null}">
-                <div class="game-menu-potential">
-                    <div class="game-menu-potential-gains">
-                        <div class="game-menu-potential-gains-header">
-                            Возможный выигрыш
-                        </div>
-                        <div class="game-menu-potential-gains-body">
-                            <ui:repeat value="#{userGameBean.userPotentialItemImages()}" var="image">
-                                <h:graphicImage value="#{image}"/>
-                            </ui:repeat>
-                        </div>
+    </h:form>
+    <h:form id="gameMenuPotentialGains">
+        <h:panelGroup layout="block"
+                      rendered="#{userGameBean.selectedMenuItem ne null}">
+            <div class="body-sub-block block-left">
+                <div class="body-sub-sub-block body-sub-sub-block-style-1">
+                    <div class="content-header content-header-style-1">
+                        Возможный выигрыш
+                    </div>
+                    <div class="content-body content-body-style-1 block-left
+                     game-menu-potential-gains-body">
+                        <ui:repeat value="#{userGameBean.userPotentialItemImages()}" var="image">
+                            <h:graphicImage value="#{image}"/>
+                        </ui:repeat>
                     </div>
                 </div>
-            </h:panelGroup>
-        </h:form>
-    </div>
+            </div>
+        </h:panelGroup>
+    </h:form>
 
 </ui:composition>

@@ -6,72 +6,73 @@
                 xmlns:p="http://primefaces.org/ui">
     <h:outputStylesheet name="/css/profile.css"/>
     <h:form id="profileForm">
-        <div class="profile-configure">
-            <div class="profile-configure-header">
+        <div class="body-sub-block block-left">
+            <div class="body-sub-sub-block body-sub-sub-block-style-1">
+                <div class="content-body content-body-style-1 block-left">
+                    <div class="profile-configure-body">
+                        <div class="profile-configure-body-block">
+                            <div class="profile-configure-body-avatar">
+                                <h:graphicImage value="#{userBean.user.avatar}"/>
+                            </div>
+                            <div class="profile-configure-body-results">
+                                <div class="profile-configure-body-result">
+                                    <a href="#{userBean.userProfileLink()}">  #{userBean.user.steamLogin}</a><br/>
+                                </div>
+                                <div class="profile-configure-body-result">
+                                    Количество игр: #{userBean.user.games.size()}
+                                </div>
+                                <div class="profile-configure-body-result">
+                                    Выигранных common: #{itemBean.countItemByRarityCommon()}
+                                </div>
+                                <div class="profile-configure-body-result">
+                                    Выигранных uncommon: #{itemBean.countItemByRarityUncommon()}
+                                </div>
+                                <div class="profile-configure-body-result">
+                                    Выигранных rare: #{itemBean.countItemByRarityRare()}
+                                </div>
+                                <div class="profile-configure-body-result">
+                                    Выигранных mythical: #{itemBean.countItemByRarityMythical()}
+                                </div>
+                                <div class="profile-configure-body-result">
+                                    Выигранных immortal: #{itemBean.countItemByRarityImmortal()}
+                                </div>
+                                <div class="profile-configure-body-result">
+                                    Выигранных legendary: #{itemBean.countItemByRarityLegendary()}
+                                </div>
+                                <div class="profile-configure-body-result">
+                                    Выигранных arcana: #{itemBean.countItemByRarityArcana()}
+                                </div>
+                            </div>
+                            <div class="profile-configure-body-result-button">
+                                <h:commandButton value="Сохранить" action="#{userBean.saveUser()}">
+                                    <f:ajax execute="@form"/>
+                                </h:commandButton>
+                            </div>
+                            <div class="profile-configure-body-result-button">
+                                <h:commandButton value="Обновить" action="#{userBean.updateUser()}">
+                                    <f:ajax render="@form"/>
+                                </h:commandButton>
+                            </div>
 
-            </div>
-            <div class="profile-configure-body">
-                <div class="profile-configure-body-block">
-                    <div class="profile-configure-body-avatar">
-                        <h:graphicImage value="#{userBean.user.avatar}"/>
-                    </div>
-                    <div class="profile-configure-body-results">
-                        <div class="profile-configure-body-result">
-                            <a href="#{userBean.userProfileLink()}">  #{userBean.user.steamLogin}</a><br/>
                         </div>
-                        <div class="profile-configure-body-result">
-                            Количество игр: #{userBean.user.games.size()}
+                        <div class="profile-configure-body-block">
+                            <div class="profile-configure-body-block-item">
+                                <a href="#{userBean.userTradeLink() }">Ссылка на обмен</a>
+                            </div>
+                            <div class="profile-configure-body-block-item profile-configure-width">
+                                <h:inputText value="#{userBean.user.steamTradeUrl}">
+                                </h:inputText>
+                            </div>
                         </div>
-                        <div class="profile-configure-body-result">
-                            Выигранных common: #{itemBean.countItemByRarityCommon()}
+                        <div class="profile-configure-body-block">
+                            <div class="profile-configure-body-block-item profile-font-size">
+                                Чат логин
+                            </div>
+                            <div class="profile-configure-body-block-item">
+                                <h:inputText value="#{userBean.user.chatLogin}">
+                                </h:inputText>
+                            </div>
                         </div>
-                        <div class="profile-configure-body-result">
-                            Выигранных uncommon: #{itemBean.countItemByRarityUncommon()}
-                        </div>
-                        <div class="profile-configure-body-result">
-                            Выигранных rare: #{itemBean.countItemByRarityRare()}
-                        </div>
-                        <div class="profile-configure-body-result">
-                            Выигранных mythical: #{itemBean.countItemByRarityMythical()}
-                        </div>
-                        <div class="profile-configure-body-result">
-                            Выигранных immortal: #{itemBean.countItemByRarityImmortal()}
-                        </div>
-                        <div class="profile-configure-body-result">
-                            Выигранных legendary: #{itemBean.countItemByRarityLegendary()}
-                        </div>
-                        <div class="profile-configure-body-result">
-                            Выигранных arcana: #{itemBean.countItemByRarityArcana()}
-                        </div>
-                    </div>
-                    <div class="profile-configure-body-result-button">
-                        <h:commandButton value="Сохранить" action="#{userBean.saveUser()}">
-                            <f:ajax execute="@form"/>
-                        </h:commandButton>
-                    </div>
-                    <div class="profile-configure-body-result-button">
-                        <h:commandButton value="Обновить" action="#{userBean.updateUser()}">
-                            <f:ajax render="@form"/>
-                        </h:commandButton>
-                    </div>
-
-                </div>
-                <div class="profile-configure-body-block">
-                    <div class="profile-configure-body-block-item">
-                        <a href="#{userBean.userTradeLink() }">Ссылка на обмен</a>
-                    </div>
-                    <div class="profile-configure-body-block-item profile-configure-width">
-                        <h:inputText value="#{userBean.user.steamTradeUrl}">
-                        </h:inputText>
-                    </div>
-                </div>
-                <div class="profile-configure-body-block">
-                    <div class="profile-configure-body-block-item profile-font-size">
-                        Чат логин
-                    </div>
-                    <div class="profile-configure-body-block-item">
-                        <h:inputText value="#{userBean.user.chatLogin}">
-                        </h:inputText>
                     </div>
                 </div>
             </div>

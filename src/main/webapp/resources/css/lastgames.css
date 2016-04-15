@@ -1,0 +1,50 @@
+.game {
+    border-radius: 6px;
+    min-width: 400px;
+    min-height: 64px;
+}
+.game div {
+    display: inline-block;
+}
+.game:nth-child(2n) {
+    background: linear-gradient(to bottom, #666 0, #888 100%);
+}
+.game:nth-child(2n+1) {
+    background: linear-gradient(to bottom, #222 0, #444 100%);
+}
+.game-user-avatar {
+    /*position: relative;*/
+    /*float: left;*/
+}
+.game-user-avatar img {
+    padding: 0;
+    margin: 2px 1px 1px 1px;
+    width: 64px;
+    height: 64px;
+}
+.game-info {
+    min-width: 240px;
+    min-height: 64px;
+    border-radius: 5px;
+}
+.game-info-login {
+}
+.game-info-item {
+}
+.game-info-item, .game-info-login {
+    float: left;
+    clear: both;
+    width: 345px;
+
+    padding: 0.5em 0 0 0.1em;
+}
+.game-img {
+
+}
+.game-img img {
+    /*float: right ;*/
+    padding: 0;
+    margin: 1px 2px -1px 0;
+    width: 84px;
+    height: 64px;
+}

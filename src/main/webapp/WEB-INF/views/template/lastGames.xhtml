@@ -5,30 +5,35 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui">
 
-    <h:form id="lastGames">
-        <div class="last-games">
-            <div class="last-games-header">
-                Последние игры
-            </div>
-            <ui:repeat value="#{gamesBean.lastGames()}" var="game">
-                <h:panelGroup layout="block" styleClass="game">
-                    <h:panelGroup layout="block" styleClass="game-user-avatar">
-                        <h:graphicImage value="#{game.user.avatar}"/>
-                    </h:panelGroup>
-                    <h:panelGroup layout="block" styleClass="game-info">
-                        <h:panelGroup layout="block" styleClass="game-info-login">
-                            Пользователь: #{game.user.steamLogin}
-                        </h:panelGroup>
-                        <h:panelGroup layout="block" styleClass="game-info-item">
-                            Выиграл: #{game.item.name}
-                        </h:panelGroup>
-                    </h:panelGroup>
-                    <h:panelGroup layout="block" styleClass="game-img #{game.item.rarity}_IMG">
-                        <h:graphicImage value="#{game.item.image}"/>
-                    </h:panelGroup>
-                </h:panelGroup>
-            </ui:repeat>
+    <h:outputStylesheet name="/css/lastgames.css"/>
 
+    <h:form id="lastGames">
+        <div class="body-sub-block body-sub-block-style-1">
+            <div class="body-sub-sub-block body-sub-sub-block-style-1">
+                <div class="content-header content-header-style-1">
+                    Последние игры
+                </div>
+                <div class="content-body block-left">
+                    <ui:repeat value="#{gamesBean.lastGames()}" var="game">
+                        <h:panelGroup layout="block" styleClass="game">
+                            <h:panelGroup layout="block" styleClass="game-user-avatar">
+                                <h:graphicImage value="#{game.user.avatar}"/>
+                            </h:panelGroup>
+                            <h:panelGroup layout="block" styleClass="game-info">
+                                <h:panelGroup layout="block" styleClass="game-info-login">
+                                    Пользователь: #{game.user.steamLogin}
+                                </h:panelGroup>
+                                <h:panelGroup layout="block" styleClass="game-info-item">
+                                    Выиграл: #{game.item.name}
+                                </h:panelGroup>
+                            </h:panelGroup>
+                            <h:panelGroup layout="block" styleClass="game-img #{game.item.rarity}_IMG">
+                                <h:graphicImage value="#{game.item.image}"/>
+                            </h:panelGroup>
+                        </h:panelGroup>
+                    </ui:repeat>
+                </div>
+            </div>
         </div>
     </h:form>
 </ui:composition>
