@@ -1,0 +1,38 @@
+.game-history-header {
+    padding: 0.5em;
+    border-radius: 5px;
+    background: #222;
+    background: linear-gradient(to bottom, #111 0, #333 100%);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.30);
+    margin: -4px -10px;
+}
+.game-history {
+    float: right;
+    margin: 0.5em;
+    min-width: 550px;
+}
+.game-history-item {
+
+}
+.game-history li:nth-child(2n+1) {
+    background: linear-gradient(to bottom, #666 0, #888 100%);
+}
+.game-history li:nth-child(2n) {
+    background: linear-gradient(to bottom, #222 0, #444 100%);
+}
+.game-history-item-image {
+    float: left;
+    padding: 0;
+    margin: 1px 2px 1px 0;
+
+}
+.game-history-item-image img {
+    margin: 0 0 -3px 0;
+    width: 84px;
+    height: 64px;
+}
+.game-history-item-info {
+    float: left;
+    font-size: 17px;
+    margin-top: 1px;
+}

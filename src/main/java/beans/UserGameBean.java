@@ -56,12 +56,12 @@ public class UserGameBean implements Serializable {
     }
 
     public List<String> userMenuImages() {
-        List<String> imagesPath = new LinkedList<>();
+        List<String> classNames = new LinkedList<>();
         List<Bet> bets = gameLogicService.getBets(GameType.NORMAL);
         for (Bet bet : bets) {
-            imagesPath.add("\"/resources/images/" + bet.getRarity().getName() + ".jpg\"");
+            classNames.add("background-" +bet.getRarity().getName().toLowerCase());
         }
-        return imagesPath;
+        return classNames;
     }
 
     public List<String> userPotentialItemImages() {

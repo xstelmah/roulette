@@ -48,7 +48,7 @@ public interface GameRepository {
             @Result(property = "item", column = "itemId",
                     one = @One(select = "repository.ItemRepository.getItemById", fetchType = FetchType.LAZY))
     })
-    @Select("select * from Game limit #{count}")
+    @Select("select * from Game order by gameId desc limit #{count}")
     List<Game> getLastGames(@Param(value = "count")Integer count);
 
     @Insert("INSERT into Game(gameBet,gameNumber,gameDescription,gameTime,userId, itemId)" +

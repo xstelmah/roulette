@@ -3,7 +3,9 @@
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:c="http://java.sun.com/jsp/jstl/core"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:t="http://myfaces.apache.org/tomahawk"
                 xmlns:p="http://primefaces.org/ui">
+    <h:outputStylesheet name="css/background.css"/>
     <div class="game-sub-block">
         <div class="game-menu">
             <h:form id="gameMenuForm" prependId="false">
@@ -16,26 +18,28 @@
                         <h3>В гостевом режиме вы не можете забрать выигрыш.</h3>
                     </div>
                     <div class="game-menu-items">
-                        <ui:repeat value="#{guestGameBean.guestMenuImages()}" var="imagePath" varStatus="status">
-                            <div class="game-menu-item">
-                                <input type="radio" name="gameMenuSelectItem"
-                                       value="#{status.index}" id="gameMenuSelectItem#{status.index}"
-                                       onclick="guestMenuChanged(#{status.index})"/>
-                                <label for="gameMenuSelectItem#{status.index}"
-                                       style="background: url(#{imagePath}) no-repeat; background-size: cover;"/>
-                            </div>
-                        </ui:repeat>
-                        <h:inputText id="guestHiddenMenuInput" value="#{guestGameBean.selectedMenuItem}"
-                                     style="display: none">
+                        <t:selectOneRadio id="game-menu" value="#{guestGameBean.selectedMenuItem}" layout="spread">
+                            <c:forEach items="#{guestGameBean.guestMenuImages()}" var="image" varStatus="status">
+                                <f:selectItem itemValue="#{status.index}" itemLabel=""/>
+                            </c:forEach>
                             <f:ajax render="gameMenuBetGroup gameMenuPotentialGains"/>
-                        </h:inputText>
+                        </t:selectOneRadio>
+                        <h:panelGrid columns="4">
+                            <c:forEach items="#{guestGameBean.guestMenuImages()}" var="image" varStatus="loop">
+                                <h:panelGroup>
+                                    <div class="game-menu-item">
+                                        <t:radio for="game-menu" index="#{loop.index}" enabledClass="#{image}"/>
+                                    </div>
+                                </h:panelGroup>
+                            </c:forEach>
+                        </h:panelGrid>
                     </div>
                     <h:panelGroup id="gameMenuBetGroup" styleClass="menu-element-left" layout="block">
                         <h:panelGroup layout="block" styleClass="game-menu-bet"
                                       rendered="#{guestGameBean.selectedMenuItem ne null}">
                             Текущая ставка:
                             <h:outputText value="#{guestGameBean.selectedBet.value}"/>
-                             ₽
+                            ₽
                         </h:panelGroup>
                     </h:panelGroup>
                     <div class="game-menu-submit">
@@ -68,5 +72,4 @@
         </h:form>
     </div>
 
-    <h:outputScript name="js/custom.js"/>
 </ui:composition>

@@ -1,0 +1,80 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+    <h:outputStylesheet name="/css/profile.css"/>
+    <h:form id="profileForm">
+        <div class="profile-configure">
+            <div class="profile-configure-header">
+
+            </div>
+            <div class="profile-configure-body">
+                <div class="profile-configure-body-block">
+                    <div class="profile-configure-body-avatar">
+                        <h:graphicImage value="#{userBean.user.avatar}"/>
+                    </div>
+                    <div class="profile-configure-body-results">
+                        <div class="profile-configure-body-result">
+                            <a href="#{userBean.userProfileLink()}">  #{userBean.user.steamLogin}</a><br/>
+                        </div>
+                        <div class="profile-configure-body-result">
+                            Количество игр: #{userBean.user.games.size()}
+                        </div>
+                        <div class="profile-configure-body-result">
+                            Выигранных common: #{itemBean.countItemByRarityCommon()}
+                        </div>
+                        <div class="profile-configure-body-result">
+                            Выигранных uncommon: #{itemBean.countItemByRarityUncommon()}
+                        </div>
+                        <div class="profile-configure-body-result">
+                            Выигранных rare: #{itemBean.countItemByRarityRare()}
+                        </div>
+                        <div class="profile-configure-body-result">
+                            Выигранных mythical: #{itemBean.countItemByRarityMythical()}
+                        </div>
+                        <div class="profile-configure-body-result">
+                            Выигранных immortal: #{itemBean.countItemByRarityImmortal()}
+                        </div>
+                        <div class="profile-configure-body-result">
+                            Выигранных legendary: #{itemBean.countItemByRarityLegendary()}
+                        </div>
+                        <div class="profile-configure-body-result">
+                            Выигранных arcana: #{itemBean.countItemByRarityArcana()}
+                        </div>
+                    </div>
+                    <div class="profile-configure-body-result-button">
+                        <h:commandButton value="Сохранить" action="#{userBean.saveUser()}">
+                            <f:ajax execute="@form"/>
+                        </h:commandButton>
+                    </div>
+                    <div class="profile-configure-body-result-button">
+                        <h:commandButton value="Обновить" action="#{userBean.updateUser()}">
+                            <f:ajax render="@form"/>
+                        </h:commandButton>
+                    </div>
+
+                </div>
+                <div class="profile-configure-body-block">
+                    <div class="profile-configure-body-block-item">
+                        <a href="#{userBean.userTradeLink() }">Ссылка на обмен</a>
+                    </div>
+                    <div class="profile-configure-body-block-item profile-configure-width">
+                        <h:inputText value="#{userBean.user.steamTradeUrl}">
+                        </h:inputText>
+                    </div>
+                </div>
+                <div class="profile-configure-body-block">
+                    <div class="profile-configure-body-block-item profile-font-size">
+                        Чат логин
+                    </div>
+                    <div class="profile-configure-body-block-item">
+                        <h:inputText value="#{userBean.user.chatLogin}">
+                        </h:inputText>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </h:form>
+</ui:composition>

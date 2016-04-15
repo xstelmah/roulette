@@ -1,3 +1,21 @@
-* {
-    /*border: 1px solid darkblue;*/
+.COMMON_IMG {
+    border: 2px solid #b0c3d9;
+}
+.UNCOMMON_IMG {
+    border: 2px solid #5e98d9;
+}
+.RARE_IMG {
+    border: 2px solid #4b69ff;
+}
+.MYTHICAL_IMG {
+    border: 2px solid #8847ff;
+}
+.LEGENDARY_IMG {
+    border: 2px solid #d32ce6;
+}
+.IMMORTAL_IMG {
+    border: 2px solid #e4ae39;
+}
+.ARCANA_IMG {
+    border: 2px solid #ade55c;
 }

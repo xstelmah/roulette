@@ -11,4 +11,11 @@
             org.springframework.web.jsf.el.SpringBeanFacesELResolver
         </el-resolver>
     </application>
+    <render-kit>
+        <renderer>
+            <component-family>javax.faces.SelectOne</component-family>
+            <renderer-type>javax.faces.Radio</renderer-type>
+            <renderer-class>beans.util.RadioRendererWithoutDataTable</renderer-class>
+        </renderer>
+    </render-kit>
 </faces-config>

@@ -49,7 +49,9 @@ public class UserBean implements Serializable {
         return "http://steamcommunity.com/profiles/" + user.getSteamId();
     }
 
-    public String userTradeLink() { return "http://steamcommunity.com/id/me/tradeoffers/privacy"; }
+    public String userTradeLink() {
+        return "http://steamcommunity.com/id/me/tradeoffers/privacy";
+    }
 
     public String logout() {
         user = new User();
@@ -103,11 +105,20 @@ public class UserBean implements Serializable {
         }
     }
 
+    public void updateUser() {
+        if (user != null && user.getId() != null)
+            user = userService.getUserById(user.getId());
+    }
+
+    public void saveUser() {
+        if (user != null && user.getId() != null)
+            userService.updateUser(user);
+    }
+
     public UserBean() {
         LOG.info("UserBean created");
         user = new User();
     }
-
 
     public User getUser() {
         return user;

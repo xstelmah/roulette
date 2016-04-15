@@ -1,0 +1,28 @@
+.background-common {
+    background: url("/resources/images/Common.jpg") no-repeat;
+    background-size: cover;
+}
+.background-uncommon {
+    background: url("/resources/images/Uncommon.jpg") no-repeat;
+    background-size: cover;
+}
+.background-rare {
+    background: url("/resources/images/Rare.jpg") no-repeat;
+    background-size: cover;
+}
+.background-mythical {
+    background: url("/resources/images/Mythical.jpg") no-repeat;
+    background-size: cover;
+}
+.background-immortal {
+    background: url("/resources/images/Immortal.jpg") no-repeat;
+    background-size: cover;
+}
+.background-legendary {
+    background: url("/resources/images/Legendary.jpg") no-repeat;
+    background-size: cover;
+}
+.background-arcana {
+    background: url("/resources/images/Arcana.jpg") no-repeat;
+    background-size: cover;
+}

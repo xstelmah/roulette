@@ -1,0 +1,40 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+    <h:outputStylesheet name="/css/gamehistory.css"/>
+    <h:outputStylesheet name="/css/borders.css"/>
+    <h:form id="gameHistory">
+        <div class="game-history">
+            <p:dataScroller value="#{userBean.user.games}" var="game" chunkSize="7" mode="inline"
+                            style="padding: 0; margin: 0;" scrollHeight="500">
+                <f:facet name="header">
+                    <div class="game-history-header">
+                        История игр
+                    </div>
+                </f:facet>
+                <h:panelGrid columns="1" style="width:100%">
+                    <p:outputPanel>
+                        <h:panelGroup layout="block" styleClass="game-history-item">
+                            <div class="game-history-item-image #{game.item.rarity}_IMG">
+                                <h:graphicImage value="#{game.item.image}"/>
+                            </div>
+                            <h:panelGrid columns="2" styleClass="game-history-item-info">
+                                <h:outputText value="Game number:"/>
+                                <h:outputText value="#{game.id}"/>
+
+                                <h:outputText value="Bet:"/>
+                                <h:outputText value="#{game.bet}"/>
+
+                                <h:outputText value="Item name:"/>
+                                <h:outputText value="#{game.item.name}"/>
+                            </h:panelGrid>
+                        </h:panelGroup>
+                    </p:outputPanel>
+                </h:panelGrid>
+            </p:dataScroller>
+        </div>
+    </h:form>
+</ui:composition>

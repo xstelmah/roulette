@@ -49,12 +49,12 @@ public class GuestGameBean {
     }
 
     public List<String> guestMenuImages() {
-        List<String> imagesPath = new LinkedList<>();
+        List<String> classNames = new LinkedList<>();
         List<Bet> bets = gameLogicService.getBets(GameType.TEST);
         for (Bet bet : bets) {
-            imagesPath.add("\"/resources/images/" + bet.getRarity().getName() + ".jpg\"");
+            classNames.add("background-" +bet.getRarity().getName().toLowerCase());
         }
-        return imagesPath;
+        return classNames;
     }
 
     public List<String> guestPotentialItemImages() {

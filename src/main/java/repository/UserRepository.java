@@ -15,7 +15,7 @@ public interface UserRepository {
             @Result(property = "steamId", column = "userSteamId"),
             @Result(property = "steamTradeUrl", column = "userSteamTradeUrl"),
             @Result(property = "chatLogin", column = "userChatLogin"),
-            @Result(property = "avatar",column = "userAvatar"),
+            @Result(property = "avatar", column = "userAvatar"),
             @Result(property = "balance", column = "balanceId", javaType = Balance.class,
                     one = @One(select = "repository.BalanceRepository.getBalanceById", fetchType = FetchType.LAZY)),
             @Result(property = "games", javaType = List.class, column = "userId",
@@ -30,7 +30,7 @@ public interface UserRepository {
             @Result(property = "steamId", column = "userSteamId"),
             @Result(property = "steamTradeUrl", column = "userSteamTradeUrl"),
             @Result(property = "chatLogin", column = "userChatLogin"),
-            @Result(property = "avatar",column = "userAvatar"),
+            @Result(property = "avatar", column = "userAvatar"),
             @Result(property = "balance", column = "balanceId", javaType = Balance.class,
                     one = @One(select = "repository.BalanceRepository.getBalanceById", fetchType = FetchType.LAZY)),
             @Result(property = "games", javaType = List.class, column = "userId",
@@ -44,6 +44,7 @@ public interface UserRepository {
     void insertUser(@Param(value = "user") User user);
 
     @Update("update User set balanceId = #{user.balance.id}, userSteamLogin = #{user.steamLogin}, "
-            + "userChatLogin = #{user.chatLogin}, userSteamId = #{user.steamId} where userId = #{user.id}")
+            + "userChatLogin = #{user.chatLogin}, userSteamId = #{user.steamId}, userSteamTradeUrl  = #{user.steamTradeUrl}" +
+            ", userAvatar = #{user.avatar} where userId = #{user.id}")
     void updateUser(@Param(value = "user") User user);
 }
