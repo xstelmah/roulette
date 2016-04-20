@@ -1,4 +1,4 @@
-    <ui:composition xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:c="http://java.sun.com/jsp/jstl/core"
@@ -6,61 +6,69 @@
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:t="http://myfaces.apache.org/tomahawk">
 
-    <h:outputStylesheet name="/css/funds.css"/>
+    <h:outputStylesheet name="/css/output.css"/>
+    <h:outputStylesheet name="/css/borders.css"/>
     <h:form id="currentItemsForm">
         <p:growl id="growlCurrentItemsForm" showDetail="true" showSummary="false" life="2000"/>
         <div class="body-sub-block body-sub-block-style-1">
-            <div class="body-sub-sub-block body-sub-sub-block-style-1 block-left">
+            <div class="body-sub-sub-block body-sub-sub-block-style-1" >
                 <div class="content-header content-header-style-1">
-                   Вывод вещей
+                    Вывод вещей
                 </div>
-                <div class="content-body content-body-style-1 block-left">
+                <div class="content-body content-body-style-1 ">
                     <div class="content-sub">
                         <div class="output-items">
                             <t:selectManyCheckbox id="output-menu" value="#{userItemBean.selectedItems}"
-                                              layout="spread">
-                                <c:forEach items="#{balanceBean.paymentSystemsImages()}" var="image" varStatus="status">
-                                    <f:selectItem itemValue="#{status.index}" itemLabel=""/>
+                                                  layout="spread">
+                                <c:forEach items="#{userItemBean.notTransItems}" var="item">
+                                    <f:selectItem itemValue="#{item.id}" itemLabel=""/>
                                 </c:forEach>
-                                <f:ajax render="deposit-info deposit-system-info"/>
+                                <f:ajax/>
                             </t:selectManyCheckbox>
-                            <h:panelGrid columns="5">
-                                <c:forEach items="#{balanceBean.paymentSystemsImages()}" var="image" varStatus="loop">
+                            <h:panelGrid columns="8">
+                                <c:forEach items="#{userItemBean.notTransItems}" var="item" varStatus="status">
                                     <h:panelGroup>
-                                        <div class="deposit-item">
-                                            <t:checkbox for="deposit-menu" index="#{loop.index}"/>
+                                        <div>
+                                            <!--#{item.name}-->
+                                        </div>
+                                        <div class="output-item-image #{item.rarity.toString()}_IMG"
+                                             style="background: url('#{item.image}') no-repeat; background-size: 150px 103px;">
+                                            <t:checkbox for="output-menu" index="#{status.index}"/>
                                         </div>
                                     </h:panelGroup>
                                 </c:forEach>
                             </h:panelGrid>
                         </div>
                     </div>
-                    <h:panelGroup id="deposit-info" styleClass="content-sub" layout="block">
-                        <h:panelGroup layout="block" rendered="#{balanceBean.paymentSystemSelected ne null}">
-                            <div class="deposit-warn">
-                                Введите сумму, на которую вы хотите пополнить личный счёт, и нажмите на кнопку "Пополнить". Вы будете переадресованы на сайт платёжной системы, где сможете завершить платеж. Комиссия взимается в соответствии с тарифами выбранной платёжной системы.
-                            </div>
-                            <div class="deposit-input">
-                                <h:inputText value="#{balanceBean.value}">
-                                </h:inputText>
-                            </div>
-                            <div class="deposit-input deposit-spec-symbol">
-                                <h1>₽</h1>
-                            </div>
-                            <div class="deposit-input">
-                                <h:commandButton value="Пополнить" action="#{balanceBean.deposit()}">
-                                    <f:ajax execute="@form" render="growlFundsForm :userMenuForm:userInfo"/>
-                                </h:commandButton>
-                            </div>
-                        </h:panelGroup>
-                    </h:panelGroup>
-                    <h:panelGroup id="deposit-system-info" styleClass="content-sub" layout="block">
-                        <h:panelGroup layout="block" rendered="#{balanceBean.paymentSystemSelected ne null}">
-                            <div class="deposit-system">
-                                Платёжная система: <h:outputText value="#{balanceBean.currentPaymentSystem()}"/>
-                            </div>
-                        </h:panelGroup>
-                    </h:panelGroup>
+                    <div class="content-sub" style="min-height: 2em; margin-top: 20px">
+                        <div class="output-button block-right">
+                            <h:commandButton value="Вывести" action="#{userItemBean.updateItemsStatus()}">
+                                <f:ajax execute="@form" render="@form"/>
+                            </h:commandButton>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="body-sub-block body-sub-block-style-1">
+            <div class="body-sub-sub-block body-sub-sub-block-style-1">
+                <div class="content-header content-header-style-1">
+                    Выведенные вещи
+                </div>
+                <div class="content-body content-body-style-1">
+                    <div class="content-sub">
+                        <div class="output-items">
+                            <h:panelGrid columns="8">
+                                <c:forEach items="#{userItemBean.transItems}" var="item" varStatus="status">
+                                    <h:panelGroup>
+                                        <div class="output-item-image #{item.rarity.toString()}_IMG"
+                                             style="background: url('#{item.image}') no-repeat; background-size: 150px 103px;">
+                                        </div>
+                                    </h:panelGroup>
+                                </c:forEach>
+                            </h:panelGrid>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

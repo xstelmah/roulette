@@ -2,6 +2,7 @@ package service.dao;
 
 import model.Item;
 import model.ItemRarity;
+import model.User;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -45,5 +46,13 @@ public class ItemService {
 
     public void insertItem(Item item) {
         itemRepository.insertItem(item);
+    }
+
+    public List<Item> getNotTransmittedItems(User user) {
+        return itemRepository.getNotTransmittedItems(user);
+    }
+
+    public List<Item> getTransmittedItems(User user) {
+        return itemRepository.getTransmittedItems(user);
     }
 }

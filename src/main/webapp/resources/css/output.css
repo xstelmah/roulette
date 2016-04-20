@@ -1,3 +1,46 @@
 .output-items {
 
 }
+
+.output-item {
+
+}
+.output-item-image {
+    width: 150px;
+    height: 100px;
+}
+
+.output-item-image label{
+    width: 150px;
+    height: 100px;
+    opacity: 0;
+    background: white;
+    z-index: 100;
+}
+.output-item-image input[type=checkbox]:not(old) {
+    width: 0;
+    height: 0;
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+}
+.output-item-image input[type=checkbox]:not(old) + label {
+    display: inline-block;
+    /*padding: 128px 100px 0px 64px;*/
+    /*margin: 7px;*/
+    /*border-radius: 5px;*/
+    /*background: red;*/
+}
+.output-item-image  input[type=checkbox]:not(old):checked + label {
+    opacity: 0.5;
+}
+
+.output-button, .output-button input {
+    background: #222;
+    background: linear-gradient(to bottom, #111 0, #333 100%);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.30);
+    width: 150px;
+    border: 0;
+    height: 2em;
+    padding: 0 5px 0 5px;
+}

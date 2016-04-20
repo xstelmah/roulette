@@ -96,4 +96,12 @@ public class Item {
     public void setImage(String image) {
         this.image = image;
     }
+
+    public ItemStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(ItemStatus status) {
+        this.status = status;
+    }
 }

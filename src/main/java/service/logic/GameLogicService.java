@@ -161,6 +161,7 @@ public class GameLogicService {
 
         winItem.setGame(game);
         winItem.setUser(user);
+        winItem.setStatus(ItemStatus.NOT_TRANSMITTED);
         itemService.updateItem(winItem);
         List<Item> freeItems = getFreeItems(FREE_ITEM_COUNT);
         for (int index = 0; index <= ITEM_LOAD_COUNT; index++) {

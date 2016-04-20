@@ -104,7 +104,7 @@ public interface ItemRepository {
             " (SELECT * FROM Item WHERE userId is NULL AND gameId is NULL AND itemRarity = \"IMMORTAL\" LIMIT #{count})" +
             " UNION " +
             " (SELECT * FROM Item WHERE userId is NULL AND gameId is NULL AND itemRarity = \"ARCANA\" LIMIT #{count})")
-    List<Item> getFreeItems(@Param(value = "count")Integer count);
+    List<Item> getFreeItems(@Param(value = "count") Integer count);
 
     @Results(value = {
             @Result(id = true, property = "id", column = "itemId"),
@@ -123,14 +123,48 @@ public interface ItemRepository {
     @Select("select * from Item where gameId is null AND userId is null AND itemRarity = #{rarity} Limit 0,1")
     Item getFreeItemByRarity(@Param(value = "rarity") ItemRarity rarity);
 
+    @Results(value = {
+            @Result(id = true, property = "id", column = "itemId"),
+            @Result(property = "name", column = "itemName"),
+            @Result(property = "rarity", column = "itemRarity", javaType = ItemRarity.class),
+            @Result(property = "type", column = "itemType"),
+            @Result(property = "image", column = "itemImage"),
+            @Result(property = "status", column = "itemStatus"),
+            @Result(property = "user", column = "userId", javaType = User.class,
+                    one = @One(select = "repository.UserRepository.getUserById", fetchType = FetchType.LAZY)),
+            @Result(property = "bot", column = "botId", javaType = Bot.class,
+                    one = @One(select = "repository.BotRepository.getBotById", fetchType = FetchType.LAZY)),
+            @Result(property = "game", column = "gameId", javaType = Game.class,
+                    one = @One(select = "repository.GameRepository.getGameById", fetchType = FetchType.LAZY))
+    })
+    @Select("select * from Item where userId = #{user.id} AND itemStatus = 'NOT_TRANSMITTED'")
+    List<Item> getNotTransmittedItems(@Param(value = "user") User user);
+
+    @Results(value = {
+            @Result(id = true, property = "id", column = "itemId"),
+            @Result(property = "name", column = "itemName"),
+            @Result(property = "rarity", column = "itemRarity", javaType = ItemRarity.class),
+            @Result(property = "type", column = "itemType"),
+            @Result(property = "image", column = "itemImage"),
+            @Result(property = "status", column = "itemStatus"),
+            @Result(property = "user", column = "userId", javaType = User.class,
+                    one = @One(select = "repository.UserRepository.getUserById", fetchType = FetchType.LAZY)),
+            @Result(property = "bot", column = "botId", javaType = Bot.class,
+                    one = @One(select = "repository.BotRepository.getBotById", fetchType = FetchType.LAZY)),
+            @Result(property = "game", column = "gameId", javaType = Game.class,
+                    one = @One(select = "repository.GameRepository.getGameById", fetchType = FetchType.LAZY))
+    })
+    @Select("select * from Item where userId = #{user.id} AND itemStatus = 'TRANSMITTED'")
+    List<Item> getTransmittedItems(@Param(value = "user") User user);
+
     @Update("UPDATE Item SET " +
             " botId =#{bot.id},gameId = #{game.id}, userId = #{user.id}, " +
-            " itemName = #{name},itemRarity = #{rarity}, itemType = #{type}" +
+            " itemName = #{name},itemRarity = #{rarity}, itemStatus = #{status}, itemType = #{type}" +
             " WHERE itemId = #{id}")
     void updateItem(Item item);
 
-    @Insert("Insert INTO Item(itemName,itemRarity,itemType,botId,itemImage)" +
-            "values(#{name},#{rarity},#{type},#{bot.id},#{image})"
+    @Insert("Insert INTO Item(itemName,itemRarity,itemStatus,itemType,botId,itemImage)" +
+            "values(#{name},#{rarity},#{status} ,#{type},#{bot.id},#{image})"
     )
     void insertItem(Item item);
 
