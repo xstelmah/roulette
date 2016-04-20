@@ -26,10 +26,10 @@
                     <h:graphicImage value="/resources/images/profile.png"/>
                     Пополнить баланс
                 </h:link>
-                <a class="menu-element menu-element-left" href="#">
+                <h:link styleClass="menu-element menu-element-left" outcome="userItemsOutput">
                     <h:graphicImage value="/resources/images/profile.png"/>
                     Вывод вещей
-                </a>
+                </h:link>
                 <h:commandLink action="#{userBean.logout()}" styleClass="menu-element menu-element-right">
                     <h:graphicImage styleClass="logout" value="/resources/images/logout.png"/>
                 </h:commandLink>

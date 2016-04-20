@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     09.04.2016 1:42:25                           */
+/* Created on:     20.04.2016 16:24:31                          */
 /*==============================================================*/
 
 
@@ -140,6 +140,7 @@ create table Item
    itemType             varchar(128),
    itemRarity           varchar(64) default 'COMMON',
    itemImage            varchar(512),
+   itemStatus           varchar(64),
    primary key (itemId)
 );
 

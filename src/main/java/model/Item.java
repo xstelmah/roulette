@@ -20,6 +20,8 @@ public class Item {
 
     private String image;
 
+    private ItemStatus status;
+
     public Item() {
     }
 

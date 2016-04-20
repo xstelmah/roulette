@@ -112,6 +112,7 @@ public class UserBean implements Serializable {
         }
 
     }
+
     public void sendMessage(FacesMessage.Severity severity, String header, String body) {
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage(severity, header, body));
