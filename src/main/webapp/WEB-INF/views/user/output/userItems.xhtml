@@ -5,18 +5,16 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:t="http://myfaces.apache.org/tomahawk">
+
     <h:outputStylesheet name="/css/funds.css"/>
-    <h:form id="fundsForm">
-        <p:growl id="growlFundsForm" showDetail="true" showSummary="false" life="2000"/>
+    <h:form id="currentItemsForm">
+        <p:growl id="growlCurrentItemsForm" showDetail="true" showSummary="false" life="2000"/>
         <div class="body-sub-block body-sub-block-style-1">
             <div class="body-sub-sub-block body-sub-sub-block-style-1 block-left">
                 <div class="content-header content-header-style-1">
-                    Пополнение счёта
+                   Вывод вещей
                 </div>
                 <div class="content-body content-body-style-1 block-left">
-                    <div class="content-sub">
-                        Выберите платёжную систему
-                    </div>
                     <div class="content-sub">
                         <div class="deposit-items">
                             <t:selectOneRadio id="deposit-menu" value="#{balanceBean.paymentSystemSelected}"
@@ -63,7 +61,6 @@
                             </div>
                         </h:panelGroup>
                     </h:panelGroup>
-
                 </div>
             </div>
         </div>

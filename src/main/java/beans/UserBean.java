@@ -106,13 +106,22 @@ public class UserBean implements Serializable {
     }
 
     public void updateUser() {
-        if (user != null && user.getId() != null)
+        if (user != null && user.getId() != null) {
             user = userService.getUserById(user.getId());
+            sendMessage(FacesMessage.SEVERITY_INFO, null, "Обновлено");
+        }
+
+    }
+    public void sendMessage(FacesMessage.Severity severity, String header, String body) {
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage(severity, header, body));
     }
 
     public void saveUser() {
-        if (user != null && user.getId() != null)
+        if (user != null && user.getId() != null) {
             userService.updateUser(user);
+            sendMessage(FacesMessage.SEVERITY_INFO, null, "Данные сохранены");
+        }
     }
 
     public UserBean() {

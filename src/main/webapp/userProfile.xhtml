@@ -13,6 +13,7 @@
     <h:outputStylesheet name="/css/common.css"/>
 </h:head>
 <h:body>
+    #{accessBean.checkAccessByUser()}
     <div class="header">
         <ui:include src="WEB-INF/views/user/userMenu.xhtml"/>
     </div>

@@ -6,6 +6,7 @@
                 xmlns:p="http://primefaces.org/ui">
     <h:outputStylesheet name="/css/profile.css"/>
     <h:form id="profileForm">
+        <p:growl id="growlProfileForm" showDetail="true" showSummary="false" life="2000"/>
         <div class="body-sub-block block-left">
             <div class="body-sub-sub-block body-sub-sub-block-style-1">
                 <div class="content-body content-body-style-1 block-left">
@@ -45,7 +46,7 @@
                             </div>
                             <div class="profile-configure-body-result-button">
                                 <h:commandButton value="Сохранить" action="#{userBean.saveUser()}">
-                                    <f:ajax execute="@form"/>
+                                    <f:ajax execute="@form" render="@form"/>
                                 </h:commandButton>
                             </div>
                             <div class="profile-configure-body-result-button">

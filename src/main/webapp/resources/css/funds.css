@@ -1,0 +1,85 @@
+.deposit-items {
+
+}
+.deposit-item {
+    background: white;
+    margin: 7px;
+    border-radius: 5px;
+}
+.deposit-item label {
+    width: 200px;
+    height: 100px;
+    margin-bottom: -3px;
+}
+.deposit-item input[type=checkbox]:not(old),
+.deposit-item input[type=radio   ]:not(old) {
+    width: 0;
+    height: 0;
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+}
+
+.deposit-item input[type=checkbox]:not(old) + label,
+.deposit-item input[type=radio   ]:not(old) + label {
+    display: inline-block;
+
+}
+.deposit-item input[type=radio]:not(old):checked + label {
+    opacity: 0.5;
+    /*border: 1px red solid;*/
+}
+
+.deposit-warn {
+    float: left; clear: both;
+    margin: 10px 0 10px 0;
+}
+.deposit-input {
+    float: left;
+}
+.deposit-system {
+    float: left;
+    clear: both;
+    margin-top: 25px;
+}
+.deposit-spec-symbol {
+    padding: 3px;
+}
+.deposit-input input {
+    background: #222;
+    background: linear-gradient(to bottom, #111 0, #333 100%);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.30);
+    border: 0;
+    height: 1.5em;
+    padding: 0 5px 0 5px;
+}
+
+.webmoney-img {
+    background: url("/resources/images/WebMoney.png") no-repeat;
+    background-size: 200px 100px;
+}
+.paypal-img {
+    background: url("/resources/images/PayPal.png") no-repeat;
+    background-size: 200px 100px;
+}
+.g2a-img {
+    background: url("/resources/images/G2A.png") no-repeat;
+    background-size: 200px 100px;
+}
+.qiwi-img {
+    background: url("/resources/images/QIWI.png") no-repeat;
+    background-size: 200px 100px;
+}
+.alfa-click-img {
+    background: url("/resources/images/Alfa-Click.png") no-repeat;
+    background-size: 200px 100px;
+}
+.promsvyazbank-img {
+    background: url("/resources/images/Promsvyazbank.png") no-repeat;
+    background-size: 200px 100px;
+}
+.sberbank-online-img {
+    background: white;
+    background: url("/resources/images/Sberbank-Online.png") no-repeat;
+    background-size: 200px 100px;
+}
