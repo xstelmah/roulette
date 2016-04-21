@@ -5,27 +5,26 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:c="http://java.sun.com/jsp/jstl/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
 >
+
 <h:head>
-    <h:outputStylesheet name="css/borders.css"/>
-    <h:outputStylesheet name="css/style.css"/>
-    <h:outputStylesheet name="css/common.css"/>
-
+    <h:outputStylesheet name="/css/style.css"/>
+    <h:outputStylesheet name="/css/common.css"/>
 </h:head>
-
-<h:body style="overflow-x: hidden">
+<h:body>
     #{accessBean.checkAccessByUser()}
     <div class="header">
         <ui:include src="WEB-INF/views/user/userMenu.xhtml"/>
     </div>
     <div class="body-content">
-        <div class="body-block body-sub-block-style-1">
-            <ui:include src="WEB-INF/views/user/output/userItems.xhtml"/>
+        <div class="body-block body-block-style-1">
+            <ui:include src="WEB-INF/views/user/support/userNewTicket.xhtml"/>
+        </div>
+        <div class="body-block body-block-style-1">
+            <ui:include src="WEB-INF/views/user/support/userLastTickets.xhtml"/>
         </div>
     </div>
-
-
 </h:body>
 
 </html>

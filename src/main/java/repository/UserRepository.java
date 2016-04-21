@@ -21,7 +21,9 @@ public interface UserRepository {
             @Result(property = "games", javaType = List.class, column = "userId",
                     many = @Many(select = "repository.GameRepository.getGamesByUserId", fetchType = FetchType.LAZY)),
             @Result(property = "items", javaType = List.class, column = "userId",
-                    many = @Many(select = "repository.ItemRepository.getItemsByUserId", fetchType = FetchType.LAZY))
+                    many = @Many(select = "repository.ItemRepository.getItemsByUserId", fetchType = FetchType.LAZY)),
+            @Result(property = "tickets", column ="userId", javaType = List.class,
+                    many = @Many(select = "repository.TicketRepository.getTicketsByUser",fetchType = FetchType.LAZY))
     })
     @Select("select * from User where userId = #{id}")
     User getUserById(@Param(value = "id") Integer id);
@@ -38,7 +40,9 @@ public interface UserRepository {
             @Result(property = "games", javaType = List.class, column = "userId",
                     many = @Many(select = "repository.GameRepository.getGamesByUserId", fetchType = FetchType.LAZY)),
             @Result(property = "items", javaType = List.class, column = "userId",
-                    many = @Many(select = "repository.ItemRepository.getItemsByUserId", fetchType = FetchType.LAZY))
+                    many = @Many(select = "repository.ItemRepository.getItemsByUserId", fetchType = FetchType.LAZY)),
+            @Result(property = "tickets", column ="userId", javaType = List.class,
+                    many = @Many(select = "repository.TicketRepository.getTicketsByUser",fetchType = FetchType.LAZY))
     })
     @Select("select * from User where userSteamId = #{id}")
     User getUserBySteamId(@Param(value = "id") String id);

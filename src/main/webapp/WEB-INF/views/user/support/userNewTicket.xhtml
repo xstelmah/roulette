@@ -1,0 +1,57 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:t="http://myfaces.apache.org/tomahawk">
+
+    <h:outputStylesheet name="/css/support.css"/>
+    <h:form id="newTicketForm">
+        <p:growl id="growlNewTicketForm" showDetail="true" showSummary="false" life="2000"/>
+        <div class="body-sub-block body-sub-block-style-1">
+            <div class="body-sub-sub-block body-sub-sub-block-style-1">
+                <div class="content-header content-header-style-1">
+                    Создать новый тикет
+                </div>
+                <div class="content-body content-body-style-1 ">
+                    <div class="content-sub">
+                        <div class="ticket-item">
+                            <div class="ticket-sub-item">
+                                1. Выберите одну из причин:
+                            </div>
+                            <div class="ticket-sub-item" >
+                                <p:selectOneMenu value="#{ticketBean.category}" id="oneMenuTicketReason" required="true" requiredMessage="Выберите одну из причин" styleClass="sel-class" panelStyleClass="sel-class" >
+                                    <f:selectItem itemLabel="Выберите одну из причин" itemValue="" noSelectionOption="true"/>
+                                    <f:selectItem itemLabel="Проблемы со средствами" itemValue="BALANCE"/>
+                                    <f:selectItem itemLabel="Другое" itemValue="OTHER"/>
+                                </p:selectOneMenu>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content-sub">
+                        <div class="ticket-item">
+                            <div class="ticket-sub-item">
+                                2. Подробно опишите проблему (тикеты без подробного описания будут просто закрываться):
+                            </div>
+                            <div class="ticket-sub-item ticket-sub-item-text">
+                                <h:inputTextarea required="true" requiredMessage="Длина сообщение от 30 до 256 символов"
+                                                 validatorMessage="Длина сообщение от 30 до 256 символов"
+                                                 cols="160" rows="9" value="#{ticketBean.message}">
+                                    <f:validateLength minimum="30" maximum="256"/>
+                                </h:inputTextarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content-sub">
+                        <div class="ticket-submit">
+                            <h:commandButton value="Создать тикет" action="#{ticketBean.createNewTicket()}">
+                                <f:ajax execute="@form" render="@form"/>
+                            </h:commandButton>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </h:form>
+</ui:composition>

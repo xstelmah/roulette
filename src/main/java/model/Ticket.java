@@ -1,13 +1,14 @@
 package model;
 
 
-import java.sql.Date;
+import java.util.Date;
+import java.util.List;
 
 public class Ticket {
 
     private Integer id;
 
-    private Integer ticketNumber;
+    private Integer number;
 
     private Date dateCreation;
 
@@ -16,6 +17,12 @@ public class Ticket {
     private TicketCategory category;
 
     private String additionalInfo;
+
+    private User user;
+
+    private Admin admin;
+
+    private List<TicketMessage> ticketMessages;
 
     public Ticket() {
     }
@@ -28,12 +35,12 @@ public class Ticket {
         this.id = id;
     }
 
-    public Integer getTicketNumber() {
-        return ticketNumber;
+    public Integer getNumber() {
+        return number;
     }
 
-    public void setTicketNumber(Integer ticketNumber) {
-        this.ticketNumber = ticketNumber;
+    public void setNumber(Integer number) {
+        this.number = number;
     }
 
     public Date getDateCreation() {
@@ -66,5 +73,29 @@ public class Ticket {
 
     public void setAdditionalInfo(String additionalInfo) {
         this.additionalInfo = additionalInfo;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Admin getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(Admin admin) {
+        this.admin = admin;
+    }
+
+    public List<TicketMessage> getTicketMessages() {
+        return ticketMessages;
+    }
+
+    public void setTicketMessages(List<TicketMessage> ticketMessages) {
+        this.ticketMessages = ticketMessages;
     }
 }

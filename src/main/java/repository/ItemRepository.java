@@ -166,6 +166,7 @@ public interface ItemRepository {
     @Insert("Insert INTO Item(itemName,itemRarity,itemStatus,itemType,botId,itemImage)" +
             "values(#{name},#{rarity},#{status} ,#{type},#{bot.id},#{image})"
     )
+    @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "itemId")
     void insertItem(Item item);
 
 

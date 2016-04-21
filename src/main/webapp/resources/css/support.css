@@ -1,0 +1,72 @@
+.ticket-item {
+    margin-bottom: 10px;
+}
+
+.ticket-sub-item {
+    margin-bottom: 5px;
+}
+
+.ticket-sub-item-text * {
+    color: black;
+}
+
+.sel-class {
+    width: 250px;
+}
+
+.sel-class * {
+    color: black;
+}
+
+.ticket-submit {
+
+}
+
+.ticket-submit input {
+    width: 164px;
+    border-radius: 5px;
+    height: 30px;
+    border: 0;
+    background: linear-gradient(to bottom, #111 0, #333 100%);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.30);
+    margin: 0 7px 7px 0;
+}
+
+.user-tickets {
+
+}
+
+.user-ticket {
+
+}
+.user-ticket {
+
+}
+
+.user-ticket-header h3 {
+    background: linear-gradient(to bottom, #111 0, #333 100%);
+    color:yellow;
+    font-weight: normal;
+    font-family: Arial;
+}
+
+.user-ticket-header >div {
+    background: linear-gradient(to bottom, #414141 0, #333 100%);
+    color:yellow;
+}
+
+.ticket-message {
+    width: 800px;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 5px;
+    background: #111;
+}
+.ticket-message:nth-child(2n+1) {
+    float: left;
+    clear: both;
+}
+.ticket-message:nth-child(2n) {
+    float: right;
+    clear: both;
+}
