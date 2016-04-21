@@ -44,3 +44,24 @@
     height: 2em;
     padding: 0 5px 0 5px;
 }
+
+.output-item-info {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background: url("/resources/images/info.png") no-repeat;
+    background-size: 15px 15px;
+    border-radius: 10px;
+    margin: 1px 1px 1px 135px;
+    cursor: pointer;
+    /* right: 100px; */
+    z-index: 200;
+}
+.test {
+    margin: 0;
+    padding: 0;
+}
+.test > div {
+    padding: 0;
+    margin: 0;
+}

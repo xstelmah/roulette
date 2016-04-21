@@ -11,7 +11,7 @@
     <h:form id="currentItemsForm">
         <p:growl id="growlCurrentItemsForm" showDetail="true" showSummary="false" life="2000"/>
         <div class="body-sub-block body-sub-block-style-1">
-            <div class="body-sub-sub-block body-sub-sub-block-style-1" >
+            <div class="body-sub-sub-block body-sub-sub-block-style-1">
                 <div class="content-header content-header-style-1">
                     Вывод вещей
                 </div>
@@ -28,11 +28,34 @@
                             <h:panelGrid columns="8">
                                 <c:forEach items="#{userItemBean.notTransItems}" var="item" varStatus="status">
                                     <h:panelGroup>
-                                        <div>
-                                            <!--#{item.name}-->
-                                        </div>
+
                                         <div class="output-item-image #{item.rarity.toString()}_IMG"
                                              style="background: url('#{item.image}') no-repeat; background-size: 150px 103px;">
+                                            <h:panelGroup id="item-info0-#{status.index}" styleClass="output-item-info">
+
+                                            </h:panelGroup>
+                                            <p:overlayPanel for="item-info0-#{status.index}" showEffect="blind"
+                                                            hideEffect="blind" showEvent="click"
+                                                            hideEvent="mousedown"
+                                                            dismissable="false" showCloseIcon="true" styleClass="test">
+                                                <h:panelGroup>
+                                                    <div class="body-sub-block body-sub-block-style-1">
+                                                        <div class="body-sub-sub-block-style-1">
+                                                            <div class="content-header content-header-style-1">
+                                                                Информация о предмете
+                                                            </div>
+                                                            <div class="content-body content-body-style-1">
+                                                                <div class="content-sub" style="margin: 3px;">
+                                                                    Имя: #{item.name}
+                                                                </div>
+                                                                <div class="content-sub" style="margin: 3px;">
+                                                                    Раритетность: #{item.rarity}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </h:panelGroup>
+                                            </p:overlayPanel>
                                             <t:checkbox for="output-menu" index="#{status.index}"/>
                                         </div>
                                     </h:panelGroup>
@@ -63,6 +86,31 @@
                                     <h:panelGroup>
                                         <div class="output-item-image #{item.rarity.toString()}_IMG"
                                              style="background: url('#{item.image}') no-repeat; background-size: 150px 103px;">
+                                            <h:panelGroup id="item-info-#{status.index}" styleClass="output-item-info">
+
+                                            </h:panelGroup>
+                                            <p:overlayPanel for="item-info-#{status.index}" showEffect="blind"
+                                                            hideEffect="blind" showEvent="click"
+                                                            hideEvent="mousedown"
+                                                            dismissable="false" showCloseIcon="true" styleClass="test">
+                                                <h:panelGroup>
+                                                    <div class="body-sub-block body-sub-block-style-1">
+                                                        <div class="body-sub-sub-block-style-1">
+                                                            <div class="content-header content-header-style-1">
+                                                                Информация о предмете
+                                                            </div>
+                                                            <div class="content-body content-body-style-1">
+                                                                <div class="content-sub" style="margin: 3px;">
+                                                                    Имя: #{item.name}
+                                                                </div>
+                                                                <div class="content-sub" style="margin: 3px;">
+                                                                    Раритетность: #{item.rarity}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </h:panelGroup>
+                                            </p:overlayPanel>
                                         </div>
                                     </h:panelGroup>
                                 </c:forEach>
