@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import service.dao.TicketMessageService;
 import service.dao.TicketService;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 @Service
@@ -35,6 +36,11 @@ public class TicketLogicService {
         ticketMessage.setTicket(ticket);
         ticketMessage.setMessage(message);
         ticketMessageService.insertTicket(ticketMessage);
+
+        if (user.getTickets() == null) user.setTickets(new ArrayList<Ticket>());
+        if (ticket.getTicketMessages() == null) ticket.setTicketMessages(new ArrayList<TicketMessage>());
+        ticket.getTicketMessages().add(ticketMessage);
+        user.getTickets().add(ticket);
 
         return null;
     }

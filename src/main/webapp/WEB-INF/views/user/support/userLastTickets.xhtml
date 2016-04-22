@@ -17,10 +17,10 @@
                 <div class="content-body content-body-style-1 ">
                     <div class="content-sub">
                         <div class="user-tickets">
-                            <p:accordionPanel styleClass="user-ticket-header">
+                            <p:accordionPanel styleClass="user-ticket-header" activeIndex="-1">
                                 <c:forEach items="#{userBean.user.tickets}" var="ticket">
                                     <div class="user-ticket">
-                                        <p:tab title="Тикет номер #{ticket.number}">
+                                        <p:tab title="Тикет номер: #{ticket.number}. Статус: #{ticket.status.value}">
                                             <h:panelGroup layout="block">
                                                 <ui:repeat value="#{ticket.ticketMessages}" var="mes">
                                                     <div class="ticket-message">

@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     20.04.2016 16:24:31                          */
+/* Created on:     22.04.2016 14:55:41                          */
 /*==============================================================*/
 
 
@@ -141,6 +141,7 @@ create table Item
    itemRarity           varchar(64) default 'COMMON',
    itemImage            varchar(512),
    itemStatus           varchar(64),
+   itemTransmittedDate  datetime,
    primary key (itemId)
 );
 
@@ -170,7 +171,7 @@ create table TicketMessage
    userId               int,
    adminId              int,
    ticketMessageDate    datetime,
-   ticketMessageMessage varchar(256) not null,
+   ticketMessageMessage varchar(1024) not null,
    primary key (ticketMessageId)
 );
 
