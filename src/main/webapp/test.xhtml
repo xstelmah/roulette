@@ -13,13 +13,17 @@
 
 <h:head>
     <h:outputStylesheet name="/css/style.css"/>
-    <h:outputStylesheet name="/css/common.css" />
+    <h:outputStylesheet name="/css/common.css"/>
 
 </h:head>
 <h:body>
-            <h:form id="gameMenuForm" prependId="false">
-
-            </h:form>
+    <h:form id="qweqweqweqwe" prependId="false">
+        <h:selectOneMenu value="#{fakeBean.selectedCar}">
+            <f:selectItems value="#{fakeBean.cars}" var="car"
+                           itemLabel="#{car}" itemValue="#{car}"/>
+        </h:selectOneMenu>
+        <h:commandButton type="submit"/>
+    </h:form>
 </h:body>
 
 </html>

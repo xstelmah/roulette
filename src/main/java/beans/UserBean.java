@@ -4,6 +4,7 @@ import model.Balance;
 import model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.transaction.annotation.Transactional;
 import service.dao.BalanceService;
 import service.dao.UserService;
 import service.logic.SteamOpenID;
@@ -116,7 +117,10 @@ public class UserBean implements Serializable {
     public void sendMessage(FacesMessage.Severity severity, String header, String body) {
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage(severity, header, body));
+
     }
+
+
 
     public void saveUser() {
         if (user != null && user.getId() != null) {

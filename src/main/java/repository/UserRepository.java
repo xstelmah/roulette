@@ -55,4 +55,23 @@ public interface UserRepository {
             + "userChatLogin = #{user.chatLogin}, userSteamId = #{user.steamId}, userSteamTradeUrl  = #{user.steamTradeUrl}" +
             ", userAvatar = #{user.avatar} where userId = #{user.id}")
     void updateUser(@Param(value = "user") User user);
+
+    @Results(value = {
+            @Result(property = "id", column = "userId", id = true),
+            @Result(property = "steamLogin", column = "userSteamLogin"),
+            @Result(property = "steamId", column = "userSteamId"),
+            @Result(property = "steamTradeUrl", column = "userSteamTradeUrl"),
+            @Result(property = "chatLogin", column = "userChatLogin"),
+            @Result(property = "avatar", column = "userAvatar"),
+            @Result(property = "balance", column = "balanceId", javaType = Balance.class,
+                    one = @One(select = "repository.BalanceRepository.getBalanceById", fetchType = FetchType.LAZY)),
+            @Result(property = "games", javaType = List.class, column = "userId",
+                    many = @Many(select = "repository.GameRepository.getGamesByUserId", fetchType = FetchType.LAZY)),
+            @Result(property = "items", javaType = List.class, column = "userId",
+                    many = @Many(select = "repository.ItemRepository.getItemsByUserId", fetchType = FetchType.LAZY)),
+            @Result(property = "tickets", column ="userId", javaType = List.class,
+                    many = @Many(select = "repository.TicketRepository.getTicketsByUser",fetchType = FetchType.LAZY))
+    })
+    @Select("select * from User where userChatLogin = #{login} LIMIT 0,1")
+    User getUserByChatLogin(@Param(value = "login")String login);
 }

@@ -13,7 +13,6 @@ import javax.faces.bean.ViewScoped;
 import java.io.Serializable;
 
 @ManagedBean
-@RequestScoped
 public class TicketBean implements Serializable {
     private static final Logger LOG = LoggerFactory.getLogger(AccessBean.class);
 

@@ -1,6 +1,7 @@
 package service.dao;
 
 import model.User;
+import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,10 @@ public class UserService {
 
     public void updateUser(User user) {
         userRepository.updateUser(user);
+    }
+
+    public User getUserByChatLogin(String login) {
+        return userRepository.getUserByChatLogin(login);
     }
 
 }
