@@ -5,6 +5,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 import service.dao.*;
 
 import java.sql.Date;
@@ -65,6 +67,7 @@ public class GameLogicService {
     }
 
     //transactional
+//    @Transactional(isolation = Isolation.SERIALIZABLE, timeout = 3000)
     public Item getItemByChances(List<Chance> chances) {
         Double startChance = 0.0;
         Double rand = Math.random();
